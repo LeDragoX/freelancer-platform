@@ -1,5 +1,7 @@
 # Freelancer Platform (TreinaDev 7)
 
+Projeto final da 1ª etapa do TreinaDev - Feito em Rails
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
