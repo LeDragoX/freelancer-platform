@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      project: "Projeto"
+    attributes:
+      project:
+        title: "Título"
+        description: "Descrição"
+        wanted_skills: "Habilidades Desejadas"
+        hour_rate: "Valor por hora"
+        deadline: "Data Limite"
+        job_type_id: "Tipo de trabalho"
+        user_id: "Usuário"

@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      freelancer: "Freelancer"
+    attributes:
+      freelancer:
+        email: "E-mail"
+        encrypted_password: "Senha Criptografada"

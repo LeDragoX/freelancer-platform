@@ -11,7 +11,8 @@ Things you may want to cover:
 
 ```sh
 # Don't run this command
-╰─❯ rails new freelancer-platform --skip-action-mailbox --skip-active-storage --skip-action-cable
+╰─❯ rails new freelancer-platform
+# Removed Gems: 'selenium-webdriver' and 'webdriver'
 ```
 
 ## Ruby version
@@ -22,6 +23,9 @@ Things you may want to cover:
 
 - Make sure [_Yarn_](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) is installed:
 - All Rails stuff;
+- Devise - Login & Auth manager;
+- Rspec-Rails - Unit & Web UI tests;
+- Capybara - Web UI tests;
 
 ## Configuration
 
@@ -36,14 +40,14 @@ bundle install
 ## Database initialization
 
 ```sh
-rails db:migrate # Soon...
-rails db:seed    # Soon...
+rails db:migrate
+rails db:seed
 ```
 
 ## How to run the test suite
 
 ```sh
-rspec # Soon...
+rspec
 ```
 
 ## Services (job queues, cache servers, search engines, etc.)
