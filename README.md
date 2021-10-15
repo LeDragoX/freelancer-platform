@@ -5,9 +5,9 @@ Projeto final da 1ª etapa do TreinaDev - Feito em Rails
 ## Diagrama de classe sem cargos de Usuários
 
 Diagrama feito com: [Visual Paradigm Online](https://online.visual-paradigm.com/)
-![](public/assets/class-diagram-without-roles.png)
+![](public/readme/class-diagram-without-roles.png)
 
-Eu tenho versão de diagrama [com Roles de usuário](public/assets/class-diagram-with-roles.png), porém será ignorado.
+Eu tenho versão de diagrama [com Roles de usuário](public/readme/class-diagram-with-roles.png), porém será ignorado.
 
 ## Project Started
 
