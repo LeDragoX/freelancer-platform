@@ -2,17 +2,19 @@
 
 Projeto final da 1ª etapa do TreinaDev - Feito em Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Diagrama de classe sem cargos de Usuários
 
-Things you may want to cover:
+Diagrama feito com: [Visual Paradigm Online](https://online.visual-paradigm.com/)
+![](public/assets/class-diagram-without-roles.png)
+
+Eu tenho versão de diagrama [com Roles de usuário](public/assets/class-diagram-with-roles.png), porém será ignorado.
 
 ## Project Started
 
 ```sh
 # Don't run this command
 ╰─❯ rails new freelancer-platform
-# Removed Gems: 'selenium-webdriver' and 'webdriver'
+# Removed Gems: 'web-console', 'selenium-webdriver' and 'webdriver'
 ```
 
 ## Ruby version
@@ -35,12 +37,13 @@ bundle install
 
 ## Database creation
 
-> No need.
+```sh
+rails db:migrate
+```
 
 ## Database initialization
 
 ```sh
-rails db:migrate
 rails db:seed
 ```
 

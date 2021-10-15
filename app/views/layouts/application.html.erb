@@ -11,8 +11,28 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <header>
+      <nav>
+        <p><%= link_to "Página Inicial", root_path %></p>
+        <% if user_signed_in?  %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
+        <% elsif !freelancer_signed_in? %>
+          <p><%= link_to "Entrar como Usuário", new_user_session_path %></p>
+        <% end %>
+        <% if freelancer_signed_in? %>
+          <p><%= link_to "Logout", destroy_freelancer_session_path, method: :delete %></p>
+        <% elsif !user_signed_in? %>
+          <p><%= link_to "Entrar como Freelancer", new_freelancer_session_path %></p>
+        <% end %>
+      </nav>
+
+      <% if notice %>
+        <p class="notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert"><%= alert %></p>
+      <% end %>
+    </header>
 
     <%= yield %>
   </body>

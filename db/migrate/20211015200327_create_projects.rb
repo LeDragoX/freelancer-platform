@@ -2,11 +2,13 @@ class CreateProjects < ActiveRecord::Migration[6.1]
   def change
     create_table :projects do |t|
       t.string :title
-      t.text :description
-      t.text :wanted_skills
-      t.decimal :hour_rate
+      t.string :description
+      t.string :wanted_skills
+      t.decimal :max_hour_rate
       t.date :deadline
-      t.references :job_type, null: false, foreign_key: true
+      t.integer :job_type
+      t.boolean :available
+      t.integer :status
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

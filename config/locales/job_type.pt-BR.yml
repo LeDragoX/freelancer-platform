@@ -1,7 +1,0 @@
-pt-BR:
-  activerecord:
-    models:
-      job_type: "Tipo de Trabalho"
-    attributes:
-      job_type:
-        name: "Nome"

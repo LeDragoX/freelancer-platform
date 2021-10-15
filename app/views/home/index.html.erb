@@ -1,8 +1,29 @@
 <h1>Plataforma Freelancer</h1>
 <h3>Bem-vindo(a) a plataforma de freelancing</h3>
 
-<p>Aqui você poderá encontrar projetos, ou atuar em algum sendo um participante</p>
-<p>Primeiro, basta logar:</p>
+<p>Aqui você poderá encontrar projetos, para participar, ou criar o próprio projeto para oferecer aos profissionais.</p>
+<% if !(user_signed_in? || freelancer_signed_in?) %>
+  <p>Primeiro, basta logar</p>
 
-<%= link_to "Como Usuário", new_user_session_path %><br>
-<%= link_to "Como Freelancer", new_freelancer_session_path %>
+<% elsif user_signed_in? %>
+  <h3>Listagem de Profissionais</h3>
+
+  <% if @freelancers.empty? %>
+    <h3>Nenhum projeto encontrado</h3>
+  <% end %>
+
+  <% @freelancers.each do |freelancer| %>
+    <%= render freelancer %>
+  <% end %>
+
+<% elsif freelancer_signed_in? %>
+  <h3>Listagem de Projetos</h3>
+
+  <% if @projects.empty? %>
+    <h3>Nenhum projeto encontrado</h3>
+  <% end %>
+
+  <% @projects.each do |project| %>
+    <%= render project %>
+  <% end %>
+<% end %>

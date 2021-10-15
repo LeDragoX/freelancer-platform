@@ -5,4 +5,4 @@ pt-BR:
     attributes:
       freelancer:
         email: "E-mail"
-        encrypted_password: "Senha Criptografada"
+        password: "Senha"
