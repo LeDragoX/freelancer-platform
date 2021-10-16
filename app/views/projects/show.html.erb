@@ -1,29 +1,44 @@
 <main>
-  <div>
-    <h1><%= @project.title %></h1>
-    <h3><%= @project.description %></h3>
+  <% if user_signed_in? || freelancer_signed_in? %>
+    <div>
+      <h1><%= @project.title %></h1>
+      <h3><%= @project.description %></h3>
 
-    <dl>
-      <dt><%= I18n.t(:user, scope: "activerecord.attributes.project") %></dt>
-      <dd><%= @project.user.email %></dd>
+      <dl>
+        <dt><%= I18n.t(:user, scope: "activerecord.attributes.project") %></dt>
+        <dd><%= @project.user.email %></dd>
 
-      <dt><%= I18n.t(:wanted_skills, scope: "activerecord.attributes.project") %></dt>
-      <dd><%= @project.wanted_skills %></dd>
+        <dt><%= I18n.t(:wanted_skills, scope: "activerecord.attributes.project") %></dt>
+        <dd><%= @project.wanted_skills %></dd>
 
-      <dt><%= I18n.t(:max_hour_rate, scope: "activerecord.attributes.project") %></dt>
-      <dd><%= number_to_currency @project.max_hour_rate %></dd>
+        <dt><%= I18n.t(:max_hour_rate, scope: "activerecord.attributes.project") %></dt>
+        <dd><%= number_to_currency @project.max_hour_rate %></dd>
 
-      <dt><%= I18n.t(:deadline, scope: "activerecord.attributes.project") %></dt>
-      <dd><%= l @project.deadline %></dd>
+        <dt><%= I18n.t(:deadline, scope: "activerecord.attributes.project") %></dt>
+        <dd><%= l @project.deadline %></dd>
 
-      <dt><%= I18n.t(:job_type, scope: "activerecord.attributes.project") %></dt>
-      <dd><%= @project.job_type.name %></dd>
+        <dt><%= I18n.t(:job_type, scope: "activerecord.attributes.project") %></dt>
+        <dd><%= @project.job_type.name %></dd>
 
-      <dt><%= I18n.t(:available, scope: "activerecord.attributes.project") %></dt>
-      <dd><%= @project.available %></dd>
+        <dt><%= I18n.t(:available, scope: "activerecord.attributes.project") %></dt>
+        <% if @project.available? %>
+          <dd>Sim</dd>
+        <% else %>
+          <dd>Não</dd>
+        <% end %>
 
-      <dt><%= I18n.t(:status, scope: "activerecord.attributes.project") %></dt>
-      <dd><%= @project.status %></dd>
-    </dl>
-  </div>
+        <dt><%= I18n.t(:status, scope: "activerecord.attributes.project") %></dt>
+        <dd><%= @project.status %></dd>
+      </dl>
+    </div>
+
+    <% if @project.user == current_user %>
+      <ul>
+        <li><%= link_to "Editar Projeto", edit_project_path %></li>
+        <li><%= link_to "Deletar Projeto", project_path,
+                        method: :delete,
+                        data: { confirm: "Tem certeza que deseja deletar o Projeto '#{@project.title}'?" } %></li>
+      </ul>
+    <% end %>
+  <% end %>
 </main>

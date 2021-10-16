@@ -1,0 +1,12 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= I18n.t :email, scope: 'activerecord.attributes.freelancer' %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @freelancers.each do |freelancer| %>
+      <%= render freelancer %>
+    <% end %>
+  </tbody>
+</table>

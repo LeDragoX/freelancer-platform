@@ -1,12 +1,3 @@
-<table>
-  <thead>
-    <tr>
-      <th><%= I18n.t :email, scope: 'activerecord.attributes.freelancer' %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= link_to freelancer.email, root_path %></td> <%# Perigo detectado, se passar encrypted_password, realmente aparece %>
-    </tr>
-  </tbody>
-</table>
+<tr>
+  <td><%= link_to freelancer.email, root_path %></td> <%# Perigo detectado, se passar encrypted_password, realmente aparece %>
+</tr>

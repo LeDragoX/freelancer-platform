@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Freelancer view projects' do
   context 'on home page' do
-    it 'and saw 1' do
+    it 'and saw 1 project' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       user = User.create!({ email: 'user@test.com', password: '123456' })
       job_remoto = JobType.create!({ name: "Remoto" })
@@ -15,6 +15,8 @@ describe 'Freelancer view projects' do
       login_as freelancer, scope: :freelancer
       visit root_path
 
+      expect(page).to_not have_content 'Meus Projetos'
+      expect(page).to_not have_content 'Novo Projeto'
       expect(page).to have_link 'Sistema Web', href: project_path(project)
       expect(page).to_not have_content 'R$ 600,00'
       expect(page).to_not have_content I18n.l(project.deadline) # Foi o melhor jeito consegui de testar Data
@@ -36,12 +38,16 @@ describe 'Freelancer view projects' do
 
       expect(page).to have_content 'Sistema Web'
       expect(page).to have_content 'Site de Fast Food por encomenda'
+      expect(page).to have_content project.user.email
       expect(page).to have_content 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS'
       expect(page).to have_content 'R$ 300,00'
       expect(page).to have_content I18n.l(project.deadline) # Foi o melhor jeito consegui de testar Data
       expect(page).to have_content "Presencial"
-      expect(page).to have_content /true/ # Sim
-      expect(page).to have_content project.user.email
+      expect(page).to have_content /Sim/ # no lugar do true
+      expect(page).to have_content /Status 1/
+      expect(page).to_not have_link "Editar Projeto"
+      expect(page).to_not have_link "Deletar Projeto"
+
     end
   end
 end

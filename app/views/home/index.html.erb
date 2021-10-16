@@ -12,9 +12,7 @@
     <h3>Nenhum projeto encontrado</h3>
   <% end %>
 
-  <% @freelancers.each do |freelancer| %>
-    <%= render freelancer %>
-  <% end %>
+  <%= render partial: "freelancers/freelancers_table" %>
 
 <% elsif freelancer_signed_in? %>
   <h3>📋 Projetos disponíveis</h3>
