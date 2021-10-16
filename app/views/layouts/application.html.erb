@@ -13,14 +13,16 @@
   <body>
     <header>
       <nav>
-        <p><%= link_to "Página Inicial", root_path %></p>
+        <%= link_to "Página Inicial", root_path %>
         <% if user_signed_in?  %>
+          <%= current_user.email %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
         <% elsif !freelancer_signed_in? %>
           <p><%= link_to "Entrar como Usuário", new_user_session_path %></p>
         <% end %>
         <% if freelancer_signed_in? %>
-          <p><%= link_to "Logout", destroy_freelancer_session_path, method: :delete %></p>
+          <%= link_to current_freelancer.email, root_path %>
+          <%= link_to "Logout", destroy_freelancer_session_path, method: :delete %>
         <% elsif !user_signed_in? %>
           <p><%= link_to "Entrar como Freelancer", new_freelancer_session_path %></p>
         <% end %>

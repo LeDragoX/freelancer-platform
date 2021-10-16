@@ -7,8 +7,6 @@
       <th><%= I18n.t(:max_hour_rate, scope: 'activerecord.attributes.project') %></th>
       <th><%= I18n.t(:deadline, scope: 'activerecord.attributes.project') %></th>
       <th><%= I18n.t(:job_type, scope: 'activerecord.attributes.project') %></th>
-      <th><%= I18n.t(:available, scope: 'activerecord.attributes.project') %></th>
-      <th><%= I18n.t(:status, scope: 'activerecord.attributes.project') %></th>
       <th><%= I18n.t(:user, scope: 'activerecord.attributes.project') %></th>
     </tr>
   </thead>
@@ -20,8 +18,6 @@
       <td><%= number_to_currency project.max_hour_rate %></td>
       <td><%= l project.deadline %></td>
       <td><%= project.job_type %></td>
-      <td><%= project.available %></td>
-      <td><%= project.status %></td>
       <td><%= project.user.email %></td>
     </tr>
   </tbody>

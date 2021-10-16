@@ -1,12 +1,12 @@
 <h1>Plataforma Freelancer</h1>
-<h3>Bem-vindo(a) a plataforma de freelancing</h3>
+<h2>Bem-vindo(a) a plataforma de freelancing</h2>
 
 <p>Aqui você poderá encontrar projetos, para participar, ou criar o próprio projeto para oferecer aos profissionais.</p>
 <% if !(user_signed_in? || freelancer_signed_in?) %>
   <p>Primeiro, basta logar</p>
 
 <% elsif user_signed_in? %>
-  <h3>Listagem de Profissionais</h3>
+  <h3>Profissionais disponíveis</h3>
 
   <% if @freelancers.empty? %>
     <h3>Nenhum projeto encontrado</h3>
@@ -17,7 +17,7 @@
   <% end %>
 
 <% elsif freelancer_signed_in? %>
-  <h3>Listagem de Projetos</h3>
+  <h3>Projetos disponíveis</h3>
 
   <% if @projects.empty? %>
     <h3>Nenhum projeto encontrado</h3>

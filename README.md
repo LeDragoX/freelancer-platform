@@ -7,14 +7,14 @@ Projeto final da 1ª etapa do TreinaDev - Feito em Rails
 Diagrama feito com: [Visual Paradigm Online](https://online.visual-paradigm.com/)
 ![](public/readme/class-diagram-without-roles.png)
 
-Eu tenho versão de diagrama [com Roles de usuário](public/readme/class-diagram-with-roles.png), porém será ignorado.
+Também tenho a versão do diagrama [com Roles de usuário](public/readme/class-diagram-with-roles.png), porém será ignorado.
 
 ## Project Started
 
 ```sh
 # Don't run this command
 ╰─❯ rails new freelancer-platform
-# Removed Gems: 'web-console', 'selenium-webdriver' and 'webdriver'
+# Disabled Gems: 'rack-mini-profiler', 'web-console', 'selenium-webdriver' and 'webdriver'
 ```
 
 ## Ruby version
