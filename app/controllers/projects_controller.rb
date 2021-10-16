@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy my_projects]
 
   def show
     @project = Project.find(params[:id])
@@ -19,6 +19,10 @@ class ProjectsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def my_projects
+    @projects = current_user.projects
   end
 
   private

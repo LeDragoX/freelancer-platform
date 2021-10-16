@@ -19,6 +19,7 @@
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
 
           <div>
+            <%= link_to "Meus Projetos", my_projects_projects_path %>
             <%= link_to "Novo Projeto", new_project_path %>
           </div>
         <% elsif !freelancer_signed_in? %>

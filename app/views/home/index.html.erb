@@ -6,7 +6,7 @@
   <p>Primeiro, basta logar</p>
 
 <% elsif user_signed_in? %>
-  <h3>Profissionais disponíveis</h3>
+  <h3>🎓 Profissionais disponíveis</h3>
 
   <% if @freelancers.empty? %>
     <h3>Nenhum projeto encontrado</h3>
@@ -17,26 +17,11 @@
   <% end %>
 
 <% elsif freelancer_signed_in? %>
-  <h3>Projetos disponíveis</h3>
+  <h3>📋 Projetos disponíveis</h3>
 
   <% if @projects.empty? %>
     <h3>Nenhum projeto encontrado</h3>
   <% end %>
 
-  <table>
-    <thead>
-      <tr>
-        <th><%= I18n.t(:title, scope: "activerecord.attributes.project") %></th>
-        <th><%= I18n.t(:wanted_skills, scope: "activerecord.attributes.project") %></th>
-        <th><%= I18n.t(:max_hour_rate, scope: "activerecord.attributes.project") %></th>
-        <th><%= I18n.t(:job_type, scope: "activerecord.attributes.project") %></th>
-        <th><%= I18n.t(:user, scope: "activerecord.attributes.project") %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @projects.each do |project| %>
-        <%= render project %>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render partial: "projects/projects_table" %>
 <% end %>

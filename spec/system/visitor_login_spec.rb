@@ -11,7 +11,10 @@ describe 'Visitor login' do
       fill_in 'Senha',	with: user.password
       click_on 'Entrar'
 
+      expect(page).to have_content 'user@test.com'
       expect(page).to have_content 'Logout'
+      expect(page).to have_content 'Meus Projetos'
+      expect(page).to have_content 'Novo Projeto'
       expect(page).to have_content 'Profissionais disponíveis'
       expect(page).to_not have_content 'Projetos disponíveis'
     end
@@ -27,8 +30,11 @@ describe 'Visitor login' do
       fill_in 'Senha',	with: freelancer.password
       click_on 'Entrar'
 
+      expect(page).to have_content 'freelancer@test.com'
       expect(page).to have_content 'Logout'
       expect(page).to have_content 'Projetos disponíveis'
+      expect(page).to_not have_content 'Meus Projetos'
+      expect(page).to_not have_content 'Novo Projeto'
       expect(page).to_not have_content 'Profissionais disponíveis'
     end
   end

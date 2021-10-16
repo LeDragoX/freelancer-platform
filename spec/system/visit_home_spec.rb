@@ -20,6 +20,8 @@ describe 'Visit home page' do
 
       expect(page).to have_content 'user@test.com'
       expect(page).to have_content 'Logout'
+      expect(page).to have_content 'Meus Projetos'
+      expect(page).to have_content 'Novo Projeto'
       expect(page).to have_content 'Profissionais disponíveis'
       expect(page).to_not have_content 'Projetos disponíveis'
     end
@@ -36,6 +38,8 @@ describe 'Visit home page' do
       expect(page).to have_content 'freelancer@test.com'
       expect(page).to have_content 'Logout'
       expect(page).to have_content 'Projetos disponíveis'
+      expect(page).to_not have_content 'Meus Projetos'
+      expect(page).to_not have_content 'Novo Projeto'
       expect(page).to_not have_content 'Profissionais disponíveis'
       expect(page).to_not have_content 'user@test.com'
     end
