@@ -1,24 +1,7 @@
-<table>
-  <thead>
-    <tr>
-      <th><%= I18n.t(:title, scope: 'activerecord.attributes.project') %></th>
-      <th><%= I18n.t(:description, scope: 'activerecord.attributes.project') %></th>
-      <th><%= I18n.t(:wanted_skills, scope: 'activerecord.attributes.project') %></th>
-      <th><%= I18n.t(:max_hour_rate, scope: 'activerecord.attributes.project') %></th>
-      <th><%= I18n.t(:deadline, scope: 'activerecord.attributes.project') %></th>
-      <th><%= I18n.t(:job_type, scope: 'activerecord.attributes.project') %></th>
-      <th><%= I18n.t(:user, scope: 'activerecord.attributes.project') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= link_to project.title, project_path(project) %></td>
-      <td><%= project.description %></td>
-      <td><%= project.wanted_skills %></td>
-      <td><%= number_to_currency project.max_hour_rate %></td>
-      <td><%= l project.deadline %></td>
-      <td><%= project.job_type %></td>
-      <td><%= project.user.email %></td>
-    </tr>
-  </tbody>
-</table>
+<tr>
+  <td><%= link_to project.title, project_path(project) %></td>
+  <td><%= project.wanted_skills %></td>
+  <td><%= number_to_currency project.max_hour_rate %></td>
+  <td><%= project.job_type.name %></td>
+  <td><%= project.user.email %></td>
+</tr>

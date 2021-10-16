@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_15_200327) do
+ActiveRecord::Schema.define(version: 2021_10_16_140206) do
 
   create_table "freelancers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,18 +24,25 @@ ActiveRecord::Schema.define(version: 2021_10_15_200327) do
     t.index ["reset_password_token"], name: "index_freelancers_on_reset_password_token", unique: true
   end
 
+  create_table "job_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.string "wanted_skills"
     t.decimal "max_hour_rate"
     t.date "deadline"
-    t.integer "job_type"
     t.boolean "available"
     t.integer "status"
+    t.integer "job_type_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["job_type_id"], name: "index_projects_on_job_type_id"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -51,5 +58,6 @@ ActiveRecord::Schema.define(version: 2021_10_15_200327) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "projects", "job_types"
   add_foreign_key "projects", "users"
 end

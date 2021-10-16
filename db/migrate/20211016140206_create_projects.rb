@@ -6,9 +6,9 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.string :wanted_skills
       t.decimal :max_hour_rate
       t.date :deadline
-      t.integer :job_type
       t.boolean :available
       t.integer :status
+      t.references :job_type, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

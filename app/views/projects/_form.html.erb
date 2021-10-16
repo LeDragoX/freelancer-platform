@@ -1,0 +1,64 @@
+<%= form_with model: [@project] do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: I18n.t(:title, scope: "activerecord.attributes.project") %>
+    <% @project.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :description %><br> 
+    <%= f.text_area :description, rows: 5, cols: 50, placeholder: I18n.t(:description, scope: "activerecord.attributes.project") %>
+    <% @project.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :wanted_skills %><br>
+    <%= f.text_area :wanted_skills, rows: 5, cols: 50, placeholder: I18n.t(:wanted_skills, scope: "activerecord.attributes.project") %>
+    <% @project.errors.full_messages_for(:wanted_skills).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :max_hour_rate %>
+    <%= f.number_field :max_hour_rate, min: 0, step: 5.00, placeholder: (number_to_currency "0.00", separator: ".") %>
+    <% @project.errors.full_messages_for(:max_hour_rate).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :deadline %>
+    <%= f.date_field :deadline %>
+    <% @project.errors.full_messages_for(:deadline).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <dl>
+      <dt><%= f.label :job_type %></dt>
+      <dd><%= f.collection_radio_buttons :job_type_id, JobType.order(:name), :id, :name %></dd>
+    </dl>
+    <% @project.errors.full_messages_for(:job_type).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.check_box :available %>
+    <%= f.label :available %>
+    <% @project.errors.full_messages_for(:available).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>

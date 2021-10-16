@@ -23,7 +23,20 @@
     <h3>Nenhum projeto encontrado</h3>
   <% end %>
 
-  <% @projects.each do |project| %>
-    <%= render project %>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= I18n.t(:title, scope: "activerecord.attributes.project") %></th>
+        <th><%= I18n.t(:wanted_skills, scope: "activerecord.attributes.project") %></th>
+        <th><%= I18n.t(:max_hour_rate, scope: "activerecord.attributes.project") %></th>
+        <th><%= I18n.t(:job_type, scope: "activerecord.attributes.project") %></th>
+        <th><%= I18n.t(:user, scope: "activerecord.attributes.project") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <%= render project %>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>

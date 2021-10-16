@@ -1,30 +1,28 @@
-<h1>Vizualização do Projeto</h1>
-
 <main>
   <div>
     <h1><%= @project.title %></h1>
-    <h2><%= @project.description %></h2>
+    <h3><%= @project.description %></h3>
 
     <dl>
-      <dt><%= I18n.t(:user, scope: 'activerecord.attributes.project') %></dt>
-      <dd><%= @user.email %></dd>
+      <dt><%= I18n.t(:user, scope: "activerecord.attributes.project") %></dt>
+      <dd><%= @project.user.email %></dd>
 
-      <dt><%= I18n.t(:wanted_skills, scope: 'activerecord.attributes.project') %></dt>
+      <dt><%= I18n.t(:wanted_skills, scope: "activerecord.attributes.project") %></dt>
       <dd><%= @project.wanted_skills %></dd>
 
-      <dt><%= I18n.t(:max_hour_rate, scope: 'activerecord.attributes.project') %></dt>
+      <dt><%= I18n.t(:max_hour_rate, scope: "activerecord.attributes.project") %></dt>
       <dd><%= number_to_currency @project.max_hour_rate %></dd>
 
-      <dt><%= I18n.t(:deadline, scope: 'activerecord.attributes.project') %></dt>
+      <dt><%= I18n.t(:deadline, scope: "activerecord.attributes.project") %></dt>
       <dd><%= l @project.deadline %></dd>
 
-      <dt><%= I18n.t(:job_type, scope: 'activerecord.attributes.project') %></dt>
-      <dd><%= @project.job_type %></dd>
+      <dt><%= I18n.t(:job_type, scope: "activerecord.attributes.project") %></dt>
+      <dd><%= @project.job_type.name %></dd>
 
-      <dt><%= I18n.t(:available, scope: 'activerecord.attributes.project') %></dt>
+      <dt><%= I18n.t(:available, scope: "activerecord.attributes.project") %></dt>
       <dd><%= @project.available %></dd>
 
-      <dt><%= I18n.t(:status, scope: 'activerecord.attributes.project') %></dt>
+      <dt><%= I18n.t(:status, scope: "activerecord.attributes.project") %></dt>
       <dd><%= @project.status %></dd>
     </dl>
   </div>
