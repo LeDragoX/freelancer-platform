@@ -13,3 +13,7 @@ pt-BR:
         available: "Disponível"
         status: "Status"
         user: "Projeto de"
+      statuses:
+        receiving_proposals: "Aceitando propostas"
+        in_progress: "Em progresso"
+        finished: "Encerrado"

@@ -10,7 +10,7 @@ describe 'User view projects' do
                                   description: 'Site de Fast Food por encomenda',
                                   wanted_skills: 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS',
                                   max_hour_rate: 300, deadline: 4.month.from_now,
-                                  job_type: job_remoto, available: true, status: 1, user: user })
+                                  job_type: job_remoto, available: true, user: user })
 
       login_as user, scope: :user
       visit root_path
@@ -31,7 +31,7 @@ describe 'User view projects' do
                                   description: 'Site de Fast Food por encomenda',
                                   wanted_skills: 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS',
                                   max_hour_rate: 300, deadline: 4.month.from_now,
-                                  job_type: job_presential, available: true, status: 1, user: user })
+                                  job_type: job_presential, available: true, user: user })
 
       login_as user, scope: :user
       visit root_path
@@ -47,7 +47,7 @@ describe 'User view projects' do
         expect(page).to have_content I18n.l(project.deadline) # Foi o melhor jeito consegui de testar Data
         expect(page).to have_content 'Presencial'
         expect(page).to have_content /Sim/ # no lugar do true
-        expect(page).to have_content /Status 1/
+        expect(page).to have_content I18n.t(project.status, scope: 'activerecord.attributes.statuses')
       end
       expect(page).to have_link 'Editar Projeto'
       expect(page).to have_link 'Deletar Projeto'

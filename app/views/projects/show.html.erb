@@ -28,7 +28,7 @@
         <% end %>
 
         <dt><%= I18n.t(:status, scope: "activerecord.attributes.project") %></dt>
-        <dd><%= @project.status %></dd>
+        <dd><%= t(@project.status, scope: "activerecord.attributes.statuses") %></dd>
       </dl>
     </div>
 

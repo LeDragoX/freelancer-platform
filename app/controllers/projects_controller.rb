@@ -54,6 +54,6 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:title, :description, :wanted_skills,
                                     :max_hour_rate, :deadline, :job_type_id,
-                                    :available, :status)
+                                    :available)
   end
 end
