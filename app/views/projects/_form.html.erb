@@ -40,10 +40,8 @@
   </div>
 
   <div>
-    <dl>
-      <dt><%= f.label :job_type %></dt>
-      <dd><%= f.collection_radio_buttons :job_type_id, JobType.order(:name), :id, :name %></dd>
-    </dl>
+    <%= f.label :job_type %>
+    <%= f.collection_radio_buttons :job_type_id, JobType.order(:name), :id, :name %>
     <% @project.errors.full_messages_for(:job_type).each do |message| %>
       <div><%= message %></div>
     <% end %>
