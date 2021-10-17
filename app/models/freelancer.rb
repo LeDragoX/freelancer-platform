@@ -5,4 +5,6 @@ class Freelancer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :projects
+  has_one :profile, dependent: :destroy
+  has_many :experiences, through: :profiles
 end

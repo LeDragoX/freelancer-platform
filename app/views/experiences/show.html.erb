@@ -1,0 +1,22 @@
+<main>
+  <% if user_signed_in? || freelancer_signed_in? %>
+    <div>
+      <%= link_to "Voltar para #{t(:experiences, scope: "activerecord.models")}", profile_experiences_path %>
+
+      <h1><%= @experience.title %></h1>
+      <h3>Período: <%= "#{l @experience.started_at} - #{l @experience.ended_at}" %></h3>
+
+      <dl>
+        <dt><%= I18n.t(:description, scope: "activerecord.attributes.experience") %></dt>
+        <dd><%= @experience.description %></dd>
+      </dl>
+    </div>
+
+    <% if @profile.freelancer == current_freelancer %>
+        <ul>
+          <li><%= link_to "Editar Experiência", root_path %></li>
+          <li><%= link_to "Deletar Experiência", root_path %></li>
+        </ul>
+    <% end %>
+  <% end %>
+</main>

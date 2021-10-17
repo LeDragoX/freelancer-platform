@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= I18n.t(:title, scope: "activerecord.attributes.experience") %></th>
+      <th><%= I18n.t(:started_at, scope: "activerecord.attributes.experience") %></th>
+      <th><%= I18n.t(:ended_at, scope: "activerecord.attributes.experience") %></th>
+      <th><%= I18n.t(:description, scope: "activerecord.attributes.experience") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @experiences.each do |experience| %>
+      <%= render experience %>
+    <% end %>
+  </tbody>
+</table>
