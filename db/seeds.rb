@@ -23,7 +23,7 @@ project = Project.create!({ title: "Sistema Web",
 
 project2 = Project.create!({ title: "Infraestrutura",
                             description: "Realizar a migração da aplicação para a nuvem",
-                            wanted_skills: "Sistemas Linux, conhecimentos das Clouds atuais como AWS, Terraform, Oracle Cloud, Azure e também em Docker. Ruby On Rails, NodeJS e conhecimento mínimo em Banco dados também é desejado.",
+                            wanted_skills: "Sistemas Linux, conhecimento em uma das Clouds atuais como AWS, Terraform, Oracle Cloud ou Azure e também em Docker. Ruby On Rails, NodeJS e conhecimento mínimo em Banco dados também é desejado.",
                             max_hour_rate: 1000, deadline: 1.month.from_now,
                             job_type: job_hybrid, available: true, user: user })
 
@@ -32,3 +32,32 @@ project3 = Project.create!({ title: "Atualização de Sistema Legado",
                             wanted_skills: "No Back: NodeJS, PostgreSQL. No Front: React, Styled-Components, Sass, Bootstrap.",
                             max_hour_rate: 600, deadline: 3.month.from_now,
                             job_type: job_presential, available: true, user: user2 })
+
+dba = OccupationArea.create!({ name: "Administração de Banco de Dados" })
+ads = OccupationArea.create!({ name: "Analista e Desenvolvedor de Sistemas" })
+bi = OccupationArea.create!({ name: "Business Intelligence" })
+cn = OccupationArea.create!({ name: "Computação em Nuvem" })
+ds = OccupationArea.create!({ name: "Data Science" })
+dw = OccupationArea.create!({ name: "Desenvolvedor Web" })
+gpq = OccupationArea.create!({ name: "Gestão de Processos e Qualidade" })
+gti = OccupationArea.create!({ name: "Gestão de TI" })
+gp = OccupationArea.create!({ name: "Gestão de Projetos" })
+hp = OccupationArea.create!({ name: "Hardware e Periféricos" })
+ib = OccupationArea.create!({ name: "Informática Biomédica" })
+jd = OccupationArea.create!({ name: "Jogos digitais" })
+dw = OccupationArea.create!({ name: "Mídias sociais" })
+qa = OccupationArea.create!({ name: "Quality Assurance" })
+pdt = OccupationArea.create!({ name: "Pesquisador e Desenvolvedor Tecnológico" })
+pdw = OccupationArea.create!({ name: "Segurança de Sistemas" })
+stti = OccupationArea.create!({ name: "Suporte Técnico de TI" })
+wb = OccupationArea.create!({ name: "Web Designer" })
+
+f_profile = Profile.create!({ full_name: "Giovanni César Lima", social_name: "Giovanni César",
+                              birth_date: 32.years.ago, formation: "Ciência da Computação",
+                              description: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou",
+                              photo: "https://i.pinimg.com/originals/47/eb/9f/47eb9f6a5f8878923282daf42e8cc95f.jpg",
+                              occupation_area: qa, freelancer: freelancer })
+
+f_experience = Experience.create!({ title: "Fast Entregas", started_at: 6.years.ago, ended_at: 5.years.ago,
+                                    description: "Desenvolvedor Full-Stack Junior",
+                                    profile: f_profile })

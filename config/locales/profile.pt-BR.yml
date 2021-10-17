@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      profile: "Perfil"
+    attributes:
+      profile:
+        full_name: "Nome Completo"
+        social_name: "Nome Social"
+        birth_date: "Data de Nascimento"
+        formation: "Formação"
+        description: "Descrição"
+        photo: "Foto"
+        occupation_area: "Área de Atuação"
+        freelancer: "Profissional"

@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      experience: "Experiência"
+    attributes:
+      experience:
+        title: "Título"
+        started_at: "Começou em"
+        ended_at: "Terminou em"
+        description: "Descrição"
+        profile: "Perfil"

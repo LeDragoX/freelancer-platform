@@ -9,9 +9,9 @@ pt-BR:
         wanted_skills: "Habilidades Desejadas"
         max_hour_rate: "Valor/Hora máximo"
         deadline: "Data Limite"
-        job_type: "Tipo de Trabalho"
         available: "Disponível"
         status: "Status"
+        job_type: "Tipo de Trabalho"
         user: "Projeto de"
       statuses:
         receiving_proposals: "Aceitando propostas"

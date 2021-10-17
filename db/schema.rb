@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_040417) do
+ActiveRecord::Schema.define(version: 2021_10_17_135041) do
 
   create_table "experiences", force: :cascade do |t|
     t.string "title"
-    t.date "start_at"
-    t.date "end_at"
+    t.date "started_at"
+    t.date "ended_at"
     t.string "description"
     t.integer "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
