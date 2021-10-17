@@ -2,6 +2,7 @@ pt-BR:
   activerecord:
     models:
       freelancer: "Profissional"
+      freelancers: "Profissionais"
     attributes:
       freelancer:
         email: "E-mail"

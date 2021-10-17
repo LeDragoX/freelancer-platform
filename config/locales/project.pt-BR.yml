@@ -2,6 +2,7 @@ pt-BR:
   activerecord:
     models:
       project: "Projeto"
+      projects: "Projetos"
     attributes:
       project:
         title: "Título"

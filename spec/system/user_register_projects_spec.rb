@@ -26,9 +26,9 @@ describe 'User register projects' do
       expect(page).to have_content 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS'
       expect(page).to have_content 'R$ 300,00'
       expect(page).to have_content I18n.l(Date.today)
-      expect(page).to have_content 'Tipo de Trabalho Presencial'
+      expect(page).to have_content 'Tipo de Trabalho: Presencial'
       expect(page).to have_content /Sim/
-      expect(page).to have_content 'Status Aceitando propostas'
+      expect(page).to have_content 'Status: Aceitando propostas'
     end
   end
 

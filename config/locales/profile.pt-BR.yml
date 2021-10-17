@@ -2,6 +2,7 @@ pt-BR:
   activerecord:
     models:
       profile: "Perfil"
+      profiles: "Perfis"
     attributes:
       profile:
         full_name: "Nome Completo"

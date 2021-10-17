@@ -16,7 +16,7 @@
         <nav>
           <%= link_to "Página Inicial", root_path %>
           <% if user_signed_in?  %>
-            <%= t(:user, scope: "activerecord.models") + " " + current_user.email %>
+            <%= "#{t(:user, scope: "activerecord.models")} #{current_user.email}" %>
             <%= link_to "Logout", destroy_user_session_path, method: :delete %>
 
             <div>
@@ -27,7 +27,7 @@
             <p><%= link_to "Entrar como Usuário", new_user_session_path %></p>
           <% end %>
           <% if freelancer_signed_in? %>
-            <%= link_to t(:freelancer, scope: "activerecord.models") + " " + current_freelancer.email, root_path %>
+            <%= link_to "#{t(:freelancer, scope: "activerecord.models")} #{current_freelancer.email}", profile_path(current_freelancer) %>
             <%= link_to "Logout", destroy_freelancer_session_path, method: :delete %>
           <% elsif !user_signed_in? %>
             <p><%= link_to "Entrar como Freelancer", new_freelancer_session_path %></p>

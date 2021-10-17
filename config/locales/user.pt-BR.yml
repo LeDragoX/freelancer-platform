@@ -2,6 +2,7 @@ pt-BR:
   activerecord:
     models:
       user: "Usuário"
+      users: "Usuários"
     attributes:
       user:
         email: "E-mail"
