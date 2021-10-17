@@ -15,7 +15,7 @@ class Project < ApplicationRecord
 
   def initialize_status
     if status.nil?
-      self.status = 10
+      self.receiving_proposals!
     end
   end
 
