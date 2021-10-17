@@ -11,36 +11,38 @@
   </head>
 
   <body>
-    <header>
-      <nav>
-        <%= link_to "Página Inicial", root_path %>
-        <% if user_signed_in?  %>
-          <%= t(:user, scope: "activerecord.models") + " " + current_user.email %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <div class="container">
+      <header>
+        <nav>
+          <%= link_to "Página Inicial", root_path %>
+          <% if user_signed_in?  %>
+            <%= t(:user, scope: "activerecord.models") + " " + current_user.email %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
 
-          <div>
-            <%= link_to "Meus Projetos", my_projects_projects_path %>
-            <%= link_to "Novo Projeto", new_project_path %>
-          </div>
-        <% elsif !freelancer_signed_in? %>
-          <p><%= link_to "Entrar como Usuário", new_user_session_path %></p>
+            <div>
+              <%= link_to "Meus Projetos", my_projects_projects_path %>
+              <%= link_to "Novo Projeto", new_project_path %>
+            </div>
+          <% elsif !freelancer_signed_in? %>
+            <p><%= link_to "Entrar como Usuário", new_user_session_path %></p>
+          <% end %>
+          <% if freelancer_signed_in? %>
+            <%= link_to t(:freelancer, scope: "activerecord.models") + " " + current_freelancer.email, root_path %>
+            <%= link_to "Logout", destroy_freelancer_session_path, method: :delete %>
+          <% elsif !user_signed_in? %>
+            <p><%= link_to "Entrar como Freelancer", new_freelancer_session_path %></p>
+          <% end %>
+        </nav>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
         <% end %>
-        <% if freelancer_signed_in? %>
-          <%= link_to t(:freelancer, scope: "activerecord.models") + " " + current_freelancer.email, root_path %>
-          <%= link_to "Logout", destroy_freelancer_session_path, method: :delete %>
-        <% elsif !user_signed_in? %>
-          <p><%= link_to "Entrar como Freelancer", new_freelancer_session_path %></p>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
         <% end %>
-      </nav>
-
-      <% if notice %>
-        <p class="notice"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert"><%= alert %></p>
-      <% end %>
-    </header>
-
-    <%= yield %>
+      </header>
+      <hr>
+      <%= yield %>
+    </div>
   </body>
 </html>

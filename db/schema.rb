@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_16_140206) do
+ActiveRecord::Schema.define(version: 2021_10_17_040417) do
+
+  create_table "experiences", force: :cascade do |t|
+    t.string "title"
+    t.date "start_at"
+    t.date "end_at"
+    t.string "description"
+    t.integer "profile_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_experiences_on_profile_id"
+  end
 
   create_table "freelancers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,6 +39,27 @@ ActiveRecord::Schema.define(version: 2021_10_16_140206) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "occupation_areas", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "full_name"
+    t.string "social_name"
+    t.date "birth_date"
+    t.string "formation"
+    t.string "description"
+    t.string "photo"
+    t.integer "occupation_area_id", null: false
+    t.integer "freelancer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["freelancer_id"], name: "index_profiles_on_freelancer_id"
+    t.index ["occupation_area_id"], name: "index_profiles_on_occupation_area_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -58,6 +90,9 @@ ActiveRecord::Schema.define(version: 2021_10_16_140206) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "experiences", "profiles"
+  add_foreign_key "profiles", "freelancers"
+  add_foreign_key "profiles", "occupation_areas"
   add_foreign_key "projects", "job_types"
   add_foreign_key "projects", "users"
 end
