@@ -4,10 +4,10 @@ class Project < ApplicationRecord
 
   validates :title, :description, :wanted_skills,
   :max_hour_rate, :deadline,
-  :job_type_id, :user_id, presence: :true
+  :job_type_id, :user_id, presence: true
 
-  validate :initialize_status
   validate :deadline_must_be_future
+  validate :initialize_status
 
   enum status: { receiving_proposals: 10, in_progress: 20, finished: 30 }
 
@@ -15,7 +15,7 @@ class Project < ApplicationRecord
 
   def initialize_status
     if status.nil?
-      self.receiving_proposals!
+      self.status = 10
     end
   end
 
