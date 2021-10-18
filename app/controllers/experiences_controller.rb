@@ -4,7 +4,7 @@ class ExperiencesController < ApplicationController
   # Needs Profile and Experiences Models
   def index
     @profile = Profile.find(params[:profile_id])
-    @experiences = Experience.all
+    @experiences = @profile.experiences
   end
 
   def show
