@@ -9,4 +9,4 @@ pt-BR:
         started_at: "Começou em"
         ended_at: "Terminou em"
         description: "Descrição"
-        profile: "Perfil"
+        profile_id: "Perfil"

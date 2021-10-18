@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :projects, only: %i[show new create edit update destroy] do
       get 'my_projects', on: :collection
   end
-  resources :profiles, only: %i[show] do
+  resources :profiles, only: %i[show new create edit update] do
     resources :experiences, only: %i[index show]
   end
 end

@@ -13,7 +13,7 @@ pt-BR:
         available: "Disponível"
         status: "Status"
         job_type: "Tipo de Trabalho"
-        user: "Projeto de"
+        user_id: "Projeto de"
       statuses:
         receiving_proposals: "Aceitando propostas"
         in_progress: "Em progresso"

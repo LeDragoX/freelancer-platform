@@ -11,5 +11,5 @@ pt-BR:
         formation: "Formação"
         description: "Descrição"
         photo: "Foto"
-        occupation_area: "Área de Atuação"
-        freelancer: "Profissional"
+        occupation_area_id: "Área de Atuação"
+        freelancer_id: "Profissional"
