@@ -31,7 +31,7 @@
 
     <% if @profile.freelancer == current_freelancer %>
         <ul>
-          <li><%= link_to "Editar Perfil", root_path %></li>
+          <li><%= link_to "Editar Perfil", edit_profile_path(@profile) %></li>
         </ul>
     <% end %>
   <% end %>

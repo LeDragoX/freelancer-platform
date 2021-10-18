@@ -1,0 +1,8 @@
+<main>
+  <% if current_freelancer.profile == @profile.freelancer %>
+    <%= link_to "Voltar para Página Inicial", root_path %>
+    <h1>💼 Novo <%= I18n.t(:profile, scope: "activerecord.models") %></h1>
+
+    <%= render "form", model: @profile %>
+  <% end %>
+</main>

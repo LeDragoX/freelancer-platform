@@ -1,0 +1,68 @@
+<%= form_with model: @profile do |f| %>
+  <div>
+    <%= f.label :full_name %>
+    <%= f.text_field :full_name, placeholder: I18n.t(:full_name, scope: "activerecord.attributes.profile") %>
+    <% @profile.errors.full_messages_for(:full_name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :social_name %><br> 
+    <%= f.text_field :social_name, placeholder: I18n.t(:social_name, scope: "activerecord.attributes.profile") %>
+    <% @profile.errors.full_messages_for(:social_name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :birth_date %><br>
+    <%= f.date_field :birth_date %>
+    <% @profile.errors.full_messages_for(:birth_date).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :formation %>
+    <%= f.text_field :formation, placeholder: I18n.t(:formation, scope: "activerecord.attributes.profile") %>
+    <% @profile.errors.full_messages_for(:formation).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, rows: 5, cols: 50, placeholder: I18n.t(:description, scope: "activerecord.attributes.profile") %>
+    <% @profile.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :photo %>
+    <%= f.text_field :photo, placeholder: "#{I18n.t(:photo, scope: "activerecord.attributes.profile")} (URL)" %>
+    <% @profile.errors.full_messages_for(:photo).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :occupation_area_id %>
+    <%= f.collection_select :occupation_area_id, OccupationArea.order(:name), :id, :name %>
+    <% @profile.errors.full_messages_for(:occupation_area_id).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <% @profile.errors.full_messages_for(:freelancer_id).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>
