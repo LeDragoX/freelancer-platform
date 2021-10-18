@@ -41,7 +41,7 @@ describe 'User register projects' do
                                   description: 'Site de Fast Food por encomenda',
                                   wanted_skills: 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS',
                                   max_hour_rate: 300, deadline: 4.month.from_now,
-                                  job_type: job_remoto, available: true, user: user })
+                                  available: true, job_type: job_remoto, user: user })
 
       login_as user, scope: :user
       visit root_path
@@ -81,7 +81,7 @@ describe 'User register projects' do
                                   description: 'Site de Fast Food por encomenda',
                                   wanted_skills: 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS',
                                   max_hour_rate: 300, deadline: 4.month.from_now,
-                                  job_type: job_remoto, available: true, user: user })
+                                  available: true, job_type: job_remoto, user: user })
 
       login_as user, scope: :user
       visit root_path

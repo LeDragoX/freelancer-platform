@@ -22,7 +22,7 @@ describe 'User view projects' do
       end
       expect(page).to have_link 'Sistema Web', href: project_path(project)
       expect(page).to have_content 'R$ 300,00'
-      expect(page).to_not have_content I18n.l(project.deadline) # Foi o melhor jeito consegui de testar Data
+      expect(page).to_not have_content I18n.l(project.deadline)
     end
 
     it 'and enters on a project page' do
@@ -46,7 +46,7 @@ describe 'User view projects' do
         expect(page).to have_content project.user.email
         expect(page).to have_content 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS'
         expect(page).to have_content 'R$ 300,00'
-        expect(page).to have_content I18n.l(project.deadline) # Foi o melhor jeito consegui de testar Data
+        expect(page).to have_content I18n.l(project.deadline)
         expect(page).to have_content 'Presencial'
         expect(page).to have_content /Sim/ # no lugar do true
         expect(page).to have_content I18n.t(project.status, scope: 'activerecord.attributes.statuses')

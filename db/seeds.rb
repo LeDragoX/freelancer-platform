@@ -20,19 +20,19 @@ project = Project.create!({ title: "Sistema Web",
                             description: "Site de Fast Food por encomenda",
                             wanted_skills: "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS.",
                             max_hour_rate: 300, deadline: 4.month.from_now,
-                            job_type: job_remote, available: true, user: user })
+                            available: true, job_type: job_remote, user: user })
 
 project2 = Project.create!({ title: "Infraestrutura",
                             description: "Realizar a migração da aplicação para a nuvem",
                             wanted_skills: "Sistemas Linux, conhecimento em uma das Clouds atuais como AWS, Terraform, Oracle Cloud ou Azure e também em Docker. Ruby On Rails, NodeJS e conhecimento mínimo em Banco dados também é desejado.",
                             max_hour_rate: 1000, deadline: 1.month.from_now,
-                            job_type: job_hybrid, available: true, user: user })
+                            available: true, job_type: job_hybrid, user: user })
 
 project3 = Project.create!({ title: "Atualização de Sistema Legado",
                             description: "Site feito com ASP 3.0, PHP e MySQL precisa ser migrado para tecnologias mais recentes.",
                             wanted_skills: "No Back: NodeJS, PostgreSQL. No Front: React, Styled-Components, Sass, Bootstrap.",
                             max_hour_rate: 600, deadline: 3.month.from_now,
-                            job_type: job_presential, available: true, user: user1 })
+                            available: true, job_type: job_presential, user: user1 })
 
 dba = OccupationArea.create!({ name: "Administração de Banco de Dados" })
 ads = OccupationArea.create!({ name: "Analista e Desenvolvedor de Sistemas" })
