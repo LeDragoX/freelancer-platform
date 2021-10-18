@@ -15,8 +15,10 @@ describe 'Freelancer view projects' do
       login_as freelancer, scope: :freelancer
       visit root_path
 
-      expect(page).to_not have_content 'Meus Projetos'
-      expect(page).to_not have_content 'Novo Projeto'
+      within 'nav' do
+        expect(page).to_not have_content 'Meus Projetos'
+        expect(page).to_not have_content 'Novo Projeto'
+      end
       expect(page).to have_link 'Sistema Web', href: project_path(project)
       expect(page).to_not have_content 'R$ 600,00'
       expect(page).to_not have_content I18n.l(project.deadline) # Foi o melhor jeito consegui de testar Data

@@ -23,12 +23,14 @@ describe 'User register projects' do
       expect(current_path).to_not eq new_project_path
       expect(page).to have_content 'Sistema Web'
       expect(page).to have_content 'Site de Fast Food por encomenda'
-      expect(page).to have_content 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS'
-      expect(page).to have_content 'R$ 300,00'
-      expect(page).to have_content I18n.l(Date.today)
-      expect(page).to have_content 'Tipo de Trabalho: Presencial'
-      expect(page).to have_content /Sim/
-      expect(page).to have_content 'Status: Aceitando propostas'
+      within 'dl' do
+        expect(page).to have_content 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS'
+        expect(page).to have_content 'R$ 300,00'
+        expect(page).to have_content I18n.l(Date.today)
+        expect(page).to have_content 'Tipo de Trabalho: Presencial'
+        expect(page).to have_content /Sim/
+        expect(page).to have_content 'Status: Aceitando propostas'
+      end
     end
 
     it 'and edit it' do
@@ -61,12 +63,14 @@ describe 'User register projects' do
       expect(current_path).to eq project_path(project)
       expect(page).to have_content 'Sistema Web FUNCIONAL'
       expect(page).to have_content 'Site de Fast Food por encomenda TOP'
-      expect(page).to have_content 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS ... SÓ, e tem que ser Sênior :)'
-      expect(page).to have_content 'R$ 55,00'
-      expect(page).to have_content I18n.l(Date.today)
-      expect(page).to have_content 'Tipo de Trabalho: Remoto'
-      expect(page).to have_content /Não/
-      expect(page).to have_content 'Status: Aceitando propostas'
+      within 'dl' do
+        expect(page).to have_content 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS ... SÓ, e tem que ser Sênior :)'
+        expect(page).to have_content 'R$ 55,00'
+        expect(page).to have_content I18n.l(Date.today)
+        expect(page).to have_content 'Tipo de Trabalho: Remoto'
+        expect(page).to have_content /Não/
+        expect(page).to have_content 'Status: Aceitando propostas'
+      end
     end
 
     it 'and delete it' do

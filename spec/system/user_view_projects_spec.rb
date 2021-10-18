@@ -16,8 +16,10 @@ describe 'User view projects' do
       visit root_path
       click_on 'Meus Projetos'
 
-      expect(page).to have_content 'Meus Projetos'
-      expect(page).to have_content 'Novo Projeto'
+      within 'nav' do
+        expect(page).to have_content 'Meus Projetos'
+        expect(page).to have_content 'Novo Projeto'
+      end
       expect(page).to have_link 'Sistema Web', href: project_path(project)
       expect(page).to have_content 'R$ 300,00'
       expect(page).to_not have_content I18n.l(project.deadline) # Foi o melhor jeito consegui de testar Data
