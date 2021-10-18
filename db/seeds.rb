@@ -55,13 +55,13 @@ wb = OccupationArea.create!({ name: "Web Designer" })
 
 f_profile = Profile.create!({ full_name: "Giovanni César Lima", social_name: "Giovanni César",
                               birth_date: 32.years.ago, formation: "Ciência da Computação",
-                              description: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou",
+                              description: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou.",
                               photo: "https://i.pinimg.com/originals/47/eb/9f/47eb9f6a5f8878923282daf42e8cc95f.jpg",
                               occupation_area: qa, freelancer: freelancer })
 
 f_profile2 = Profile.create!({ full_name: "Analu Silvana Andreia Ferreira", social_name: "Analu Silvana",
                               birth_date: 29.years.ago, formation: "Engenharia da Computação",
-                              description: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou",
+                              description: "Sou uma profissional que sabe trabalhar em projetos grandes, com trabalho em equipe e sou autodidata.",
                               photo: "https://c.tenor.com/OyIYV1OjcjQAAAAM/anime-fiduka.gif",
                               occupation_area: cn, freelancer: freelancer1 })
 
