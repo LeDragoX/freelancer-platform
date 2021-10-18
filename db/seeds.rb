@@ -6,10 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create!({ email: "test@test.com", password: "123456" })
-user2 = User.create!({ email: "user@email.com", password: "123456" })
-freelancer = Freelancer.create!({ email: "test@test.com", password: "123456" })
-freelancer2 = Freelancer.create!({ email: "freelancer@email.com", password: "123456" })
+user = User.create!({ email: "user@test.com", password: "123456" })
+user1 = User.create!({ email: "test@test.com", password: "123456" })
+freelancer = Freelancer.create!({ email: "freelancer@test.com", password: "123456" })
+freelancer1 = Freelancer.create!({ email: "test@test.com", password: "123456" })
+freelancer2 = Freelancer.create!({ email: "test2@test.com", password: "123456" })
 
 job_presential = JobType.create!({ name: "Presencial" })
 job_remote = JobType.create!({ name: "Remoto" })
@@ -31,7 +32,7 @@ project3 = Project.create!({ title: "Atualização de Sistema Legado",
                             description: "Site feito com ASP 3.0, PHP e MySQL precisa ser migrado para tecnologias mais recentes.",
                             wanted_skills: "No Back: NodeJS, PostgreSQL. No Front: React, Styled-Components, Sass, Bootstrap.",
                             max_hour_rate: 600, deadline: 3.month.from_now,
-                            job_type: job_presential, available: true, user: user2 })
+                            job_type: job_presential, available: true, user: user1 })
 
 dba = OccupationArea.create!({ name: "Administração de Banco de Dados" })
 ads = OccupationArea.create!({ name: "Analista e Desenvolvedor de Sistemas" })
@@ -57,6 +58,12 @@ f_profile = Profile.create!({ full_name: "Giovanni César Lima", social_name: "G
                               description: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou",
                               photo: "https://i.pinimg.com/originals/47/eb/9f/47eb9f6a5f8878923282daf42e8cc95f.jpg",
                               occupation_area: qa, freelancer: freelancer })
+
+f_profile2 = Profile.create!({ full_name: "Analu Silvana Andreia Ferreira", social_name: "Analu Silvana",
+                              birth_date: 29.years.ago, formation: "Engenharia da Computação",
+                              description: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou",
+                              photo: "https://c.tenor.com/OyIYV1OjcjQAAAAM/anime-fiduka.gif",
+                              occupation_area: cn, freelancer: freelancer1 })
 
 f_experience = Experience.create!({ title: "Fast Entregas", started_at: 6.years.ago, ended_at: 5.years.ago,
                                     description: "Desenvolvedor Full-Stack Junior",
