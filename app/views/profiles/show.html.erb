@@ -3,6 +3,12 @@
     <div>
       <%= link_to "Voltar para Página Inicial", root_path %>
 
+      <% if @profile.freelancer == current_freelancer %>
+          <ul>
+            <li><%= link_to "Editar Perfil", edit_profile_path(@profile) %></li>
+          </ul>
+      <% end %>
+
       <h1><%= "#{@profile.full_name} (#{@profile.social_name})" %></h1>
       <h3><%= @profile.occupation_area.name %></h3>
 
@@ -23,16 +29,16 @@
       </dl>
     </div>
 
+    <hr>
+
     <div>
-      <h1>Histórico de Experiências</h1>
+      <% if @profile.freelancer == current_freelancer %>
+        <%= link_to "Nova #{t(:experience, scope: "activerecord.models")}", new_profile_experience_path(@profile) %>
+      <% end %>
 
-      <h2><%= link_to "Experiências", profile_experiences_path(@profile) %></h2>
+      <h1><%= I18n.t(:experiences, scope: "activerecord.models") %></h1>
+
+      <%= render @experiences %>
     </div>
-
-    <% if @profile.freelancer == current_freelancer %>
-        <ul>
-          <li><%= link_to "Editar Perfil", edit_profile_path(@profile) %></li>
-        </ul>
-    <% end %>
   <% end %>
 </main>
