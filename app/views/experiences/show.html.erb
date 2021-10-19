@@ -1,7 +1,7 @@
 <main>
   <% if user_signed_in? || freelancer_signed_in? %>
     <div>
-      <%= link_to "Voltar para #{t(:experiences, scope: "activerecord.models")}", profile_experiences_path(@experience.profile) %>
+      <%= link_to "Voltar para #{t(:profile, scope: "activerecord.models")}", profile_path(@experience.profile) %>
 
       <h1><%= @experience.title %></h1>
       <h3>Período: <%= "#{l @experience.started_at} - #{l @experience.ended_at}" %></h3>
