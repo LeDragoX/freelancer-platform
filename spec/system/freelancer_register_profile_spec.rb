@@ -32,7 +32,7 @@ describe 'Freelancer register Profile' do
         expect(page).to have_content 'Ciência da Computação'
         expect(page).to have_content 'freelancer@test.com'
       end
-      expect(page).to have_link I18n.t(:experiences, scope: 'activerecord.models'), href: '/profiles/1/experiences'
+      expect(page).to have_content I18n.t(:experiences, scope: 'activerecord.models')
       expect(page).to have_link 'Editar Perfil', href: '/profiles/1/edit'
     end
 
@@ -71,7 +71,7 @@ describe 'Freelancer register Profile' do
         expect(page).to have_content 'Ciência da Computação'
         expect(page).to have_content 'freelancer@test.com'
       end
-      expect(page).to have_link I18n.t(:experiences, scope: 'activerecord.models'), href: '/profiles/1/experiences'
+      expect(page).to have_content I18n.t(:experiences, scope: 'activerecord.models')
       expect(page).to have_link 'Editar Perfil', href: '/profiles/1/edit'
     end
   end

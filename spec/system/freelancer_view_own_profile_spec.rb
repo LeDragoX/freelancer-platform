@@ -26,7 +26,7 @@ describe 'Freelancer view own Profile' do
         expect(page).to have_content 'Ciência da Computação'
         expect(page).to have_content 'freelancer@test.com'
       end
-      expect(page).to have_link I18n.t(:experiences, scope: 'activerecord.models'), href: profile_experiences_path(f_profile)
+      expect(page).to have_content I18n.t(:experiences, scope: 'activerecord.models')
       expect(page).to have_link 'Editar Perfil', href: edit_profile_path(f_profile)
     end
   end
