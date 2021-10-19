@@ -2,6 +2,9 @@
   <% if user_signed_in? || freelancer_signed_in? %>
     <div>
       <%= link_to "Voltar para Perfil", profile_path(@profile) %>
+      <% if @profile.freelancer == current_freelancer %>
+        <%= link_to "Nova #{t(:experience, scope: "activerecord.models")}", new_profile_experience_path(@profile) %>
+      <% end %>
       <h1>Histórico de Experiências de <%= @profile.social_name %></h1>
 
       <%= render "experiences_table" %>

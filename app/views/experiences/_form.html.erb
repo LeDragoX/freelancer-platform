@@ -1,0 +1,45 @@
+<%= form_with model: [@profile, @experience] do |f| %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: I18n.t(:title, scope: "activerecord.attributes.experience") %>
+    <% @experience.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :started_at %><br>
+    <%= f.date_field :started_at %>
+    <% @experience.errors.full_messages_for(:started_at).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :ended_at %><br>
+    <%= f.date_field :ended_at %>
+    <% @experience.errors.full_messages_for(:ended_at).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, rows: 5, cols: 50, placeholder: I18n.t(:description, scope: "activerecord.attributes.experience") %>
+    <% @experience.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <% @experience.errors.full_messages_for(:profile_id).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>

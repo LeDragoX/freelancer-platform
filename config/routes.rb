@@ -8,6 +8,6 @@ Rails.application.routes.draw do
       get 'my_projects', on: :collection
   end
   resources :profiles, only: %i[show new create edit update] do
-    resources :experiences, only: %i[index show]
+    resources :experiences, only: %i[index show new create edit update destroy]
   end
 end

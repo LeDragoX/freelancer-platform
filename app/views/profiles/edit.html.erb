@@ -1,6 +1,6 @@
 <main>
   <% if @profile.freelancer == current_freelancer %>
-    <%= link_to "Voltar para #{t(:profiles, scope: "activerecord.models")}", profile_path %>
+    <%= link_to "Voltar para #{t(:profile, scope: "activerecord.models")}", profile_path %>
     <h1>💼 Editar <%= @profile.full_name %></h1>
 
     <%= render partial: "form" %>

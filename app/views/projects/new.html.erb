@@ -2,5 +2,5 @@
   <%= link_to "Voltar para #{t(:projects, scope: "activerecord.models")}", my_projects_projects_path %>
   <h1>📋 Novo <%= I18n.t(:project, scope: "activerecord.models") %></h1>
 
-  <%= render "form", model: @project %>
+  <%= render "form" %>
 </main>

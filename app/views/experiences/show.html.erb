@@ -1,7 +1,7 @@
 <main>
   <% if user_signed_in? || freelancer_signed_in? %>
     <div>
-      <%= link_to "Voltar para #{t(:experiences, scope: "activerecord.models")}", profile_experiences_path %>
+      <%= link_to "Voltar para #{t(:experiences, scope: "activerecord.models")}", profile_experiences_path(@experience.profile) %>
 
       <h1><%= @experience.title %></h1>
       <h3>Período: <%= "#{l @experience.started_at} - #{l @experience.ended_at}" %></h3>
@@ -12,10 +12,11 @@
       </dl>
     </div>
 
-    <% if @profile.freelancer == current_freelancer %>
+    <% if @experience.profile.freelancer == current_freelancer %>
         <ul>
-          <li><%= link_to "Editar Experiência", root_path %></li>
-          <li><%= link_to "Deletar Experiência", root_path %></li>
+          <li><%= link_to "Editar Experiência", edit_profile_experience_path %></li>
+          <li><%= link_to "Deletar Experiência", profile_experience_path, method: :delete,
+                          data: { confirm: "Tem certeza que deseja deletar a Experiência '#{@experience.title}'?" } %></li>
         </ul>
     <% end %>
   <% end %>
