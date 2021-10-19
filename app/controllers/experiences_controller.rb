@@ -3,11 +3,12 @@ class ExperiencesController < ApplicationController
 
   # Needs Profile and Experiences Models
   def index
-    @profile = Profile.find(params[:profile_id])
-    @experiences = @profile.experiences
+    # TODO: Implement admin
+    @profiles = Profile.all
   end
 
   def show
+    @profile = Profile.find(params[:profile_id])
     @experience = Experience.find(params[:id])
   end
 
@@ -48,7 +49,7 @@ class ExperiencesController < ApplicationController
     @experience = @profile.experiences.find(params[:id])
 
     if @experience.destroy
-      redirect_to profile_experiences_path
+      redirect_to profile_path(@profile)
     else
       render :show
     end
