@@ -1,8 +1,6 @@
-<main>
-  <% if @project.user == current_user %>
-    <%= link_to "Voltar para #{t(:projects, scope: "activerecord.models")}", my_projects_projects_path %>
-    <h1>📋 Editar <%= @project.title %></h1>
+<% if @project.user == current_user %>
+  <%= link_to "Voltar para #{t(:projects, scope: "activerecord.models")}", my_projects_projects_path %>
+  <h1>📋 Editar <%= @project.title %></h1>
 
-    <%= render partial: "form" %>
-  <% end %>
-</main>
+  <%= render partial: "form" %>
+<% end %>

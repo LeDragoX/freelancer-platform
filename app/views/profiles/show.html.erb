@@ -1,44 +1,42 @@
-<main>
-  <% if user_signed_in? || freelancer_signed_in? %>
-    <div>
-      <%= link_to "Voltar para Página Inicial", root_path %>
+<% if user_signed_in? || freelancer_signed_in? %>
+  <div>
+    <%= link_to "Voltar para Página Inicial", root_path %>
 
-      <% if @profile.freelancer == current_freelancer %>
-          <ul>
-            <li><%= link_to "Editar Perfil", edit_profile_path(@profile) %></li>
-          </ul>
-      <% end %>
+    <% if @profile.freelancer == current_freelancer %>
+        <ul>
+          <li><%= link_to "Editar Perfil", edit_profile_path(@profile) %></li>
+        </ul>
+    <% end %>
 
-      <h1><%= "#{@profile.full_name} (#{@profile.social_name})" %></h1>
-      <h3><%= @profile.occupation_area.name %></h3>
+    <h1><%= "#{@profile.full_name} (#{@profile.social_name})" %></h1>
+    <h3><%= @profile.occupation_area.name %></h3>
 
-      <%= render partial: "photo" %>
+    <%= render partial: "photo" %>
 
-      <dl>
-        <dt><%= I18n.t(:description, scope: "activerecord.attributes.profile") %></dt>
-        <dd><%= @profile.description %></dd>
+    <dl>
+      <dt><%= I18n.t(:description, scope: "activerecord.attributes.profile") %></dt>
+      <dd><%= @profile.description %></dd>
 
-        <dt><%= I18n.t(:birth_date, scope: "activerecord.attributes.profile") %></dt>
-        <dd><%= l @profile.birth_date %></dd>
+      <dt><%= I18n.t(:birth_date, scope: "activerecord.attributes.profile") %></dt>
+      <dd><%= l @profile.birth_date %></dd>
 
-        <dt><%= I18n.t(:formation, scope: "activerecord.attributes.profile") %></dt>
-        <dd><%= @profile.formation %></dd>
+      <dt><%= I18n.t(:formation, scope: "activerecord.attributes.profile") %></dt>
+      <dd><%= @profile.formation %></dd>
 
-        <dt><%= I18n.t(:email, scope: "activerecord.attributes.freelancer") %></dt>
-        <dd><%= @profile.freelancer.email %></dd>
-      </dl>
-    </div>
+      <dt><%= I18n.t(:email, scope: "activerecord.attributes.freelancer") %></dt>
+      <dd><%= @profile.freelancer.email %></dd>
+    </dl>
+  </div>
 
-    <hr>
+  <hr>
 
-    <div>
-      <% if @profile.freelancer == current_freelancer %>
-        <%= link_to "Nova #{t(:experience, scope: "activerecord.models")}", new_profile_experience_path(@profile) %>
-      <% end %>
+  <div>
+    <% if @profile.freelancer == current_freelancer %>
+      <%= link_to "Nova #{t(:experience, scope: "activerecord.models")}", new_profile_experience_path(@profile) %>
+    <% end %>
 
-      <h1><%= I18n.t(:experiences, scope: "activerecord.models") %></h1>
+    <h1><%= I18n.t(:experiences, scope: "activerecord.models") %></h1>
 
-      <%= render @experiences %>
-    </div>
-  <% end %>
-</main>
+    <%= render @experiences %>
+  </div>
+<% end %>

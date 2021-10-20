@@ -1,12 +1,8 @@
-<main>
-  <div>
-    <%= link_to "Voltar para Página Inicial", root_path %>
-    <h1>📋 Meus Projetos</h1>
+<%= link_to "Voltar para Página Inicial", root_path %>
+<h1>📋 Meus Projetos</h1>
 
-    <% if @projects.empty? %>
-      <span>Você ainda não cadastrou Projetos</span>
-    <% else %>
-      <%= render partial: "projects_table" %>
-    <% end %>
-  </div>
-</main>
+<% if @projects.empty? %>
+  <span>Você ainda não cadastrou Projetos</span>
+<% else %>
+  <%= render partial: "projects_table" %>
+<% end %>

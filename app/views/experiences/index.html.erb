@@ -1,38 +1,36 @@
-<main>
-  <% if user_signed_in? || freelancer_signed_in? %>
-    <div>
-      <h1>Índice de <%= t(:experiences, scope: "activerecord.models") %> para o Admin (A.K.A. Ademiro)</h1>
+<% if user_signed_in? || freelancer_signed_in? %>
+  <div>
+    <h1>Índice de <%= t(:experiences, scope: "activerecord.models") %> para o Admin (A.K.A. Ademiro)</h1>
 
-      <table>
-        <thead>
-          <tr>
-            <th><%= I18n.t(:profile, scope: "activerecord.models") %></th>
-            <th><%= I18n.t(:title, scope: "activerecord.attributes.experience") %></th>
-            <th><%= I18n.t(:started_at, scope: "activerecord.attributes.experience") %></th>
-            <th><%= I18n.t(:ended_at, scope: "activerecord.attributes.experience") %></th>
-            <th><%= I18n.t(:description, scope: "activerecord.attributes.experience") %></th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @profiles.each do |profile| %>
-            <% profile.experiences.each do |experience| %>
-              <tr>
-                <td><%= link_to(profile.freelancer.email, profile_path(profile)) %></td>
-                <td><%= link_to(experience.title, profile_experience_path(profile, experience)) %></td>
-                <td><%= l experience.started_at %></td>
-                <td><%= l experience.ended_at %></td>
-                <td><%= experience.description %></td>
-                <td>
-                  <%= link_to "Deletar Experiência", profile_experience_path(profile, experience),
-                      method: :delete,
-                      data: { confirm: "Tem certeza que deseja deletar a Experiência '#{experience.title}'?" } %>
-                </td>
-              </tr>
-            <% end %>
+    <table>
+      <thead>
+        <tr>
+          <th><%= I18n.t(:profile, scope: "activerecord.models") %></th>
+          <th><%= I18n.t(:title, scope: "activerecord.attributes.experience") %></th>
+          <th><%= I18n.t(:started_at, scope: "activerecord.attributes.experience") %></th>
+          <th><%= I18n.t(:ended_at, scope: "activerecord.attributes.experience") %></th>
+          <th><%= I18n.t(:description, scope: "activerecord.attributes.experience") %></th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @profiles.each do |profile| %>
+          <% profile.experiences.each do |experience| %>
+            <tr>
+              <td><%= link_to(profile.freelancer.email, profile_path(profile)) %></td>
+              <td><%= link_to(experience.title, profile_experience_path(profile, experience)) %></td>
+              <td><%= l experience.started_at %></td>
+              <td><%= l experience.ended_at %></td>
+              <td><%= experience.description %></td>
+              <td>
+                <%= link_to "Deletar Experiência", profile_experience_path(profile, experience),
+                    method: :delete,
+                    data: { confirm: "Tem certeza que deseja deletar a Experiência '#{experience.title}'?" } %>
+              </td>
+            </tr>
           <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
-</main>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
