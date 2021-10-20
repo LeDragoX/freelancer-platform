@@ -13,7 +13,7 @@ Também tenho a versão do diagrama [com Roles de usuário](public/readme/class-
 
 ```sh
 # Don't run this command
-╰─❯ rails new freelancer-platform
+╰─❯ rails new freelancer-platform --skip-action-mailbox --skip-active-storage --skip-action-cable
 # Disabled Gems: 'rack-mini-profiler', 'web-console', 'selenium-webdriver' and 'webdriver'
 ```
 
