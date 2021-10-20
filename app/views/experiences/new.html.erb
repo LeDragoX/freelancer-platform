@@ -1,8 +1,6 @@
-<main>
-  <% if @profile.freelancer == current_freelancer %>
-    <%= link_to "Voltar para #{t(:experiences, scope: "activerecord.models")}", profile_experiences_path %>
-    <h1>📅 Nova <%= I18n.t(:experience, scope: "activerecord.models") %></h1>
+<% if @profile.freelancer == current_freelancer %>
+  <%= link_to "Voltar para #{t(:profile, scope: "activerecord.models")}", profile_path(@profile) %>
+  <h1>📅 Nova <%= I18n.t(:experience, scope: "activerecord.models") %></h1>
 
-    <%= render "form", object: [@profile, @experience] %>
-  <% end %>
-</main>
+  <%= render "form", object: [@profile, @experience] %>
+<% end %>
