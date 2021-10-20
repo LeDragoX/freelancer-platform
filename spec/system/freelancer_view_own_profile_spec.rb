@@ -18,6 +18,8 @@ describe "Freelancer view own Profile" do
       end
 
       expect(current_path).to eq profile_path(f_profile)
+      expect(page).to have_content "Voltar para Página Inicial"
+      expect(page).to have_link "Editar Perfil", href: edit_profile_path(f_profile)
       expect(page).to have_content "Giovanni César Lima (Giovanni César)"
       expect(page).to have_content "Quality Assurance"
       expect(page).to have_css("img[alt=photo]")
@@ -28,7 +30,6 @@ describe "Freelancer view own Profile" do
         expect(page).to have_content "freelancer@test.com"
       end
       expect(page).to have_content I18n.t(:experiences, scope: "activerecord.models")
-      expect(page).to have_link "Editar Perfil", href: edit_profile_path(f_profile)
     end
   end
 end

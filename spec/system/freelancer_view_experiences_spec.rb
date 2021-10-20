@@ -18,7 +18,9 @@ describe "Freelancer view experiences" do
       visit root_path
       click_on "freelancer@test.com"
 
+      expect(current_path).to eq "/profiles/1"
       within "main" do
+        expect(page).to have_content "Voltar para Página Inicial"
         expect(page).to have_link "Nova Experiência", href: new_profile_experience_path(f_profile)
         expect(page).to have_content I18n.t(:experiences, scope: "activerecord.models")
         expect(page).to have_link "Fast Entregas", href: profile_experience_path(f_profile, p_experience)

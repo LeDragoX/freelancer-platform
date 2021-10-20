@@ -25,6 +25,7 @@ describe "Freelancer register experiences" do
 
       expect(current_path).to eq "/profiles/1/experiences/1"
       within "main" do
+        expect(page).to have_content "Voltar para #{I18n.t(:profile, scope: "activerecord.models")}"
         expect(page).to have_content "Valve"
         expect(page).to have_content "Período: #{I18n.l(Date.today - 10.years)} - #{I18n.l(Date.today)}"
         expect(page).to have_content "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
@@ -58,6 +59,7 @@ describe "Freelancer register experiences" do
 
       expect(current_path).to eq "/profiles/1/experiences/1"
       within "main" do
+        expect(page).to have_content "Voltar para #{I18n.t(:profile, scope: "activerecord.models")}"
         expect(page).to have_content "Valve STEAM"
         expect(page).to have_content "Período: #{I18n.l(Date.today - 15.years)} - #{I18n.l(Date.today)}"
         expect(page).to have_content "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
@@ -84,6 +86,7 @@ describe "Freelancer register experiences" do
 
       expect(current_path).to eq "/profiles/1"
       within "main" do
+        expect(page).to have_content "Voltar para Página Inicial"
         expect(page).to_not have_content "Valve STEAM"
         expect(page).to_not have_content "Período: #{I18n.l(Date.today - 15.years)} - #{I18n.l(Date.today)}"
         expect(page).to_not have_content "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
@@ -102,6 +105,7 @@ describe "Freelancer register experiences" do
                                     occupation_area: qa, freelancer: freelancer })
 
       visit new_profile_experience_path(1)
+
       expect(current_path).to eq new_freelancer_session_path
       expect(page).to have_content "Para continuar, efetue login ou registre-se."
       expect(page).to_not have_content "Criar #{I18n.t(:experience, scope: "activerecord.models")}"

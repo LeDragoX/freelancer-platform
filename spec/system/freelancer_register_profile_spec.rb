@@ -24,17 +24,20 @@ describe "Freelancer register Profile" do
       click_on "Criar Perfil"
 
       expect(current_path).to eq "/profiles/1"
-      expect(page).to have_content "Giovanni César Lima (Giovanni César)"
-      expect(page).to have_content "Quality Assurance"
-      expect(page).to have_css("img[alt=photo]")
-      within "dl" do
-        expect(page).to have_content "Gosto de programar desde pequeno, graças a isso cheguei aonde estou."
-        expect(page).to have_content I18n.l(Date.today - 32.years)
-        expect(page).to have_content "Ciência da Computação"
-        expect(page).to have_content "freelancer@test.com"
+      within "main" do
+        expect(page).to have_content "Voltar para Página Inicial"
+        expect(page).to have_content "Giovanni César Lima (Giovanni César)"
+        expect(page).to have_content "Quality Assurance"
+        expect(page).to have_css("img[alt=photo]")
+        within "dl" do
+          expect(page).to have_content "Gosto de programar desde pequeno, graças a isso cheguei aonde estou."
+          expect(page).to have_content I18n.l(Date.today - 32.years)
+          expect(page).to have_content "Ciência da Computação"
+          expect(page).to have_content "freelancer@test.com"
+        end
+        expect(page).to have_content I18n.t(:experiences, scope: "activerecord.models")
+        expect(page).to have_link "Editar Perfil", href: "/profiles/1/edit"
       end
-      expect(page).to have_content I18n.t(:experiences, scope: "activerecord.models")
-      expect(page).to have_link "Editar Perfil", href: "/profiles/1/edit"
     end
 
     it "and edit it" do
@@ -64,17 +67,20 @@ describe "Freelancer register Profile" do
       click_on "Atualizar Perfil"
 
       expect(current_path).to eq "/profiles/1"
-      expect(page).to have_content "Giovanni César Lima (Giovanni César)"
-      expect(page).to have_content "Quality Assurance"
-      expect(page).to have_css("img[alt=photo]")
-      within "dl" do
-        expect(page).to have_content "Gosto de programar desde pequeno, graças a isso cheguei aonde estou."
-        expect(page).to have_content I18n.l(Date.today - 40.years)
-        expect(page).to have_content "Ciência da Computação"
-        expect(page).to have_content "freelancer@test.com"
+      within "main" do
+        expect(page).to have_content "Voltar para Página Inicial"
+        expect(page).to have_content "Giovanni César Lima (Giovanni César)"
+        expect(page).to have_content "Quality Assurance"
+        expect(page).to have_css("img[alt=photo]")
+        within "dl" do
+          expect(page).to have_content "Gosto de programar desde pequeno, graças a isso cheguei aonde estou."
+          expect(page).to have_content I18n.l(Date.today - 40.years)
+          expect(page).to have_content "Ciência da Computação"
+          expect(page).to have_content "freelancer@test.com"
+        end
+        expect(page).to have_content I18n.t(:experiences, scope: "activerecord.models")
+        expect(page).to have_link "Editar Perfil", href: "/profiles/1/edit"
       end
-      expect(page).to have_content I18n.t(:experiences, scope: "activerecord.models")
-      expect(page).to have_link "Editar Perfil", href: "/profiles/1/edit"
     end
   end
 end
