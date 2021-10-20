@@ -1,56 +1,56 @@
-require 'rails_helper'
+require "rails_helper"
 
-describe 'Freelancer view projects' do
-  context 'on home page' do
-    it 'and saw 1 project' do
-      freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
-      user = User.create!({ email: 'user@test.com', password: '123456' })
-      job_remoto = JobType.create!({ name: 'Remoto' })
-      project = Project.create!({ title: 'Sistema Web',
-                                  description: 'Site de Fast Food por encomenda',
-                                  wanted_skills: 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS',
+describe "Freelancer view projects" do
+  context "on home page" do
+    it "and saw 1 project" do
+      freelancer = Freelancer.create!({ email: "freelancer@test.com", password: "123456" })
+      user = User.create!({ email: "user@test.com", password: "123456" })
+      job_remoto = JobType.create!({ name: "Remoto" })
+      project = Project.create!({ title: "Sistema Web",
+                                  description: "Site de Fast Food por encomenda",
+                                  wanted_skills: "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS",
                                   max_hour_rate: 300, deadline: 4.month.from_now,
                                   available: true, job_type: job_remoto, user: user })
 
       login_as freelancer, scope: :freelancer
       visit root_path
 
-      within 'nav' do
-        expect(page).to_not have_content 'Meus Projetos'
-        expect(page).to_not have_content 'Novo Projeto'
+      within "nav" do
+        expect(page).to_not have_content "Meus Projetos"
+        expect(page).to_not have_content "Novo Projeto"
       end
-      expect(page).to have_link 'Sistema Web', href: project_path(project)
-      expect(page).to_not have_content 'R$ 600,00'
+      expect(page).to have_link "Sistema Web", href: project_path(project)
+      expect(page).to_not have_content "R$ 600,00"
       expect(page).to_not have_content I18n.l(project.deadline) # Foi o melhor jeito consegui de testar Data
     end
 
-    it 'enters the project page' do
-      freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
-      user = User.create!({ email: 'user@test.com', password: '123456' })
-      job_presential = JobType.create!({ name: 'Presencial' })
-      project = Project.create!({ title: 'Sistema Web',
-                                  description: 'Site de Fast Food por encomenda',
-                                  wanted_skills: 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS',
+    it "enters the project page" do
+      freelancer = Freelancer.create!({ email: "freelancer@test.com", password: "123456" })
+      user = User.create!({ email: "user@test.com", password: "123456" })
+      job_presential = JobType.create!({ name: "Presencial" })
+      project = Project.create!({ title: "Sistema Web",
+                                  description: "Site de Fast Food por encomenda",
+                                  wanted_skills: "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS",
                                   max_hour_rate: 300, deadline: 4.month.from_now,
                                   available: true, job_type: job_presential, user: user })
 
       login_as freelancer, scope: :freelancer
       visit root_path
-      click_on 'Sistema Web'
+      click_on "Sistema Web"
 
-      expect(page).to have_content 'Sistema Web'
-      expect(page).to have_content 'Site de Fast Food por encomenda'
-      within 'dl' do
+      expect(page).to have_content "Sistema Web"
+      expect(page).to have_content "Site de Fast Food por encomenda"
+      within "dl" do
         expect(page).to have_content project.user.email
-        expect(page).to have_content 'No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS'
-        expect(page).to have_content 'R$ 300,00'
+        expect(page).to have_content "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS"
+        expect(page).to have_content "R$ 300,00"
         expect(page).to have_content I18n.l(project.deadline)
-        expect(page).to have_content 'Presencial'
+        expect(page).to have_content "Presencial"
         expect(page).to have_content /Sim/ # no lugar do true
-        expect(page).to have_content I18n.t(project.status, scope: 'activerecord.attributes.statuses')
+        expect(page).to have_content I18n.t(project.status, scope: "activerecord.attributes.statuses")
       end
-      expect(page).to_not have_link 'Editar Projeto'
-      expect(page).to_not have_link 'Deletar Projeto'
+      expect(page).to_not have_link "Editar Projeto"
+      expect(page).to_not have_link "Deletar Projeto"
     end
   end
 end
