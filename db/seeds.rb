@@ -65,6 +65,14 @@ f_profile2 = Profile.create!({ full_name: "Analu Silvana Andreia Ferreira", soci
                               photo: "https://c.tenor.com/OyIYV1OjcjQAAAAM/anime-fiduka.gif",
                               occupation_area: cn, freelancer: freelancer1 })
 
-f_experience = Experience.create!({ title: "Fast Entregas", started_at: 6.years.ago, ended_at: 5.years.ago,
+p_experience = Experience.create!({ title: "Fast Entregas", started_at: 6.years.ago, ended_at: 5.years.ago,
                                     description: "Desenvolvedor Full-Stack Junior",
                                     profile: f_profile })
+
+p_experience2 = Experience.create!({ title: "Disney", started_at: 5.years.ago, ended_at: Date.today,
+                                    description: "Realizo parte da programação por trás das animações e cenas com muitos efeitos.",
+                                    profile: f_profile })
+
+p_experience3 = Experience.create!({ title: "Valve", started_at: 10.years.ago, ended_at: Date.today,
+                                    description: "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar.",
+                                    profile: f_profile2 })
