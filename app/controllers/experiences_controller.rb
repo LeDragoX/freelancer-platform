@@ -1,5 +1,6 @@
 class ExperiencesController < ApplicationController
   before_action :authenticate_freelancer!, only: %i[new create edit update destroy]
+  before_action :authenticate_admin!, only: %i[index] # Breaking on purpose
 
   # Needs Profile and Experiences Models
   def index
