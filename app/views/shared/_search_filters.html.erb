@@ -1,0 +1,9 @@
+<%= form_with model: search do |form| %> <%# Not implemented yet %>
+  <h1>Pesquisa:</h1>
+  <fieldset>
+    <%= yield form %>
+  </fieldset>
+  <p>
+    <%= form.submit "Search" %>
+  </p>
+<% end %>

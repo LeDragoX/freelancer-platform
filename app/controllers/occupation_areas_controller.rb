@@ -1,0 +1,3 @@
+class OccupationAreas < ApplicationController
+  
+end

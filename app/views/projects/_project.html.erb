@@ -1,7 +1,22 @@
-<tr>
-  <td><%= link_to project.title, project_path(project) %></td>
-  <td><%= project.wanted_skills %></td>
-  <td><%= number_to_currency project.max_hour_rate %></td>
-  <td><%= project.job_type.name %></td>
-  <td><%= project.user.email %></td>
-</tr>
+<table>
+  <thead>
+    <tr>
+      <th><%= I18n.t(:title, scope: "activerecord.attributes.project") %></th>
+      <th><%= I18n.t(:wanted_skills, scope: "activerecord.attributes.project") %></th>
+      <th><%= I18n.t(:max_hour_rate, scope: "activerecord.attributes.project") %></th>
+      <th><%= I18n.t(:job_type, scope: "activerecord.attributes.project") %></th>
+      <th><%= I18n.t(:user_id, scope: "activerecord.attributes.project") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.title, project_path(project) %></td>
+        <td><%= project.wanted_skills %></td>
+        <td><%= number_to_currency project.max_hour_rate %></td>
+        <td><%= project.job_type.name %></td>
+        <td><%= project.user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
