@@ -44,7 +44,11 @@
       <hr>
 
       <main>
-        <%= yield %>
+        <% if freelancer_signed_in? && current_freelancer.profile.nil? %>
+          <%= render "profiles/form" %>
+        <% else %>
+          <%= yield %>
+        <% end %>
       </main>
     </div>
   </body>

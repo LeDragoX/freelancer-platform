@@ -1,9 +1,16 @@
 require "rails_helper"
 
 describe "Freelancer view projects" do
-  context "on home page" do
+  context "with profile on home page" do
     it "and saw 1 project" do
       freelancer = Freelancer.create!({ email: "freelancer@test.com", password: "123456" })
+      qa = OccupationArea.create!({ name: "Quality Assurance" })
+      f_profile = Profile.create!({ full_name: "Giovanni César Lima", social_name: "Giovanni César",
+                                    birth_date: 32.years.ago, formation: "Ciência da Computação",
+                                    description: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou.",
+                                    photo: "https://i.pinimg.com/originals/47/eb/9f/47eb9f6a5f8878923282daf42e8cc95f.jpg",
+                                    occupation_area: qa, freelancer: freelancer })
+
       user = User.create!({ email: "user@test.com", password: "123456" })
       job_remoto = JobType.create!({ name: "Remoto" })
       project = Project.create!({ title: "Sistema Web",
@@ -26,6 +33,13 @@ describe "Freelancer view projects" do
 
     it "enters the project page" do
       freelancer = Freelancer.create!({ email: "freelancer@test.com", password: "123456" })
+      qa = OccupationArea.create!({ name: "Quality Assurance" })
+      f_profile = Profile.create!({ full_name: "Giovanni César Lima", social_name: "Giovanni César",
+                                    birth_date: 32.years.ago, formation: "Ciência da Computação",
+                                    description: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou.",
+                                    photo: "https://i.pinimg.com/originals/47/eb/9f/47eb9f6a5f8878923282daf42e8cc95f.jpg",
+                                    occupation_area: qa, freelancer: freelancer })
+
       user = User.create!({ email: "user@test.com", password: "123456" })
       job_presential = JobType.create!({ name: "Presencial" })
       project = Project.create!({ title: "Sistema Web",

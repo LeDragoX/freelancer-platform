@@ -1,4 +1,4 @@
-<% if current_freelancer.profile == @profile.freelancer %>
+<% if freelancer_signed_in? && current_freelancer.profile.nil? %>
   <%= link_to "Voltar para Página Inicial", root_path %>
   <h1>💼 Novo <%= I18n.t(:profile, scope: "activerecord.models") %></h1>
 
