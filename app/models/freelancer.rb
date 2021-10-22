@@ -4,7 +4,7 @@ class Freelancer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :projects
   has_one :profile, dependent: :destroy
   has_many :experiences, through: :profiles
+  has_many :projects, through: :proposals
 end
