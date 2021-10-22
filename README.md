@@ -62,3 +62,22 @@ rspec
 ```sh
 rails server
 ```
+
+Access the server via browser on: _localhost:3000_
+
+### Logins
+
+#### Login as User
+
+| E-mail        | Password |
+| ------------- | -------- |
+| user@test.com | 123456   |
+| test@test.com | 123456   |
+
+#### Login as Freelancer
+
+| E-mail              | Password |
+| ------------------- | -------- |
+| freelancer@test.com | 123456   |
+| test@test.com       | 123456   |
+| test2@test.com      | 123456   |
