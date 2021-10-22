@@ -23,16 +23,16 @@ project = Project.create!({ title: "Sistema Web",
                             available: true, job_type: job_remote, user: user })
 
 project2 = Project.create!({ title: "Infraestrutura",
-                            description: "Realizar a migração da aplicação para a nuvem",
-                            wanted_skills: "Sistemas Linux, conhecimento em uma das Clouds atuais como AWS, Terraform, Oracle Cloud ou Azure e também em Docker. Ruby On Rails, NodeJS e conhecimento mínimo em Banco dados também é desejado.",
-                            max_hour_rate: 1000, deadline: 1.month.from_now,
-                            available: true, job_type: job_hybrid, user: user })
+                             description: "Realizar a migração da aplicação para a nuvem",
+                             wanted_skills: "Sistemas Linux, conhecimento em uma das Clouds atuais como AWS, Terraform, Oracle Cloud ou Azure e também em Docker. Ruby On Rails, NodeJS e conhecimento mínimo em Banco dados também é desejado.",
+                             max_hour_rate: 1000, deadline: 1.month.from_now,
+                             available: true, job_type: job_hybrid, user: user })
 
 project3 = Project.create!({ title: "Atualização de Sistema Legado",
-                            description: "Site feito com ASP 3.0, PHP e MySQL precisa ser migrado para tecnologias mais recentes.",
-                            wanted_skills: "No Back: NodeJS, PostgreSQL. No Front: React, Styled-Components, Sass, Bootstrap.",
-                            max_hour_rate: 600, deadline: 3.month.from_now,
-                            available: true, job_type: job_presential, user: user1 })
+                             description: "Site feito com ASP 3.0, PHP e MySQL precisa ser migrado para tecnologias mais recentes.",
+                             wanted_skills: "No Back: NodeJS, PostgreSQL. No Front: React, Styled-Components, Sass, Bootstrap.",
+                             max_hour_rate: 600, deadline: 3.month.from_now,
+                             available: true, job_type: job_presential, user: user1 })
 
 dba = OccupationArea.create!({ name: "Administração de Banco de Dados" })
 ads = OccupationArea.create!({ name: "Analista e Desenvolvedor de Sistemas" })
@@ -60,19 +60,27 @@ f_profile = Profile.create!({ full_name: "Giovanni César Lima", social_name: "G
                               occupation_area: qa, freelancer: freelancer })
 
 f_profile2 = Profile.create!({ full_name: "Analu Silvana Andreia Ferreira", social_name: "Analu Silvana",
-                              birth_date: 29.years.ago, formation: "Engenharia da Computação",
-                              description: "Sou uma profissional que sabe trabalhar em projetos grandes, com trabalho em equipe e sou autodidata.",
-                              photo: "https://c.tenor.com/OyIYV1OjcjQAAAAM/anime-fiduka.gif",
-                              occupation_area: cn, freelancer: freelancer1 })
+                               birth_date: 29.years.ago, formation: "Engenharia da Computação",
+                               description: "Sou uma profissional que sabe trabalhar em projetos grandes, com trabalho em equipe e sou autodidata.",
+                               photo: "https://c.tenor.com/OyIYV1OjcjQAAAAM/anime-fiduka.gif",
+                               occupation_area: cn, freelancer: freelancer1 })
 
 p_experience = Experience.create!({ title: "Fast Entregas", started_at: 6.years.ago, ended_at: 5.years.ago,
                                     description: "Desenvolvedor Full-Stack Junior",
                                     profile: f_profile })
 
 p_experience2 = Experience.create!({ title: "Disney", started_at: 5.years.ago, ended_at: Date.today,
-                                    description: "Realizo parte da programação por trás das animações e cenas com muitos efeitos.",
-                                    profile: f_profile })
+                                     description: "Realizo parte da programação por trás das animações e cenas com muitos efeitos.",
+                                     profile: f_profile })
 
 p_experience3 = Experience.create!({ title: "Valve", started_at: 10.years.ago, ended_at: Date.today,
-                                    description: "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar.",
-                                    profile: f_profile2 })
+                                     description: "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar.",
+                                     profile: f_profile2 })
+
+f_proposal = Proposal.create!({ description: "Sonho com um projeto desses!",
+                                hour_rate: 250, weekly_hours: 40,
+                                project: project, freelancer: freelancer })
+
+f_proposal2 = Proposal.create!({ description: "Possuo anos de experiência com Infraestrutura e Cloud...",
+                                 hour_rate: 700, weekly_hours: 50,
+                                 project: project2, freelancer: freelancer1 })

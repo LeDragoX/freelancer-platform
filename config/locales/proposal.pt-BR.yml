@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      proposal: "Proposta"
+      proposals: "Propostas"
+    attributes:
+      proposal:
+        description: "Descrição"
+        hour_rate: "Valor/Hora"
+        weekly_hours: "Horas semanais disponíveis"
+        status: "Status"
+        project_id: "Projeto"
+        freelancer_id: "Profissional interessado"
+      statuses:
+        pending: "Pendente"
+        accepted: "Aceita"
+        rejected: "Rejeitada"
