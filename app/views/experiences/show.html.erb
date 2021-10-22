@@ -2,13 +2,7 @@
   <div>
     <%= link_to "Voltar para #{t(:profile, scope: "activerecord.models")}", profile_path(@experience.profile) %>
 
-    <h1><%= @experience.title %></h1>
-    <h3>Período: <%= "#{l @experience.started_at} - #{l @experience.ended_at}" %></h3>
-
-    <dl>
-      <dt><%= I18n.t(:description, scope: "activerecord.attributes.experience") %></dt>
-      <dd><%= @experience.description %></dd>
-    </dl>
+    <%= render @experience %>
   </div>
 
   <% if @experience.profile.freelancer == current_freelancer %>

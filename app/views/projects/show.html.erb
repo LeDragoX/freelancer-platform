@@ -37,9 +37,17 @@
                       method: :delete,
                       data: { confirm: "Tem certeza que deseja deletar o Projeto '#{@project.title}'?" } %></li>
     </ul>
+
+    <hr>
+
+    <%= render "proposals/project_proposals" %>
   <% end %>
 
   <% if freelancer_signed_in? %>
-    <%= link_to "Fazer #{t(:proposal, scope: "activerecord.models")}", new_project_proposal_path(@project) %>
+    <% if @freelancer_proposal.nil? %>
+      <%= link_to "Fazer #{t(:proposal, scope: "activerecord.models")}", new_project_proposal_path(@project) %>
+    <% else %>
+      <%= render "proposals/freelancer_project_proposal" %>
+    <% end %>
   <% end %>
 <% end %>

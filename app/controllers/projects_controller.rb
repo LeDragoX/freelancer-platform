@@ -4,6 +4,11 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @user = @project.user
+    @proposals = @project.proposals
+
+    if freelancer_signed_in?
+      @freelancer_proposal = @project.proposals.find_by(freelancer: current_freelancer)
+    end
   end
 
   def new

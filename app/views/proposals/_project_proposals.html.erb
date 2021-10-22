@@ -1,0 +1,6 @@
+<h2>🌎 <%= t(:proposals, scope: "activerecord.models") %> para <%= t(:project, scope: "activerecord.models") %> "<%= @project.title %>"</h2>
+
+<% @proposals.each do |proposal| %>
+  <%= render proposal %>
+  <hr>
+<% end %>

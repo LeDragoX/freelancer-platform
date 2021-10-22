@@ -1,5 +1,5 @@
 class ProposalsController < ApplicationController
-  before_action :authenticate_freelancer!, only: %i[new create edit update]
+  before_action :authenticate_freelancer!, only: %i[new create edit update my_proposals]
 
   def show
     @project = Project.find(params[:project_id])

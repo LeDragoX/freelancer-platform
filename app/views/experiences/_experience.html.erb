@@ -1,5 +1,5 @@
 <div>
-  <h3><%= link_to(experience.title, profile_experience_path(@profile, experience)) %></h3>
+  <h2><%= link_to(experience.title, profile_experience_path(@profile, experience)) %></h2>
   <h4>Período: <%= "#{l experience.started_at} - #{l experience.ended_at}" %></h4>
 
   <dl>

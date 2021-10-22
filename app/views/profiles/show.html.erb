@@ -18,7 +18,7 @@
       <%= link_to "Nova #{t(:experience, scope: "activerecord.models")}", new_profile_experience_path(@profile) %>
     <% end %>
 
-    <h1><%= I18n.t(:experiences, scope: "activerecord.models") %></h1>
+    <h2><%= I18n.t(:experiences, scope: "activerecord.models") %></h2>
 
     <%= render @experiences %>
   </div>
