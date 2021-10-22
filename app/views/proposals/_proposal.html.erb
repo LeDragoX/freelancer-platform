@@ -1,0 +1,16 @@
+<h2>Proposta de <%= link_to proposal.freelancer.email, profile_path(proposal.freelancer.profile) %></h2>
+<h3><%= proposal.project.title %></h3>
+
+<dl>
+  <dt><%= I18n.t(:description, scope: "activerecord.attributes.proposal") %>:</dt>
+  <dd><%= proposal.description %></dd>
+
+  <dt><%= I18n.t(:hour_rate, scope: "activerecord.attributes.proposal") %>:</dt>
+  <dd><%= number_to_currency proposal.hour_rate %></dd>
+
+  <dt><%= I18n.t(:weekly_hours, scope: "activerecord.attributes.proposal") %>:</dt>
+  <dd><%= "#{proposal.weekly_hours} horas semanais" %></dd>
+
+  <dt><%= I18n.t(:status, scope: "activerecord.attributes.proposal") %>:</dt>
+  <dd><%= t(proposal.status, scope: "activerecord.attributes.statuses") %></dd>
+</dl>

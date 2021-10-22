@@ -2,7 +2,7 @@
   <div>
     <%= link_to "Voltar para Página Inicial", root_path %>
 
-    <h1><%= @project.title %></h1>
+    <h2><%= @project.title %></h2>
     <h3><%= @project.description %></h3>
 
     <dl>
@@ -30,11 +30,16 @@
   </div>
 
   <% if @project.user == current_user %>
+    <p><%= link_to "#{t(:proposals, scope: "activerecord.models")} do Projeto", my_proposals_project_proposals_path(@project) %></p>
     <ul>
       <li><%= link_to "Editar Projeto", edit_project_path %></li>
       <li><%= link_to "Deletar Projeto", project_path,
                       method: :delete,
                       data: { confirm: "Tem certeza que deseja deletar o Projeto '#{@project.title}'?" } %></li>
     </ul>
+  <% end %>
+
+  <% if freelancer_signed_in? %>
+    <%= link_to "Fazer #{t(:proposal, scope: "activerecord.models")}", new_project_proposal_path(@project) %>
   <% end %>
 <% end %>

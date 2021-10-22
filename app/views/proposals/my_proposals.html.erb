@@ -1,0 +1,7 @@
+<%= link_to "Voltar para #{t(:project, scope: "activerecord.models")}", project_path(@project) %>
+<h1>🌎 Minhas <%= t(:proposals, scope: "activerecord.models") %> para <%= @project.title %></h1>
+
+<% @proposals.each do |proposal| %>
+  <%= render proposal %>
+  <hr>
+<% end %>
