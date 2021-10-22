@@ -8,24 +8,7 @@
         </ul>
     <% end %>
 
-    <h1><%= "#{@profile.full_name} (#{@profile.social_name})" %></h1>
-    <h3><%= @profile.occupation_area.name %></h3>
-
-    <%= render partial: "photo" %>
-
-    <dl>
-      <dt><%= I18n.t(:description, scope: "activerecord.attributes.profile") %></dt>
-      <dd><%= @profile.description %></dd>
-
-      <dt><%= I18n.t(:birth_date, scope: "activerecord.attributes.profile") %></dt>
-      <dd><%= l @profile.birth_date %></dd>
-
-      <dt><%= I18n.t(:formation, scope: "activerecord.attributes.profile") %></dt>
-      <dd><%= @profile.formation %></dd>
-
-      <dt><%= I18n.t(:email, scope: "activerecord.attributes.freelancer") %></dt>
-      <dd><%= @profile.freelancer.email %></dd>
-    </dl>
+    <%= render @profile %>
   </div>
 
   <hr>

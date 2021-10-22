@@ -1,3 +1,14 @@
-<tr>
-  <td><%= link_to freelancer.email, profile_path(freelancer.profile || freelancer) %></td>
-</tr>
+<table>
+  <thead>
+    <tr>
+      <th><%= I18n.t :profile, scope: "activerecord.models" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @freelancers.each do |freelancer| %>
+      <tr>
+        <td><%= link_to freelancer.email, profile_path(freelancer.profile || freelancer) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
