@@ -30,7 +30,6 @@
   </div>
 
   <% if @project.user == current_user %>
-    <p><%= link_to "#{t(:proposals, scope: "activerecord.models")} do Projeto", my_proposals_project_proposals_path(@project) %></p>
     <ul>
       <li><%= link_to "Editar Projeto", edit_project_path %></li>
       <li><%= link_to "Deletar Projeto", project_path,
