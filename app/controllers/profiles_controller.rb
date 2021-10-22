@@ -37,9 +37,9 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
 
     if freelancer_signed_in? && current_freelancer.profile.nil?
-      redirect_to new_profile_path, alert: "[UPDATE] Cadastre seu perfil antes ✋🏻😡"
+      redirect_to new_profile_path, alert: "[UPDATE] Cadastre seu perfil antes! ✋🏻😡"
     elsif @profile.freelancer != current_freelancer
-      redirect_to root_path, alert: "[UPDATE] Perfil diferente e não alterado ✋🏻😡"
+      redirect_to root_path, alert: "[UPDATE] Perfil diferente e não alterado! ✋🏻😡"
     elsif @profile.update(profile_params)
       redirect_to @profile
     else

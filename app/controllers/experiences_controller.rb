@@ -17,7 +17,7 @@ class ExperiencesController < ApplicationController
     @profile = Profile.find(params[:profile_id])
     @experience = Experience.new
   end
-  
+
   def create
     @profile = Profile.find(params[:profile_id])
     @experience = @profile.experiences.new(experience_params)
@@ -28,12 +28,12 @@ class ExperiencesController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     @profile = Profile.find(params[:profile_id])
     @experience = @profile.experiences.find(params[:id])
   end
-  
+
   def update
     @profile = Profile.find(params[:profile_id])
     @experience = @profile.experiences.find(params[:id])
@@ -44,7 +44,7 @@ class ExperiencesController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @profile = Profile.find(params[:profile_id])
     @experience = @profile.experiences.find(params[:id])
@@ -57,7 +57,7 @@ class ExperiencesController < ApplicationController
   end
 
   private
-  
+
   def experience_params
     params.require(:experience).permit(:title, :started_at, :ended_at,
                                        :description, :profile_id)
