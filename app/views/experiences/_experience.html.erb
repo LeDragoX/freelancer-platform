@@ -1,5 +1,9 @@
 <div>
-  <h2><%= link_to(experience.title, profile_experience_path(@profile, experience)) %></h2>
+  <% if current_page?(profile_experience_path(@profile, experience)) %>
+    <h2><%= experience.title %></h2>
+  <% else %>
+    <h2><%= link_to(experience.title, profile_experience_path(@profile, experience)) %></h2>
+  <% end %>
   <h4>Período: <%= "#{l experience.started_at} - #{l experience.ended_at}" %></h4>
 
   <dl>

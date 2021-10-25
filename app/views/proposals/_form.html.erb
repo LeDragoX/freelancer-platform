@@ -9,7 +9,7 @@
 
   <div>
     <%= f.label :hour_rate %>
-    <%= f.number_field :hour_rate, min: 0, step: 5.00, placeholder: (number_to_currency "0.00", separator: ".") %>
+    <%= f.number_field :hour_rate, min: 0.00, step: 0.01, placeholder: (number_to_currency "0,00", separator: ",") %>
     <% @proposal.errors.full_messages_for(:hour_rate).each do |message| %>
       <div><%= message %></div>
     <% end %>
