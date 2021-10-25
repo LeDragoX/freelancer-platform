@@ -3,6 +3,8 @@ class Experience < ApplicationRecord
 
   validates :title, :started_at, :ended_at,
             :description, :profile_id, presence: true
+  validates :title, length: { minimum: 3, maximum: 70 }
+  validates :description, length: { minimum: 20, maximum: 1000 }
 
   validate :started_at_lower_than_ended_at
   validate :ended_at_greater_than_started_at

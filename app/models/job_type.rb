@@ -4,5 +4,5 @@ class JobType < ApplicationRecord
   validates :name,
             presence: true,
             uniqueness: { case_sensitive: false },
-            length: { minimum: 3, maximum: 50 }  
+            length: { minimum: 3, maximum: 50 }
 end
