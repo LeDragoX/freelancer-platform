@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_freelancer!, only: %i[new create edit update]
+  before_action :require_log_in!, only: %i[show]
 
   def show
     begin
@@ -16,33 +17,45 @@ class ProfilesController < ApplicationController
 
   def new
     @profile = Profile.new
+
+    if !(freelancer_signed_in? && @profile == current_freelancer.profile)
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    end
   end
 
   def create
     @profile = Profile.new(profile_params)
     @profile.freelancer = current_freelancer
 
-    if @profile.save
-      redirect_to @profile
+    if !(freelancer_signed_in? && @profile == current_freelancer.profile)
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    elsif @profile.save
+      redirect_to @profile, notice: "Perfil criado com sucesso!"
     else
+      flash.now[:alert] = "Erro ao criar perfil"
       render :new
     end
   end
 
   def edit
     @profile = Profile.find(params[:id])
+
+    if @profile.freelancer != current_freelancer
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    end
   end
 
   def update
     @profile = Profile.find(params[:id])
 
     if freelancer_signed_in? && current_freelancer.profile.nil?
-      redirect_to new_profile_path, alert: "[UPDATE] Cadastre seu perfil antes! ✋🏻😡"
+      redirect_to new_profile_path, alert: "Cadastre seu perfil antes!"
     elsif @profile.freelancer != current_freelancer
-      redirect_to root_path, alert: "[UPDATE] Perfil diferente e não alterado! ✋🏻😡"
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     elsif @profile.update(profile_params)
-      redirect_to @profile
+      redirect_to @profile, notice: "Perfil atualizado com sucesso!"
     else
+      flash.now[:alert] = "Erro ao atualizar perfil"
       render :edit
     end
   end

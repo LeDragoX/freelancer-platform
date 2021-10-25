@@ -1,9 +1,16 @@
 class ProposalsController < ApplicationController
   before_action :authenticate_freelancer!, only: %i[new create edit update my_proposals]
+  before_action :require_log_in!, only: %i[show]
 
   def show
     @project = Project.find(params[:project_id])
     @proposal = Proposal.find(params[:id])
+
+    if (user_signed_in? && @proposal.project.user == current_user) || (freelancer_signed_in? && @proposal.freelancer == current_freelancer)
+      return
+    else
+      redirect_to root_path, alert: "Você não pode vizualizar esta proposta."
+    end
   end
 
   def new
@@ -26,8 +33,9 @@ class ProposalsController < ApplicationController
     if @existing_proposal && @existing_proposal.project == @project
       redirect_to project_proposal_path(@existing_proposal.project, @existing_proposal), alert: "Uma proposta sua já existe para '#{@project.title}'!"
     elsif @proposal.save
-      redirect_to [@project, @proposal]
+      redirect_to [@project, @proposal], notice: "Proposta criada com sucesso!"
     else
+      flash.now[:alert] = "Erro ao criar proposta"
       render :new
     end
   end
@@ -37,7 +45,7 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find(params[:id])
 
     if @proposal.freelancer != current_freelancer
-      redirect_to root_path, alert: "[EDIT] Você não é o usuário correto! ✋🏻😡"
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     end
   end
 
@@ -46,10 +54,11 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find(params[:id])
 
     if @proposal.freelancer != current_freelancer
-      redirect_to root_path, alert: "[UPDATE] Você não é o usuário correto! ✋🏻😡"
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     elsif @proposal.update(update_proposal_params)
-      redirect_to [@project, @proposal]
+      redirect_to [@project, @proposal], notice: "Proposta atualizada com sucesso!"
     else
+      flash.now[:alert] = "Erro ao atualizar proposta"
       render :edit
     end
   end
@@ -59,10 +68,11 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find(params[:id])
 
     if @proposal.freelancer != current_freelancer
-      redirect_to root_path, alert: "[DESTROY] Você não é o usuário correto! ✋🏻😡"
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     elsif @proposal.destroy
-      redirect_to @project
+      redirect_to @project, notice: "Proposta deletada com sucesso!"
     else
+      flash.now[:alert] = "Erro ao deletar proposta"
       render @proposal
     end
   end

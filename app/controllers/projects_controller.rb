@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy my_projects]
+  before_action :require_log_in!, only: %i[show]
 
   def show
     @project = Project.find(params[:id])
@@ -20,22 +21,30 @@ class ProjectsController < ApplicationController
     @project.user = current_user
 
     if @project.save
-      redirect_to @project
+      redirect_to @project, notice: "Projeto criado com sucesso!"
     else
+      flash.now[:alert] = "Erro ao salvar projeto"
       render :new
     end
   end
 
   def edit
     @project = Project.find(params[:id])
+
+    if @project.user != current_user
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    end
   end
 
   def update
     @project = Project.find(params[:id])
 
-    if @project.update(project_params)
-      redirect_to @project
+    if @project.user != current_user
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    elsif @project.update(project_params)
+      redirect_to @project, notice: "Projeto atualizado com sucesso!"
     else
+      flash.now[:alert] = "Erro ao atualizar projeto"
       render :edit
     end
   end
@@ -43,9 +52,12 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
 
-    if @project.destroy
-      redirect_to my_projects_projects_path
+    if @project.user != current_user
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    elsif @project.destroy
+      redirect_to my_projects_projects_path, notice: "Projeto deletado com sucesso!"
     else
+      flash.now[:alert] = "Erro ao deletar projeto"
       render @project
     end
   end
