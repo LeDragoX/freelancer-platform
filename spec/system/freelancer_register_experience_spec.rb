@@ -18,7 +18,7 @@ describe "Freelancer register experiences" do
       within "form" do
         fill_in "Título", with: "Valve"
         fill_in "Começou em", with: 10.years.ago
-        fill_in "Terminou em", with: Date.today
+        fill_in "Terminou em", with: Time.now.to_date
         fill_in "Descrição", with: "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
         click_on "Criar #{I18n.t(:experience, scope: "activerecord.models")}"
       end
@@ -27,7 +27,7 @@ describe "Freelancer register experiences" do
       within "main" do
         expect(page).to have_content "Voltar para #{I18n.t(:profile, scope: "activerecord.models")}"
         expect(page).to have_content "Valve"
-        expect(page).to have_content "Período: #{I18n.l(Date.today - 10.years)} - #{I18n.l(Date.today)}"
+        expect(page).to have_content "Período: #{I18n.l(Time.now.to_date - 10.years)} - #{I18n.l(Time.now.to_date)}"
         expect(page).to have_content "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
       end
     end
@@ -40,7 +40,7 @@ describe "Freelancer register experiences" do
                                     description: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou.",
                                     photo: "https://i.pinimg.com/originals/47/eb/9f/47eb9f6a5f8878923282daf42e8cc95f.jpg",
                                     occupation_area: qa, freelancer: freelancer })
-      p_experience = Experience.create!({ title: "Valve", started_at: 10.years.ago, ended_at: Date.today,
+      p_experience = Experience.create!({ title: "Valve", started_at: 10.years.ago, ended_at: Time.now.to_date,
                                            description: "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar.",
                                            profile: f_profile })
 
@@ -52,7 +52,7 @@ describe "Freelancer register experiences" do
       within "form" do
         fill_in "Título", with: "Valve STEAM"
         fill_in "Começou em", with: 15.years.ago
-        fill_in "Terminou em", with: Date.today
+        fill_in "Terminou em", with: Time.now.to_date
         fill_in "Descrição", with: "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
         click_on "Atualizar #{I18n.t(:experience, scope: "activerecord.models")}"
       end
@@ -61,7 +61,7 @@ describe "Freelancer register experiences" do
       within "main" do
         expect(page).to have_content "Voltar para #{I18n.t(:profile, scope: "activerecord.models")}"
         expect(page).to have_content "Valve STEAM"
-        expect(page).to have_content "Período: #{I18n.l(Date.today - 15.years)} - #{I18n.l(Date.today)}"
+        expect(page).to have_content "Período: #{I18n.l(Time.now.to_date - 15.years)} - #{I18n.l(Time.now.to_date)}"
         expect(page).to have_content "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
       end
     end
@@ -74,7 +74,7 @@ describe "Freelancer register experiences" do
                                     description: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou.",
                                     photo: "https://i.pinimg.com/originals/47/eb/9f/47eb9f6a5f8878923282daf42e8cc95f.jpg",
                                     occupation_area: qa, freelancer: freelancer })
-      p_experience = Experience.create!({ title: "Valve", started_at: 10.years.ago, ended_at: Date.today,
+      p_experience = Experience.create!({ title: "Valve", started_at: 10.years.ago, ended_at: Time.now.to_date,
                                            description: "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar.",
                                            profile: f_profile })
 
@@ -88,7 +88,7 @@ describe "Freelancer register experiences" do
       within "main" do
         expect(page).to have_content "Voltar para Página Inicial"
         expect(page).to_not have_content "Valve STEAM"
-        expect(page).to_not have_content "Período: #{I18n.l(Date.today - 15.years)} - #{I18n.l(Date.today)}"
+        expect(page).to_not have_content "Período: #{I18n.l(Time.now.to_date - 15.years)} - #{I18n.l(Time.now.to_date)}"
         expect(page).to_not have_content "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
       end
     end

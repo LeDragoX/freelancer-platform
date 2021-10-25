@@ -8,9 +8,6 @@ describe "Freelancer register Profile" do
 
       login_as freelancer, scope: :freelancer
       visit root_path
-      within "nav" do
-        click_on freelancer.email
-      end
 
       within "form" do
         fill_in "Nome Completo", with: "Giovanni César Lima"
@@ -20,8 +17,8 @@ describe "Freelancer register Profile" do
         fill_in "Descrição", with: "Gosto de programar desde pequeno, graças a isso cheguei aonde estou."
         fill_in "Foto", with: "https://i.pinimg.com/originals/47/eb/9f/47eb9f6a5f8878923282daf42e8cc95f.jpg"
         select "Quality Assurance", from: "Área de Atuação"
+        click_on "Criar Perfil"
       end
-      click_on "Criar Perfil"
 
       expect(current_path).to eq "/profiles/1"
       within "main" do
@@ -31,7 +28,7 @@ describe "Freelancer register Profile" do
         expect(page).to have_css("img[alt=photo]")
         within "dl" do
           expect(page).to have_content "Gosto de programar desde pequeno, graças a isso cheguei aonde estou."
-          expect(page).to have_content I18n.l(Date.today - 32.years)
+          expect(page).to have_content I18n.l(Time.now.to_date - 32.years)
           expect(page).to have_content "Ciência da Computação"
           expect(page).to have_content "freelancer@test.com"
         end
@@ -74,7 +71,7 @@ describe "Freelancer register Profile" do
         expect(page).to have_css("img[alt=photo]")
         within "dl" do
           expect(page).to have_content "Gosto de programar desde pequeno, graças a isso cheguei aonde estou."
-          expect(page).to have_content I18n.l(Date.today - 40.years)
+          expect(page).to have_content I18n.l(Time.now.to_date - 40.years)
           expect(page).to have_content "Ciência da Computação"
           expect(page).to have_content "freelancer@test.com"
         end

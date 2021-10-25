@@ -69,11 +69,11 @@ p_experience = Experience.create!({ title: "Fast Entregas", started_at: 6.years.
                                     description: "Desenvolvedor Full-Stack Junior",
                                     profile: f_profile })
 
-p_experience2 = Experience.create!({ title: "Disney", started_at: 5.years.ago, ended_at: Date.today,
+p_experience2 = Experience.create!({ title: "Disney", started_at: 5.years.ago, ended_at: Time.now.to_date,
                                      description: "Realizo parte da programação por trás das animações e cenas com muitos efeitos.",
                                      profile: f_profile })
 
-p_experience3 = Experience.create!({ title: "Valve", started_at: 10.years.ago, ended_at: Date.today,
+p_experience3 = Experience.create!({ title: "Valve", started_at: 10.years.ago, ended_at: Time.now.to_date,
                                      description: "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar.",
                                      profile: f_profile2 })
 
