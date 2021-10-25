@@ -14,7 +14,7 @@ describe "User register projects" do
         fill_in "Descrição", with: "Site de Fast Food por encomenda"
         fill_in "Habilidades Desejadas", with: "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS"
         fill_in "Valor/Hora máximo", with: 300
-        fill_in "Data Limite", with: Time.now.to_date
+        fill_in "Data Limite", with: 4.months.from_now
         choose "Presencial"
         check "Disponível"
         click_on "Criar Projeto"
@@ -27,7 +27,7 @@ describe "User register projects" do
       within "dl" do
         expect(page).to have_content "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS"
         expect(page).to have_content "R$ 300,00"
-        expect(page).to have_content I18n.l(Time.now.to_date)
+        expect(page).to have_content I18n.l(4.months.from_now.to_date)
         expect(page).to have_content "Tipo de Trabalho: Presencial"
         expect(page).to have_content /Sim/
         expect(page).to have_content "Status: Aceitando propostas"
@@ -54,7 +54,7 @@ describe "User register projects" do
         fill_in "Descrição", with: "Site de Fast Food por encomenda TOP"
         fill_in "Habilidades Desejadas", with: "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS ... SÓ, e tem que ser Sênior :)"
         fill_in "Valor/Hora máximo", with: 55
-        fill_in "Data Limite", with: Time.now.to_date
+        fill_in "Data Limite", with: 6.months.from_now
         choose "Remoto"
         uncheck "Disponível"
         click_on "Atualizar Projeto"
@@ -67,7 +67,7 @@ describe "User register projects" do
       within "dl" do
         expect(page).to have_content "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS ... SÓ, e tem que ser Sênior :)"
         expect(page).to have_content "R$ 55,00"
-        expect(page).to have_content I18n.l(Time.now.to_date)
+        expect(page).to have_content I18n.l(6.months.from_now.to_date)
         expect(page).to have_content "Tipo de Trabalho: Remoto"
         expect(page).to have_content /Não/
         expect(page).to have_content "Status: Aceitando propostas"
@@ -96,7 +96,7 @@ describe "User register projects" do
       expect(page).to_not have_content "Site de Fast Food por encomenda"
       expect(page).to_not have_content "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS"
       expect(page).to_not have_content "R$ 300,00"
-      expect(page).to_not have_content I18n.l(Time.now.to_date)
+      expect(page).to_not have_content I18n.l(4.months.ago.to_date)
       expect(page).to_not have_content "Tipo de Trabalho: Presencial"
       expect(page).to_not have_content /Sim/
       expect(page).to_not have_content "Status: Aceitando propostas"

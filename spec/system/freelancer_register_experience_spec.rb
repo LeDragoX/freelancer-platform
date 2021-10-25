@@ -27,7 +27,7 @@ describe "Freelancer register experiences" do
       within "main" do
         expect(page).to have_content "Voltar para #{I18n.t(:profile, scope: "activerecord.models")}"
         expect(page).to have_content "Valve"
-        expect(page).to have_content "Período: #{I18n.l(Time.now.to_date - 10.years)} - #{I18n.l(Time.now.to_date)}"
+        expect(page).to have_content "Período: #{I18n.l(10.years.ago.to_date)} - #{I18n.l(Time.now.to_date)}"
         expect(page).to have_content "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
       end
     end
@@ -61,7 +61,7 @@ describe "Freelancer register experiences" do
       within "main" do
         expect(page).to have_content "Voltar para #{I18n.t(:profile, scope: "activerecord.models")}"
         expect(page).to have_content "Valve STEAM"
-        expect(page).to have_content "Período: #{I18n.l(Time.now.to_date - 15.years)} - #{I18n.l(Time.now.to_date)}"
+        expect(page).to have_content "Período: #{I18n.l(15.years.ago.to_date)} - #{I18n.l(Time.now.to_date)}"
         expect(page).to have_content "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
       end
     end
@@ -88,7 +88,7 @@ describe "Freelancer register experiences" do
       within "main" do
         expect(page).to have_content "Voltar para Página Inicial"
         expect(page).to_not have_content "Valve STEAM"
-        expect(page).to_not have_content "Período: #{I18n.l(Time.now.to_date - 15.years)} - #{I18n.l(Time.now.to_date)}"
+        expect(page).to_not have_content "Período: #{I18n.l(15.years.ago.to_date)} - #{I18n.l(Time.now.to_date)}"
         expect(page).to_not have_content "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."
       end
     end

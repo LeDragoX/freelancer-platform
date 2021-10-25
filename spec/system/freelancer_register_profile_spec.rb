@@ -28,7 +28,7 @@ describe "Freelancer register Profile" do
         expect(page).to have_css("img[alt=photo]")
         within "dl" do
           expect(page).to have_content "Gosto de programar desde pequeno, graças a isso cheguei aonde estou."
-          expect(page).to have_content I18n.l(Time.now.to_date - 32.years)
+          expect(page).to have_content I18n.l(32.years.ago.to_date)
           expect(page).to have_content "Ciência da Computação"
           expect(page).to have_content "freelancer@test.com"
         end
@@ -71,7 +71,7 @@ describe "Freelancer register Profile" do
         expect(page).to have_css("img[alt=photo]")
         within "dl" do
           expect(page).to have_content "Gosto de programar desde pequeno, graças a isso cheguei aonde estou."
-          expect(page).to have_content I18n.l(Time.now.to_date - 40.years)
+          expect(page).to have_content I18n.l(40.years.ago.to_date)
           expect(page).to have_content "Ciência da Computação"
           expect(page).to have_content "freelancer@test.com"
         end
