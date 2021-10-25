@@ -1,52 +1,50 @@
-<% if user_signed_in? || freelancer_signed_in? %>
-  <div>
-    <%= link_to "Voltar para Página Inicial", root_path %>
+<div>
+  <%= link_to "Voltar para Página Inicial", root_path %>
 
-    <h2><%= @project.title %></h2>
-    <h3><%= @project.description %></h3>
+  <h2><%= @project.title %></h2>
+  <h3><%= @project.description %></h3>
 
-    <dl>
-      <dt><%= I18n.t(:user_id, scope: "activerecord.attributes.project") %>:</dt>
-      <dd><%= @project.user.email %></dd>
+  <dl>
+    <dt><%= I18n.t(:user_id, scope: "activerecord.attributes.project") %>:</dt>
+    <dd><%= @project.user.email %></dd>
 
-      <dt><%= I18n.t(:wanted_skills, scope: "activerecord.attributes.project") %>:</dt>
-      <dd><%= @project.wanted_skills %></dd>
+    <dt><%= I18n.t(:wanted_skills, scope: "activerecord.attributes.project") %>:</dt>
+    <dd><%= @project.wanted_skills %></dd>
 
-      <dt><%= I18n.t(:max_hour_rate, scope: "activerecord.attributes.project") %>:</dt>
-      <dd><%= number_to_currency @project.max_hour_rate %></dd>
+    <dt><%= I18n.t(:max_hour_rate, scope: "activerecord.attributes.project") %>:</dt>
+    <dd><%= number_to_currency @project.max_hour_rate %></dd>
 
-      <dt><%= I18n.t(:deadline, scope: "activerecord.attributes.project") %>:</dt>
-      <dd><%= l @project.deadline %></dd>
+    <dt><%= I18n.t(:deadline, scope: "activerecord.attributes.project") %>:</dt>
+    <dd><%= l @project.deadline %></dd>
 
-      <dt><%= I18n.t(:job_type, scope: "activerecord.attributes.project") %>:</dt>
-      <dd><%= @project.job_type.name %></dd>
+    <dt><%= I18n.t(:job_type, scope: "activerecord.attributes.project") %>:</dt>
+    <dd><%= @project.job_type.name %></dd>
 
-      <dt><%= I18n.t(:available, scope: "activerecord.attributes.project") %>:</dt>
-      <dd><%= @project.available? ? "Sim" : "Não" %></dd>
+    <dt><%= I18n.t(:available, scope: "activerecord.attributes.project") %>:</dt>
+    <dd><%= @project.available? ? "Sim" : "Não" %></dd>
 
-      <dt><%= I18n.t(:status, scope: "activerecord.attributes.project") %>:</dt>
-      <dd><%= t(@project.status, scope: "activerecord.attributes.statuses") %></dd>
-    </dl>
-  </div>
+    <dt><%= I18n.t(:status, scope: "activerecord.attributes.project") %>:</dt>
+    <dd><%= t(@project.status, scope: "activerecord.attributes.statuses") %></dd>
+  </dl>
+</div>
 
-  <% if @project.user == current_user %>
-    <ul>
-      <li><%= link_to "Editar Projeto", edit_project_path %></li>
-      <li><%= link_to "Deletar Projeto", project_path,
-                      method: :delete,
-                      data: { confirm: "Tem certeza que deseja deletar o Projeto '#{@project.title}'?" } %></li>
-    </ul>
+<% if @project.user == current_user %>
+  <ul>
+    <li><%= link_to "Editar Projeto", edit_project_path %></li>
+    <li><%= link_to "Deletar Projeto", project_path,
+                    method: :delete,
+                    data: { confirm: "Tem certeza que deseja deletar o Projeto '#{@project.title}'?" } %></li>
+  </ul>
 
-    <hr>
+  <hr>
 
-    <%= render "proposals/project_proposals" %>
-  <% end %>
+  <%= render "proposals/project_proposals" %>
+<% end %>
 
-  <% if freelancer_signed_in? %>
-    <% if @freelancer_proposal.nil? %>
-      <%= link_to "Fazer #{t(:proposal, scope: "activerecord.models")}", new_project_proposal_path(@project) %>
-    <% else %>
-      <%= render "proposals/freelancer_project_proposal" %>
-    <% end %>
+<% if freelancer_signed_in? %>
+  <% if @freelancer_proposal.nil? %>
+    <%= link_to "Fazer #{t(:proposal, scope: "activerecord.models")}", new_project_proposal_path(@project) %>
+  <% else %>
+    <%= render "proposals/freelancer_project_proposal" %>
   <% end %>
 <% end %>

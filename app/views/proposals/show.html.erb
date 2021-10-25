@@ -1,16 +1,14 @@
-<% if (user_signed_in? && @proposal.project.user == current_user) || (freelancer_signed_in? && @proposal.freelancer == current_freelancer) %>
-  <div>
-    <%= link_to "Voltar para #{t(:project, scope: "activerecord.models")}", project_path(@proposal.project) %>
+<div>
+  <%= link_to "Voltar para #{t(:project, scope: "activerecord.models")}", project_path(@proposal.project) %>
 
-    <%= render @proposal %>
-  </div>
+  <%= render @proposal %>
+</div>
 
-  <% if @proposal.freelancer == current_freelancer && !@proposal.accepted?  %>
-    <ul>
-      <li><%= link_to "Editar #{t(:proposal, scope: "activerecord.models")}", edit_project_proposal_path %></li>
-      <li><%= link_to "Deletar #{t(:proposal, scope: "activerecord.models")}", project_proposal_path,
-                      method: :delete,
-                      data: { confirm: "Tem certeza que deseja deletar esta Proposta de '#{@proposal.freelancer.email}'?" } %></li>
-    </ul>
-  <% end %>
+<% if @proposal.freelancer == current_freelancer && !@proposal.accepted?  %>
+  <ul>
+    <li><%= link_to "Editar #{t(:proposal, scope: "activerecord.models")}", edit_project_proposal_path %></li>
+    <li><%= link_to "Deletar #{t(:proposal, scope: "activerecord.models")}", project_proposal_path,
+                    method: :delete,
+                    data: { confirm: "Tem certeza que deseja deletar esta Proposta de '#{@proposal.freelancer.email}'?" } %></li>
+  </ul>
 <% end %>

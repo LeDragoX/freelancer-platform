@@ -1,6 +1,4 @@
-<% if @profile.freelancer == current_freelancer %>
-  <%= link_to "Voltar para #{t(:experience, scope: "activerecord.models")}", [@profile, @experience] %>
-  <h1>📅 Editar <%= @experience.title %></h1>
+<%= link_to "Voltar para #{t(:experience, scope: "activerecord.models")}", [@profile, @experience] %>
+<h1>📅 Editar <%= @experience.title %></h1>
 
-  <%= render partial: "form" %>
-<% end %>
+<%= render partial: "form" %>

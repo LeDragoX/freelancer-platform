@@ -1,15 +1,13 @@
-<% if user_signed_in? || freelancer_signed_in? %>
-  <div>
-    <%= link_to "Voltar para #{t(:profile, scope: "activerecord.models")}", profile_path(@experience.profile) %>
+<div>
+  <%= link_to "Voltar para #{t(:profile, scope: "activerecord.models")}", profile_path(@experience.profile) %>
 
-    <%= render @experience %>
-  </div>
+  <%= render @experience %>
+</div>
 
-  <% if @experience.profile.freelancer == current_freelancer %>
-      <ul>
-        <li><%= link_to "Editar Experiência", edit_profile_experience_path %></li>
-        <li><%= link_to "Deletar Experiência", profile_experience_path, method: :delete,
-                        data: { confirm: "Tem certeza que deseja deletar a Experiência '#{@experience.title}'?" } %></li>
-      </ul>
-  <% end %>
+<% if @experience.profile.freelancer == current_freelancer %>
+    <ul>
+      <li><%= link_to "Editar Experiência", edit_profile_experience_path %></li>
+      <li><%= link_to "Deletar Experiência", profile_experience_path, method: :delete,
+                      data: { confirm: "Tem certeza que deseja deletar a Experiência '#{@experience.title}'?" } %></li>
+    </ul>
 <% end %>

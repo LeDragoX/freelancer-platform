@@ -1,25 +1,23 @@
-<% if user_signed_in? || freelancer_signed_in? %>
-  <div>
-    <%= link_to "Voltar para Página Inicial", root_path %>
+<div>
+  <%= link_to "Voltar para Página Inicial", root_path %>
 
-    <% if @profile.freelancer == current_freelancer %>
-        <ul>
-          <li><%= link_to "Editar Perfil", edit_profile_path(@profile) %></li>
-        </ul>
-    <% end %>
+  <% if @profile.freelancer == current_freelancer %>
+      <ul>
+        <li><%= link_to "Editar Perfil", edit_profile_path(@profile) %></li>
+      </ul>
+  <% end %>
 
-    <%= render @profile %>
-  </div>
+  <%= render @profile %>
+</div>
 
-  <hr>
+<hr>
 
-  <div>
-    <% if @profile.freelancer == current_freelancer %>
-      <%= link_to "Nova #{t(:experience, scope: "activerecord.models")}", new_profile_experience_path(@profile) %>
-    <% end %>
+<div>
+  <% if @profile.freelancer == current_freelancer %>
+    <%= link_to "Nova #{t(:experience, scope: "activerecord.models")}", new_profile_experience_path(@profile) %>
+  <% end %>
 
-    <h2><%= I18n.t(:experiences, scope: "activerecord.models") %></h2>
+  <h2><%= I18n.t(:experiences, scope: "activerecord.models") %></h2>
 
-    <%= render @experiences %>
-  </div>
-<% end %>
+  <%= render @experiences %>
+</div>
