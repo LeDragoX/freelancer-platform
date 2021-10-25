@@ -9,6 +9,7 @@ pt-BR:
         hour_rate: "Valor/Hora"
         weekly_hours: "Horas semanais disponíveis"
         status: "Status"
+        delivery_estimate: "Estimativa de entrega"
         project_id: "Projeto"
         freelancer_id: "Profissional interessado"
       statuses:

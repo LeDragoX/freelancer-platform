@@ -10,7 +10,7 @@
   <div>
     <%= f.label :hour_rate %>
     <%= f.number_field :hour_rate, min: 0, step: 5.00, placeholder: (number_to_currency "0.00", separator: ".") %>
-    <% @project.errors.full_messages_for(:hour_rate).each do |message| %>
+    <% @proposal.errors.full_messages_for(:hour_rate).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
@@ -18,19 +18,28 @@
   <div>
     <%= f.label :weekly_hours %>
     <%= f.number_field :weekly_hours, min: 1, placeholder: "60" %>
-    <% @project.errors.full_messages_for(:weekly_hours).each do |message| %>
+    <% @proposal.errors.full_messages_for(:weekly_hours).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
   <div>
-    <% @project.errors.full_messages_for(:project_id).each do |message| %>
+    <%= f.label :delivery_estimate %>
+    <%= f.date_field :delivery_estimate %>
+    <% @proposal.errors.full_messages_for(:delivery_estimate).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+
+  <div>
+    <% @proposal.errors.full_messages_for(:project_id).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
   <div>
-    <% @project.errors.full_messages_for(:freelancer_id).each do |message| %>
+    <% @proposal.errors.full_messages_for(:freelancer_id).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>

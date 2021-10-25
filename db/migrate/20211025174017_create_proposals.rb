@@ -5,6 +5,7 @@ class CreateProposals < ActiveRecord::Migration[6.1]
       t.decimal :hour_rate
       t.integer :weekly_hours
       t.integer :status
+      t.date :delivery_estimate
       t.references :project, null: false, foreign_key: true
       t.references :freelancer, null: false, foreign_key: true
 

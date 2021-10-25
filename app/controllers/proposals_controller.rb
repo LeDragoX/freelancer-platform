@@ -84,10 +84,12 @@ class ProposalsController < ApplicationController
 
   def proposal_params
     params.require(:proposal).permit(:description, :hour_rate, :weekly_hours,
+                                     :delivery_estimate,
                                      :project_id, :freelancer_id)
   end
 
   def update_proposal_params
-    params.require(:proposal).permit(:description, :hour_rate, :weekly_hours)
+    params.require(:proposal).permit(:description, :hour_rate, :weekly_hours,
+                                     :delivery_estimate)
   end
 end

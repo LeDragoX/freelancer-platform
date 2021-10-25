@@ -2,7 +2,7 @@ class Proposal < ApplicationRecord
   belongs_to :project
   belongs_to :freelancer
 
-  validates :description, :hour_rate, :weekly_hours,
+  validates :description, :hour_rate, :weekly_hours, :delivery_estimate,
             :project_id, :freelancer_id, presence: true
 
   validate :initialize_status

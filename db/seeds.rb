@@ -19,7 +19,7 @@ job_hybrid = JobType.create!({ name: "Híbrido" })
 project = Project.create!({ title: "Sistema Web",
                             description: "Site de Fast Food por encomenda",
                             wanted_skills: "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS.",
-                            max_hour_rate: 300, deadline: 4.month.from_now,
+                            max_hour_rate: 300, deadline: 4.months.from_now,
                             available: true, job_type: job_remote, user: user })
 
 project2 = Project.create!({ title: "Infraestrutura",
@@ -31,7 +31,7 @@ project2 = Project.create!({ title: "Infraestrutura",
 project3 = Project.create!({ title: "Atualização de Sistema Legado",
                              description: "Site feito com ASP 3.0, PHP e MySQL precisa ser migrado para tecnologias mais recentes.",
                              wanted_skills: "No Back: NodeJS, PostgreSQL. No Front: React, Styled-Components, Sass, Bootstrap.",
-                             max_hour_rate: 600, deadline: 3.month.from_now,
+                             max_hour_rate: 600, deadline: 3.months.from_now,
                              available: true, job_type: job_presential, user: user1 })
 
 dba = OccupationArea.create!({ name: "Administração de Banco de Dados" })
@@ -78,9 +78,9 @@ p_experience3 = Experience.create!({ title: "Valve", started_at: 10.years.ago, e
                                      profile: f_profile2 })
 
 f_proposal = Proposal.create!({ description: "Sonho com um projeto desses!",
-                                hour_rate: 250, weekly_hours: 40,
+                                hour_rate: 250, weekly_hours: 40, delivery_estimate: 6.months.from_now,
                                 project: project, freelancer: freelancer })
 
 f_proposal2 = Proposal.create!({ description: "Possuo anos de experiência com Infraestrutura e Cloud...",
-                                 hour_rate: 700, weekly_hours: 50,
+                                 hour_rate: 700, weekly_hours: 50, delivery_estimate: 4.months.from_now,
                                  project: project2, freelancer: freelancer1 })
