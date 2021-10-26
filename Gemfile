@@ -13,11 +13,11 @@ gem 'sqlite3', '~> 1.4'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 
-# My Gems
-gem 'devise'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
+# My Gems
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,6 +41,9 @@ group :test do
   #gem 'selenium-webdriver' # Fonte de dor de cabeça :/
   # Easy installation and use of web drivers to run system tests with browsers
   #gem 'webdrivers' # Fonte de dor de cabeça :/
+
+  # My Gems
+  gem 'simplecov'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

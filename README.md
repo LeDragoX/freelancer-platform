@@ -23,11 +23,12 @@ Também tenho a versão do diagrama [com Roles de usuário](public/readme/class-
 
 ## System dependencies
 
-- Make sure [_Yarn_](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) is installed:
+- Make sure [_NodeJS_](https://nodejs.org/en/) and [_Yarn_](https://classic.yarnpkg.com/lang/en/docs/install) is installed:
 - All Rails stuff;
 - Devise - Login & Auth manager;
 - Rspec-Rails - Unit & Web UI tests;
 - Capybara - Web UI tests;
+- SimpleCov - Cover better all validation tests
 
 ## Configuration
 
