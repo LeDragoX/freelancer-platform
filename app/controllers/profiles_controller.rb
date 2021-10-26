@@ -7,11 +7,7 @@ class ProfilesController < ApplicationController
       @profile = Profile.find(params[:id])
       @experiences = @profile.experiences
     rescue => exception
-      if !user_signed_in? && freelancer_signed_in?
-        redirect_to new_profile_path, alert: "#{t(:freelancer, scope: "activerecord.models")} não possui Perfil (#{exception.class}: #{exception})"
-      else
-        redirect_to root_path, alert: "#{t(:freelancer, scope: "activerecord.models")} não possui Perfil (#{exception.class}: #{exception})"
-      end
+      redirect_to root_path, alert: "#{t(:freelancer, scope: "activerecord.models")} não possui Perfil (#{exception.class}: #{exception})"
     end
   end
 
