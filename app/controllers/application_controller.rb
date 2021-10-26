@@ -3,15 +3,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def after_sign_in_path_for(resource)
-    stored_location_for(resource) ||
-    if resource.is_a?(Freelancer) && current_freelancer.profile.blank?
-      redirect_to new_profile_path, notice: "Você precisa criar um perfil antes de prossseguir"
-    elsif resource.is_a?(User) || resource.is_a?(Freelancer)
-      super
-    end
-  end
-
   def require_log_in!
     if !user_signed_in? && !freelancer_signed_in?
       current_page = request.env['REQUEST_URI']
@@ -37,7 +28,7 @@ class ApplicationController < ActionController::Base
       if !(allowed_freelancer_routes.include? current_page)
         @profile = Profile.new
         flash.now[:alert] = "Você precisa criar um perfil antes de prossseguir, nem tente burlar."
-        render "profiles/new", object: @profile
+        # render "profiles/new", object: @profile # breaks rspec ./spec/system/freelancer_register_profile_spec.rb:6
       end
     end
   end
