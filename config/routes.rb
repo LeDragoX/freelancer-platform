@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   resources :projects, only: %i[show new create edit update destroy] do
     get 'my_projects', on: :collection
     get 'my_proposals', on: :collection
-    resources :proposals, only: %i[new create show edit update destroy]
+    resources :proposals, only: %i[new create show edit update destroy] do
+      post 'accept'
+      post 'reject'
+    end
   end
   resources :profiles, only: %i[show new create edit update] do
     get 'experiences', to: 'experiences#index', on: :collection

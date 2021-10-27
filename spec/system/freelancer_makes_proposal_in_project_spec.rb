@@ -41,11 +41,13 @@ describe "Freelancer makes proposal in project" do
         expect(page).to have_content "Descrição: Sonho com um projeto desses!"
         expect(page).to have_content "Valor/Hora: R$ 250,00"
         expect(page).to have_content "Horas semanais disponíveis: 40 horas semanais"
-        expect(page).to have_content "Status: Pendente"
         expect(page).to have_content "Estimativa de entrega: #{I18n.l(6.months.from_now.to_date)}"
+        expect(page).to have_content "Status: Pendente"
       end
       expect(page).to have_link "Editar Proposta"
       expect(page).to have_link "Deletar Proposta"
+      expect(page).to_not have_link "Aceitar Proposta"
+      expect(page).to_not have_link "Recusar Proposta"
     end
 
     it "edit it" do
@@ -89,6 +91,8 @@ describe "Freelancer makes proposal in project" do
       end
       expect(page).to have_link "Editar Proposta"
       expect(page).to have_link "Deletar Proposta"
+      expect(page).to_not have_link "Aceitar Proposta"
+      expect(page).to_not have_link "Recusar Proposta"
     end
 
     it "delete it" do
@@ -127,6 +131,8 @@ describe "Freelancer makes proposal in project" do
         expect(page).to_not have_text '<div class="proposals">'
         expect(page).to_not have_link "Editar Proposta"
         expect(page).to_not have_link "Deletar Proposta"
+        expect(page).to_not have_link "Aceitar Proposta"
+        expect(page).to_not have_link "Recusar Proposta"  
       end
     end
   end

@@ -11,8 +11,11 @@ pt-BR:
         status: "Status"
         delivery_estimate: "Estimativa de entrega"
         project_id: "Projeto"
-        freelancer_id: "Profissional interessado"
+        freelancer_id: "Proposta de"
       statuses:
         pending: "Pendente"
         accepted: "Aceita"
         rejected: "Rejeitada"
+      click_statuses:
+        accept: "Aceitar Proposta"
+        reject: "Recusar Proposta"
