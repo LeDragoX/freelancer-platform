@@ -11,9 +11,9 @@
   <dt><%= I18n.t(:weekly_hours, scope: "activerecord.attributes.proposal") %>:</dt>
   <dd><%= "#{proposal.weekly_hours} horas semanais" %></dd>
 
-  <dt><%= I18n.t(:status, scope: "activerecord.attributes.proposal") %>:</dt>
-  <dd><%= t(proposal.status, scope: "activerecord.attributes.statuses") %></dd>
-
   <dt><%= I18n.t(:delivery_estimate, scope: "activerecord.attributes.proposal") %>:</dt>
   <dd><%= l(proposal.delivery_estimate) %></dd>
+
+  <dt><%= I18n.t(:status, scope: "activerecord.attributes.proposal") %>:</dt>
+  <dd><%= t(proposal.status, scope: "activerecord.attributes.statuses") %></dd>
 </dl>

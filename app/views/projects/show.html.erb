@@ -14,7 +14,14 @@
 
   <hr>
 
-  <%= render "proposals/project_proposals" %>
+  <h2>🌎 <%= t(:proposals, scope: "activerecord.models") %> para <%= t(:project, scope: "activerecord.models") %> "<%= @project.title %>"</h2>
+
+  <% if @proposals.blank? %>
+    <p>Este projeto ainda não possui propostas.</p>
+  <% else %>
+    <%= render "proposals/proposals" %>
+  <% end %>
+
 <% end %>
 
 <% if freelancer_signed_in? %>

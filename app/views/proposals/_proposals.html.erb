@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= I18n.t(:freelancer_id, scope: "activerecord.attributes.proposal") %></th>
+      <th><%= I18n.t(:delivery_estimate, scope: "activerecord.attributes.proposal") %></th>
+      <th><%= I18n.t(:status, scope: "activerecord.attributes.proposal") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @proposals.each do |proposal| %>
+      <tr>
+        <td><%= link_to proposal.freelancer.profile.full_name, project_proposal_path(proposal) %></td>
+        <td><%= l(proposal.delivery_estimate) %></td>
+        <td><%= t(proposal.status, scope: "activerecord.attributes.statuses") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
