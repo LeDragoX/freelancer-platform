@@ -1,0 +1,7 @@
+<%= link_to "Voltar para Página Inicial", root_path %>
+<h1>🌎 Minhas Propostas</h1>
+
+<% @projects.each do |project| %>
+  <%= render project.proposals %>
+  <hr>
+<% end %>
