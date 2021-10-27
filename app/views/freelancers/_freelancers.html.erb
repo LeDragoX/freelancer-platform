@@ -8,7 +8,7 @@
     <% @freelancers.each do |freelancer| %>
       <tr>
         <% if !freelancer.profile.blank? %>
-          <td><%= link_to freelancer.email, profile_path(freelancer.profile || freelancer) %></td>
+          <td><%= link_to freelancer.profile.full_name, profile_path(freelancer.profile || freelancer) %></td>
         <% end %>
       </tr>
     <% end %>
