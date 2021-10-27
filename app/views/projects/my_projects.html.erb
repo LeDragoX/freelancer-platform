@@ -1,8 +1,18 @@
 <%= link_to "Voltar para Página Inicial", root_path %>
-<h1>📋 Meus Projetos</h1>
 
-<% if @projects.empty? %>
-  <span>Você ainda não cadastrou Projetos</span>
-<% else %>
-  <%= render partial: "projects" %>
+<% if user_signed_in? %>
+  <h1>📋 Meus Projetos</h1>
+  <% if @projects.empty? %>
+    <span>Você ainda não cadastrou Projetos</span>
+  <% else %>
+    <%= render partial: "projects" %>
+  <% end %>
+<% elsif freelancer_signed_in? %>
+  <h1>📋 Meus Projetos com proposta</h1>
+
+  <% if @projects.empty? %>
+    <span>Você ainda não propôs em nenhum Projeto</span>
+  <% else %>
+    <%= render partial: "projects" %>
+  <% end %>
 <% end %>
