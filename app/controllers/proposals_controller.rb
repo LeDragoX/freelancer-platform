@@ -1,6 +1,6 @@
 class ProposalsController < ApplicationController
   before_action :authenticate_freelancer!, only: %i[new create edit update]
-  before_action :authenticate_user!, only: %i[my_proposals]
+  before_action :authenticate_user!, only: %i[accept reject]
   before_action :require_log_in!, only: %i[show]
 
   def show
@@ -23,7 +23,7 @@ class ProposalsController < ApplicationController
       redirect_to project_proposal_path(@existing_proposal.project, @existing_proposal), alert: "Uma proposta sua já existe para '#{@project.title}'!"
     end
   end
-  
+
   def create
     @project = Project.find(params[:project_id])
     @proposal = Proposal.new(proposal_params)
@@ -59,7 +59,7 @@ class ProposalsController < ApplicationController
 
     if @proposal.freelancer != current_freelancer
       redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
-    elsif @proposal.update(update_proposal_params)
+    elsif @proposal.update(proposal_update_params)
       redirect_to [@project], notice: "Proposta atualizada com sucesso!"
     else
       flash.now[:alert] = "Erro ao atualizar proposta"
@@ -82,11 +82,31 @@ class ProposalsController < ApplicationController
   end
 
   def accept
-    
+    @project = Project.find(params[:project_id])
+    @proposal = Proposal.find(params[:proposal_id])
+
+    if @project.user != current_user
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    elsif @proposal.accepted!
+      redirect_to [@project, @proposal], notice: "Proposta aceita com sucesso!"
+    else
+      flash.now[:alert] = "Erro ao aceitar proposta"
+      render [@project, @proposal]
+    end
   end
 
   def reject
-    
+    @project = Project.find(params[:project_id])
+    @proposal = Proposal.find(params[:proposal_id])
+
+    if @project.user != current_user
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    elsif @proposal.rejected!
+      redirect_to [@project, @proposal], notice: "Proposta recusada com sucesso!"
+    else
+      flash.now[:alert] = "Erro ao recusar proposta"
+      render [@project, @proposal]
+    end
   end
 
   private
@@ -97,7 +117,7 @@ class ProposalsController < ApplicationController
                                      :project_id, :freelancer_id)
   end
 
-  def update_proposal_params
+  def proposal_update_params
     params.require(:proposal).permit(:description, :hour_rate, :weekly_hours,
                                      :delivery_estimate)
   end
