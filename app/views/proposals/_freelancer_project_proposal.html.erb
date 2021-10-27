@@ -1,16 +1,18 @@
-<% if (user_signed_in? && @proposal.project.user == current_user) || (freelancer_signed_in?) %>
-  <% if !@freelancer_proposal.nil? %>
-    <div>
-      <%= render @freelancer_proposal %>
-    </div>
+<div class="proposal">
+  <% if (user_signed_in? && @proposal.project.user == current_user) || (freelancer_signed_in?) %>
+    <% if !@freelancer_proposal.nil? %>
+      <div>
+        <%= render @freelancer_proposal %>
+      </div>
 
-    <% if @freelancer_proposal.freelancer == current_freelancer && !@freelancer_proposal.accepted?  %>
-      <ul>
-        <li><%= link_to "Editar #{t(:proposal, scope: "activerecord.models")}", edit_project_proposal_path(@freelancer_proposal.project, @freelancer_proposal) %></li>
-        <li><%= link_to "Deletar #{t(:proposal, scope: "activerecord.models")}", project_proposal_path(@freelancer_proposal.project, @freelancer_proposal),
-                        method: :delete,
-                        data: { confirm: "Tem certeza que deseja deletar esta Proposta de '#{@freelancer_proposal.freelancer.email}'?" } %></li>
-      </ul>
+      <% if @freelancer_proposal.freelancer == current_freelancer && !@freelancer_proposal.accepted?  %>
+        <ul>
+          <li><%= link_to "Editar #{t(:proposal, scope: "activerecord.models")}", edit_project_proposal_path(@freelancer_proposal.project, @freelancer_proposal) %></li>
+          <li><%= link_to "Deletar #{t(:proposal, scope: "activerecord.models")}", project_proposal_path(@freelancer_proposal.project, @freelancer_proposal),
+                          method: :delete,
+                          data: { confirm: "Tem certeza que deseja deletar esta Proposta de '#{@freelancer_proposal.freelancer.email}'?" } %></li>
+        </ul>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+</div>
