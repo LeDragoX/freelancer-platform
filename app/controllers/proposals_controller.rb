@@ -1,5 +1,6 @@
 class ProposalsController < ApplicationController
-  before_action :authenticate_freelancer!, only: %i[new create edit update my_proposals]
+  before_action :authenticate_freelancer!, only: %i[new create edit update]
+  before_action :authenticate_user!, only: %i[my_proposals]
   before_action :require_log_in!, only: %i[show]
 
   def show
@@ -30,10 +31,13 @@ class ProposalsController < ApplicationController
     @proposal.project = @project
 
     @existing_proposal = Proposal.find_by(freelancer: current_freelancer)
+
     if @existing_proposal && @existing_proposal.project == @project
       redirect_to project_proposal_path(@existing_proposal.project, @existing_proposal), alert: "Uma proposta sua já existe para '#{@project.title}'!"
+    elsif @proposal.freelancer != current_freelancer
+      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     elsif @proposal.save
-      redirect_to [@project, @proposal], notice: "Proposta criada com sucesso!"
+      redirect_to [@project], notice: "Proposta criada com sucesso!"
     else
       flash.now[:alert] = "Erro ao criar proposta"
       render :new
@@ -56,7 +60,7 @@ class ProposalsController < ApplicationController
     if @proposal.freelancer != current_freelancer
       redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     elsif @proposal.update(update_proposal_params)
-      redirect_to [@project, @proposal], notice: "Proposta atualizada com sucesso!"
+      redirect_to [@project], notice: "Proposta atualizada com sucesso!"
     else
       flash.now[:alert] = "Erro ao atualizar proposta"
       render :edit
@@ -83,11 +87,6 @@ class ProposalsController < ApplicationController
 
   def reject
     
-  end
-
-  def my_proposals
-    @project = Project.find(params[:project_id])
-    @proposals = @project.proposals
   end
 
   private

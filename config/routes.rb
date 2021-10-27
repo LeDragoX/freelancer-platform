@@ -5,10 +5,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :projects, only: %i[show new create edit update destroy] do
-      get 'my_projects', on: :collection
-      resources :proposals, only: %i[new create show edit update destroy] do
-        get 'my_proposals', on: :collection
-      end
+    get 'my_projects', on: :collection
+    get 'my_proposals', on: :collection
+    resources :proposals, only: %i[new create show edit update destroy]
   end
   resources :profiles, only: %i[show new create edit update] do
     get 'experiences', to: 'experiences#index', on: :collection

@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update destroy my_projects]
-  before_action :require_log_in!, only: %i[show]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :require_log_in!, only: %i[show my_projects]
 
   def show
     @project = Project.find(params[:id])
@@ -63,6 +63,20 @@ class ProjectsController < ApplicationController
   end
 
   def my_projects
+    if user_signed_in?
+      @projects = current_user.projects
+    elsif freelancer_signed_in?
+      @proposals = Proposal.all
+      @projects = []
+      @proposals.each do |proposal|
+        if proposal.freelancer == current_freelancer
+          @projects << proposal.project
+        end
+      end
+    end
+  end
+
+  def my_proposals
     @projects = current_user.projects
   end
 
