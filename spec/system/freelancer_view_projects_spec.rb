@@ -23,7 +23,6 @@ describe "Freelancer view projects" do
       visit root_path
 
       within "nav" do
-        expect(page).to_not have_content "Meus Projetos"
         expect(page).to_not have_content "Novo Projeto"
       end
       expect(page).to have_link "Sistema Web", href: project_path(project)

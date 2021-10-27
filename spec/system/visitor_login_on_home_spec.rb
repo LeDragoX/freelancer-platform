@@ -56,7 +56,6 @@ describe "Visitor login on Home" do
         within "nav" do
           expect(page).to have_content "freelancer@test.com"
           expect(page).to have_content "Logout"
-          expect(page).to_not have_content "Meus Projetos"
           expect(page).to_not have_content "Novo Projeto"
         end
 
@@ -79,7 +78,6 @@ describe "Visitor login on Home" do
         within "nav" do
           expect(page).to have_content "freelancer@test.com"
           expect(page).to have_content "Logout"
-          expect(page).to_not have_content "Meus Projetos"
           expect(page).to_not have_content "Novo Projeto"
         end
 

@@ -133,7 +133,7 @@ describe "Freelancer register Profile" do
 
         expect(current_path).to eq "/profiles/1"
         within "main" do
-          expect(page).to have_content "Data de Nascimento não pode ser menor que 16 anos (maior que 26/10/2005)"
+          expect(page).to have_content "Data de Nascimento não pode ser menor que 16 anos (maior que #{I18n.l(16.years.ago.to_date)})"
         end
       end
     end
