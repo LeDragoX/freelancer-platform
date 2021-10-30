@@ -1,8 +1,11 @@
 class HomeController < ApplicationController
 
   def index
-    @projects = []
-    Project.all.each { |project| @projects << project if project.available? }
-    @freelancers = Freelancer.all
+    if user_signed_in?
+      @freelancers = Freelancer.all      
+    elsif freelancer_signed_in?
+      @projects = []
+      Project.all.each { |project| @projects << project if project.available? }
+    end
   end
 end

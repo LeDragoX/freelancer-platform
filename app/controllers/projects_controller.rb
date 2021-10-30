@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to @project, notice: "Projeto criado com sucesso!"
     else
-      flash.now[:alert] = "Erro ao salvar projeto"
+      flash.now[:alert] = "Erro ao criar projeto..."
       render :new
     end
   end
@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find(params[:id])
 
-    if @project.user != current_user
+    if !(is_owner?)
       redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     end
   end
@@ -39,12 +39,12 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
 
-    if @project.user != current_user
+    if !(is_owner?)
       redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     elsif @project.update(project_params)
       redirect_to @project, notice: "Projeto atualizado com sucesso!"
     else
-      flash.now[:alert] = "Erro ao atualizar projeto"
+      flash.now[:alert] = "Erro ao atualizar projeto..."
       render :edit
     end
   end
@@ -52,12 +52,12 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
 
-    if @project.user != current_user
+    if !(is_owner?)
       redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     elsif @project.destroy
       redirect_to my_projects_projects_path, notice: "Projeto deletado com sucesso!"
     else
-      flash.now[:alert] = "Erro ao deletar projeto"
+      flash.now[:alert] = "Erro ao deletar projeto..."
       render @project
     end
   end
@@ -66,13 +66,10 @@ class ProjectsController < ApplicationController
     if user_signed_in?
       @projects = current_user.projects
     elsif freelancer_signed_in?
-      @proposals = Proposal.all
       @projects = []
-      @proposals.each do |proposal|
-        if proposal.freelancer == current_freelancer
-          @projects << proposal.project
-        end
-      end
+      Proposal.all.each { |proposal|
+        @projects << proposal.project if proposal.freelancer == current_freelancer
+      }
     end
   end
 
@@ -81,7 +78,15 @@ class ProjectsController < ApplicationController
   end
 
   private
-  
+
+  def is_owner?
+    if @project.user == current_user
+      return true
+    else
+      return false
+    end
+  end
+
   def project_params
     params.require(:project).permit(:title, :description, :wanted_skills,
                                     :max_hour_rate, :deadline, :available,

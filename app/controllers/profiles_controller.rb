@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
   def new
     @profile = Profile.new
 
-    if !(freelancer_signed_in? && @profile == current_freelancer.profile)
+    if !(profile_exists?)
       redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     end
   end
@@ -23,12 +23,12 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.freelancer = current_freelancer
 
-    if !(freelancer_signed_in? && @profile == current_freelancer.profile)
+    if !(profile_exists?)
       redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     elsif @profile.save
       redirect_to @profile, notice: "Perfil criado com sucesso!"
     else
-      flash.now[:alert] = "Erro ao criar perfil"
+      flash.now[:alert] = "Erro ao criar perfil..."
       render :new
     end
   end
@@ -36,7 +36,7 @@ class ProfilesController < ApplicationController
   def edit
     @profile = Profile.find(params[:id])
 
-    if @profile.freelancer != current_freelancer
+    if !(is_owner?)
       redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     end
   end
@@ -44,19 +44,35 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find(params[:id])
 
-    if freelancer_signed_in? && current_freelancer.profile.nil?
+    if !(profile_exists?)
       redirect_to new_profile_path, alert: "Cadastre seu perfil antes!"
-    elsif @profile.freelancer != current_freelancer
+    elsif !(is_owner?)
       redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
     elsif @profile.update(profile_params)
       redirect_to @profile, notice: "Perfil atualizado com sucesso!"
     else
-      flash.now[:alert] = "Erro ao atualizar perfil"
+      flash.now[:alert] = "Erro ao atualizar perfil..."
       render :edit
     end
   end
 
   private
+
+  def profile_exists?
+    if !(current_freelancer.profile.blank?)
+      return true
+    else
+      return false
+    end
+  end
+
+  def is_owner?
+    if @profile.freelancer == current_freelancer
+      return true
+    else
+      return false
+    end
+  end
 
   def profile_params
     params.require(:profile).permit(:full_name, :social_name, :birth_date,
