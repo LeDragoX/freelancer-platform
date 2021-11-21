@@ -3,32 +3,29 @@ class ProfilesController < ApplicationController
   before_action :require_log_in!, only: %i[show]
 
   def show
-    begin
-      @profile = Profile.find(params[:id])
-      @experiences = @profile.experiences
-    rescue => exception
-      redirect_to root_path, alert: "#{t(:freelancer, scope: "activerecord.models")} não possui Perfil (#{exception.class}: #{exception})"
-    end
+    @profile = Profile.find(params[:id])
+    @experiences = @profile.experiences
+  rescue StandardError => e
+    redirect_to root_path,
+                alert: "#{t(:freelancer, scope: 'activerecord.models')} não possui Perfil (#{e.class}: #{e})"
   end
 
   def new
     @profile = Profile.new
 
-    if !(profile_exists?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
-    end
+    redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.' unless profile_exists?
   end
 
   def create
     @profile = Profile.new(profile_params)
     @profile.freelancer = current_freelancer
 
-    if !(profile_exists?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    if !profile_exists?
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @profile.save
-      redirect_to @profile, notice: "Perfil criado com sucesso!"
+      redirect_to @profile, notice: 'Perfil criado com sucesso!'
     else
-      flash.now[:alert] = "Erro ao criar perfil..."
+      flash.now[:alert] = 'Erro ao criar perfil...'
       render :new
     end
   end
@@ -36,42 +33,31 @@ class ProfilesController < ApplicationController
   def edit
     @profile = Profile.find(params[:id])
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
-    end
+    redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.' unless owner?
   end
 
   def update
     @profile = Profile.find(params[:id])
 
-    if !(profile_exists?)
-      redirect_to new_profile_path, alert: "Cadastre seu perfil antes!"
-    elsif !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    if !profile_exists?
+      redirect_to new_profile_path, alert: 'Cadastre seu perfil antes!'
+    elsif !owner?
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @profile.update(profile_params)
-      redirect_to @profile, notice: "Perfil atualizado com sucesso!"
+      redirect_to @profile, notice: 'Perfil atualizado com sucesso!'
     else
-      flash.now[:alert] = "Erro ao atualizar perfil..."
-      render :edit
+      render :edit, alert: 'Erro ao atualizar perfil...'
     end
   end
 
   private
 
   def profile_exists?
-    if !(current_freelancer.profile.blank?)
-      return true
-    else
-      return false
-    end
+    current_freelancer.profile.present?
   end
 
-  def is_owner?
-    if @profile.freelancer == current_freelancer
-      return true
-    else
-      return false
-    end
+  def owner?
+    @profile.freelancer == current_freelancer
   end
 
   def profile_params

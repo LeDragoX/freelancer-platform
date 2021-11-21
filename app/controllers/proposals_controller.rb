@@ -7,10 +7,10 @@ class ProposalsController < ApplicationController
     @project = Project.find(params[:project_id])
     @proposal = @project.proposals.find(params[:id])
 
-    if (user_signed_in? && @proposal.project.user == current_user) || (freelancer_signed_in? && is_owner?)
-      return
+    if (user_signed_in? && @proposal.project.user == current_user) || (freelancer_signed_in? && owner?)
+      nil
     else
-      redirect_to root_path, alert: "Você não pode vizualizar esta proposta."
+      redirect_to root_path, alert: 'Você não pode vizualizar esta proposta.'
     end
   end
 
@@ -20,27 +20,26 @@ class ProposalsController < ApplicationController
 
     @existing_proposal = Proposal.find_by(freelancer: current_freelancer)
     if proposals_exists?
-      redirect_to project_proposal_path(@existing_proposal.project, @existing_proposal), alert: "Uma proposta sua já existe para '#{@project.title}'!"
+      redirect_to project_proposal_path(@existing_proposal.project, @existing_proposal),
+                  alert: "Uma proposta sua já existe para '#{@project.title}'!"
     end
   end
 
   def create
     @project = Project.find(params[:project_id])
-    @proposal = Proposal.new(proposal_params)
+    @proposal = @project.proposals.new(proposal_params)
     @proposal.freelancer = current_freelancer
-    @proposal.project = @project
 
     @existing_proposal = Proposal.find_by(freelancer: current_freelancer)
-
     if proposals_exists?
-      redirect_to project_proposal_path(@existing_proposal.project, @existing_proposal), alert: "Uma proposta sua já existe para '#{@proposal.project.title}'!"
-    elsif !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+      redirect_to project_proposal_path(@existing_proposal.project, @existing_proposal),
+                  alert: "Uma proposta sua já existe para '#{@proposal.project.title}'!"
+    elsif !owner?
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @proposal.save
-      redirect_to [@proposal.project], notice: "Proposta criada com sucesso!"
+      redirect_to [@proposal.project], notice: 'Proposta criada com sucesso!'
     else
-      flash.now[:alert] = "Erro ao criar proposta..."
-      render :new
+      render :new, alert: 'Erro ao criar proposta...'
     end
   end
 
@@ -48,22 +47,19 @@ class ProposalsController < ApplicationController
     @project = Project.find(params[:project_id])
     @proposal = @project.proposals.find(params[:id])
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
-    end
+    redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.' unless owner?
   end
 
   def update
     @project = Project.find(params[:project_id])
     @proposal = @project.proposals.find(params[:id])
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    if !owner?
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @proposal.update(proposal_update_params)
-      redirect_to [@project], notice: "Proposta atualizada com sucesso!"
+      redirect_to [@project], notice: 'Proposta atualizada com sucesso!'
     else
-      flash.now[:alert] = "Erro ao atualizar proposta..."
-      render :edit
+      render :edit, alert: 'Erro ao atualizar proposta...'
     end
   end
 
@@ -71,13 +67,12 @@ class ProposalsController < ApplicationController
     @project = Project.find(params[:project_id])
     @proposal = @project.proposals.find(params[:id])
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    if !owner?
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @proposal.destroy
-      redirect_to @project, notice: "Proposta deletada com sucesso!"
+      redirect_to @project, notice: 'Proposta deletada com sucesso!'
     else
-      flash.now[:alert] = "Erro ao deletar proposta..."
-      render @proposal
+      render @proposal, alert: 'Erro ao deletar proposta...'
     end
   end
 
@@ -86,12 +81,11 @@ class ProposalsController < ApplicationController
     @proposal = @project.proposals.find(params[:proposal_id])
 
     if @project.user != current_user
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @proposal.accepted!
-      redirect_to [@project, @proposal], notice: "Proposta aceita com sucesso!"
+      redirect_to [@project, @proposal], notice: 'Proposta aceita com sucesso!'
     else
-      flash.now[:alert] = "Erro ao aceitar proposta..."
-      render [@project, @proposal]
+      render [@project, @proposal], alert: 'Erro ao aceitar proposta...'
     end
   end
 
@@ -100,31 +94,22 @@ class ProposalsController < ApplicationController
     @proposal = @project.proposals.find(params[:proposal_id])
 
     if @project.user != current_user
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @proposal.rejected!
-      redirect_to [@project, @proposal], notice: "Proposta recusada com sucesso!"
+      redirect_to [@project, @proposal], notice: 'Proposta recusada com sucesso!'
     else
-      flash.now[:alert] = "Erro ao recusar proposta..."
-      render [@project, @proposal]
+      render [@project, @proposal], alert: 'Erro ao recusar proposta...'
     end
   end
 
   private
 
   def proposals_exists?
-    if @existing_proposal && @existing_proposal.project == @project
-      return true
-    else
-      return false
-    end
+    @existing_proposal && @existing_proposal.project == @project
   end
 
-  def is_owner?
-    if @proposal.freelancer == current_freelancer
-      return true
-    else
-      return false
-    end 
+  def owner?
+    @proposal.freelancer == current_freelancer
   end
 
   def proposal_params

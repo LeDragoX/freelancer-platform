@@ -1,8 +1,7 @@
 class OccupationArea < ApplicationRecord
-  has_many :profiles
+  has_many :profiles, dependent: :nullify
 
   validates :name,
             presence: true,
-            uniqueness: { case_sensitive: false },
             length: { minimum: 2, maximum: 100 }
 end

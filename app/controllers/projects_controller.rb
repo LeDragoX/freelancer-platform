@@ -7,9 +7,7 @@ class ProjectsController < ApplicationController
     @user = @project.user
     @proposals = @project.proposals
 
-    if freelancer_signed_in?
-      @freelancer_proposal = @project.proposals.find_by(freelancer: current_freelancer)
-    end
+    @freelancer_proposal = @project.proposals.find_by(freelancer: current_freelancer) if freelancer_signed_in?
   end
 
   def new
@@ -21,9 +19,9 @@ class ProjectsController < ApplicationController
     @project.user = current_user
 
     if @project.save
-      redirect_to @project, notice: "Projeto criado com sucesso!"
+      redirect_to @project, notice: 'Projeto criado com sucesso!'
     else
-      flash.now[:alert] = "Erro ao criar projeto..."
+      flash.now[:alert] = 'Erro ao criar projeto...'
       render :new
     end
   end
@@ -31,20 +29,18 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find(params[:id])
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
-    end
+    redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.' unless owner?
   end
 
   def update
     @project = Project.find(params[:id])
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    if !owner?
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @project.update(project_params)
-      redirect_to @project, notice: "Projeto atualizado com sucesso!"
+      redirect_to @project, notice: 'Projeto atualizado com sucesso!'
     else
-      flash.now[:alert] = "Erro ao atualizar projeto..."
+      flash.now[:alert] = 'Erro ao atualizar projeto...'
       render :edit
     end
   end
@@ -52,12 +48,12 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    if !owner?
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @project.destroy
-      redirect_to my_projects_projects_path, notice: "Projeto deletado com sucesso!"
+      redirect_to my_projects_projects_path, notice: 'Projeto deletado com sucesso!'
     else
-      flash.now[:alert] = "Erro ao deletar projeto..."
+      flash.now[:alert] = 'Erro ao deletar projeto...'
       render @project
     end
   end
@@ -67,9 +63,9 @@ class ProjectsController < ApplicationController
       @projects = current_user.projects
     elsif freelancer_signed_in?
       @projects = []
-      Proposal.all.each { |proposal|
+      Proposal.all.each do |proposal|
         @projects << proposal.project if proposal.freelancer == current_freelancer
-      }
+      end
     end
   end
 
@@ -79,12 +75,8 @@ class ProjectsController < ApplicationController
 
   private
 
-  def is_owner?
-    if @project.user == current_user
-      return true
-    else
-      return false
-    end
+  def owner?
+    @project.user == current_user
   end
 
   def project_params
