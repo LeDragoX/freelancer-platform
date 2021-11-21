@@ -14,17 +14,19 @@ class Proposal < ApplicationRecord
 
   enum status: { pending: 10, accepted: 20, rejected: 30 }
 
+  def owner?(current_freelancer = nil)
+    freelancer == current_freelancer
+  end
+
   private
 
   def initialize_status
-    self.status = 10 if status.nil?
+    self.status = 10 if status.blank?
   end
 
   def hour_rate_is_equal_or_less_than_project_rate
     if hour_rate.present? && hour_rate > project.max_hour_rate
-      errors.add(:hour_rate,
-                 "deve ser menor ou igual ao #{I18n.t(:max_hour_rate,
-                                                      scope: 'activerecord.attributes.project')} do Projeto")
+      errors.add(:hour_rate, "deve ser menor ou igual a #{project.max_hour_rate}")
     end
   end
 
@@ -33,10 +35,10 @@ class Proposal < ApplicationRecord
   end
 
   def delivery_estimate_must_be_in_future
-    if delivery_estimate.present? && delivery_estimate < Time.zone.now.to_date
-      errors.add(:delivery_estimate, 'não pode ser em datas passadas')
-    elsif delivery_estimate.present? && delivery_estimate == Time.zone.now.to_date
-      errors.add(:delivery_estimate, 'não pode ser hoje')
+    if delivery_estimate.present?
+      return errors.add(:delivery_estimate, 'não pode ser hoje') if delivery_estimate == Time.zone.now.to_date
+
+      errors.add(:delivery_estimate, 'não pode ser em datas passadas') if delivery_estimate < Time.zone.now.to_date
     end
   end
 end

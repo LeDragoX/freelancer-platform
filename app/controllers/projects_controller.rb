@@ -11,17 +11,16 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
+    @project = current_user.projects.new
   end
 
   def create
-    @project = Project.new(project_params)
-    @project.user = current_user
+    @project = current_user.projects.new(project_params)
 
     if @project.save
       redirect_to @project, notice: 'Projeto criado com sucesso!'
     else
-      flash.now[:alert] = 'Erro ao criar projeto...'
+      flash[:alert] = "Erro ao criar #{t(:project, scope: 'activerecord.models')}!"
       render :new
     end
   end
@@ -29,18 +28,21 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find(params[:id])
 
-    redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.' unless owner?
+    unless @project.owner?(current_user)
+      redirect_to root_path,
+                  alert: 'Você não possui permissão para executar esta ação.'
+    end
   end
 
   def update
     @project = Project.find(params[:id])
 
-    if !owner?
+    if !@project.owner?(current_user)
       redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @project.update(project_params)
       redirect_to @project, notice: 'Projeto atualizado com sucesso!'
     else
-      flash.now[:alert] = 'Erro ao atualizar projeto...'
+      flash[:alert] = "Erro ao atualizar #{t(:project, scope: 'activerecord.models')}!"
       render :edit
     end
   end
@@ -48,12 +50,12 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
 
-    if !owner?
+    if !@project.owner?(current_user)
       redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @project.destroy
       redirect_to my_projects_projects_path, notice: 'Projeto deletado com sucesso!'
     else
-      flash.now[:alert] = 'Erro ao deletar projeto...'
+      flash[:alert] = "Erro ao deletar #{t(:project, scope: 'activerecord.models')}!"
       render @project
     end
   end
@@ -74,10 +76,6 @@ class ProjectsController < ApplicationController
   end
 
   private
-
-  def owner?
-    @project.user == current_user
-  end
 
   def project_params
     params.require(:project).permit(:title, :description, :wanted_skills,

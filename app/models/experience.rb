@@ -9,6 +9,10 @@ class Experience < ApplicationRecord
   validate :started_at_lower_than_ended_at
   validate :ended_at_greater_than_started_at
 
+  def owner?(current_freelancer = nil)
+    profile.freelancer == current_freelancer
+  end
+
   private
 
   def started_at_lower_than_ended_at

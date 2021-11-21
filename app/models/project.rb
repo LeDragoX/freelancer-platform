@@ -18,6 +18,10 @@ class Project < ApplicationRecord
 
   enum status: { receiving_proposals: 10, in_progress: 20, finished: 30 }
 
+  def owner?(current_user = nil)
+    user == current_user
+  end
+
   private
 
   def initialize_status
@@ -25,10 +29,10 @@ class Project < ApplicationRecord
   end
 
   def deadline_must_be_in_future
-    if deadline.present? && deadline < Time.zone.now.to_date
-      errors.add(:deadline, 'não pode ser em datas passadas')
-    elsif deadline.present? && deadline == Time.zone.now.to_date
-      errors.add(:deadline, 'não pode ser hoje')
+    if deadline.present?
+      return errors.add(:deadline, 'não pode ser em datas passadas') if deadline < Time.zone.now.to_date
+
+      errors.add(:deadline, 'não pode ser hoje') if deadline == Time.zone.now.to_date
     end
   end
 

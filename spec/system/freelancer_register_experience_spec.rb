@@ -17,8 +17,8 @@ describe 'Freelancer register experiences' do
       click_on 'Nova Experiência'
       within 'form' do
         fill_in 'Título', with: 'Valve'
-        fill_in 'Começou em', with: 10.years.ago
-        fill_in 'Terminou em', with: Time.zone.now.to_date
+        fill_in 'Data de Início', with: 10.years.ago
+        fill_in 'Data de Término', with: Time.zone.now.to_date
         fill_in 'Descrição',
                 with: 'Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam.' \
                       'Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar.'
@@ -57,8 +57,8 @@ describe 'Freelancer register experiences' do
       click_on "Editar #{I18n.t(:experience, scope: 'activerecord.models')}"
       within 'form' do
         fill_in 'Título', with: 'Valve STEAM'
-        fill_in 'Começou em', with: 15.years.ago
-        fill_in 'Terminou em', with: Time.zone.now.to_date
+        fill_in 'Data de Início', with: 15.years.ago
+        fill_in 'Data de Término', with: Time.zone.now.to_date
         fill_in 'Descrição',
                 with: 'Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam.' \
                       'Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar.'

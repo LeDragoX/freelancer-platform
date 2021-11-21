@@ -18,9 +18,8 @@ class ProposalsController < ApplicationController
     @project = Project.find(params[:project_id])
     @proposal = @project.proposals.new
 
-    @existing_proposal = Proposal.find_by(freelancer: current_freelancer)
     if proposals_exists?
-      redirect_to project_proposal_path(@existing_proposal.project, @existing_proposal),
+      redirect_to [@existing_proposal.project, @existing_proposal],
                   alert: "Uma proposta sua já existe para '#{@project.title}'!"
     end
   end
@@ -32,14 +31,15 @@ class ProposalsController < ApplicationController
 
     @existing_proposal = Proposal.find_by(freelancer: current_freelancer)
     if proposals_exists?
-      redirect_to project_proposal_path(@existing_proposal.project, @existing_proposal),
+      redirect_to [@existing_proposal.project, @existing_proposal],
                   alert: "Uma proposta sua já existe para '#{@proposal.project.title}'!"
-    elsif !owner?
+    elsif !@proposal.owner?(current_freelancer)
       redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @proposal.save
       redirect_to [@proposal.project], notice: 'Proposta criada com sucesso!'
     else
-      render :new, alert: 'Erro ao criar proposta...'
+      flash[:alert] = "Erro ao criar #{t(:proposal, scope: 'activerecord.models')}!"
+      render :new
     end
   end
 
@@ -47,19 +47,23 @@ class ProposalsController < ApplicationController
     @project = Project.find(params[:project_id])
     @proposal = @project.proposals.find(params[:id])
 
-    redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.' unless owner?
+    unless @proposal.owner?(current_freelancer)
+      redirect_to root_path,
+                  alert: 'Você não possui permissão para executar esta ação.'
+    end
   end
 
   def update
     @project = Project.find(params[:project_id])
     @proposal = @project.proposals.find(params[:id])
 
-    if !owner?
+    if !@proposal.owner?(current_freelancer)
       redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @proposal.update(proposal_update_params)
       redirect_to [@project], notice: 'Proposta atualizada com sucesso!'
     else
-      render :edit, alert: 'Erro ao atualizar proposta...'
+      flash[:alert] = "Erro ao atualizar #{t(:proposal, scope: 'activerecord.models')}!"
+      render :edit
     end
   end
 
@@ -67,12 +71,13 @@ class ProposalsController < ApplicationController
     @project = Project.find(params[:project_id])
     @proposal = @project.proposals.find(params[:id])
 
-    if !owner?
+    if !@proposal.owner?(current_freelancer)
       redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @proposal.destroy
       redirect_to @project, notice: 'Proposta deletada com sucesso!'
     else
-      render @proposal, alert: 'Erro ao deletar proposta...'
+      flash[:alert] = "Erro ao deletar #{t(:proposal, scope: 'activerecord.models')}!"
+      render @proposal
     end
   end
 
@@ -85,7 +90,8 @@ class ProposalsController < ApplicationController
     elsif @proposal.accepted!
       redirect_to [@project, @proposal], notice: 'Proposta aceita com sucesso!'
     else
-      render [@project, @proposal], alert: 'Erro ao aceitar proposta...'
+      flash[:alert] = "Erro ao aceitar #{t(:proposal, scope: 'activerecord.models')}!"
+      render [@project, @proposal]
     end
   end
 
@@ -98,28 +104,24 @@ class ProposalsController < ApplicationController
     elsif @proposal.rejected!
       redirect_to [@project, @proposal], notice: 'Proposta recusada com sucesso!'
     else
-      render [@project, @proposal], alert: 'Erro ao recusar proposta...'
+      flash[:alert] = "Erro ao recusar #{t(:proposal, scope: 'activerecord.models')}!"
+      render [@project, @proposal]
     end
   end
 
   private
 
   def proposals_exists?
+    @existing_proposal = Proposal.find_by(freelancer: current_freelancer)
     @existing_proposal && @existing_proposal.project == @project
   end
 
-  def owner?
-    @proposal.freelancer == current_freelancer
-  end
-
   def proposal_params
-    params.require(:proposal).permit(:description, :hour_rate, :weekly_hours,
-                                     :delivery_estimate,
+    params.require(:proposal).permit(:description, :hour_rate, :weekly_hours, :delivery_estimate,
                                      :project_id, :freelancer_id)
   end
 
   def proposal_update_params
-    params.require(:proposal).permit(:description, :hour_rate, :weekly_hours,
-                                     :delivery_estimate)
+    params.require(:proposal).permit(:description, :hour_rate, :weekly_hours, :delivery_estimate)
   end
 end

@@ -101,7 +101,7 @@ describe 'Freelancer register Profile' do
         end
 
         expect(current_path).to eq '/profiles'
-        expect(page).to have_content 'Erro ao criar perfil'
+        expect(page).to have_content 'Erro ao criar Perfil!'
         within 'main' do
           expect(page).to_not have_content 'Voltar para Página Inicial'
           expect(page).to have_content 'não pode ficar em branco', count: 4
@@ -133,8 +133,7 @@ describe 'Freelancer register Profile' do
 
         expect(current_path).to eq '/profiles/1'
         within 'main' do
-          expect(page).to have_content 'Data de Nascimento não pode ser menor que 16 anos ' \
-                                       "(maior que #{I18n.l(16.years.ago.to_date)})"
+          expect(page).to have_content 'Data de Nascimento não pode ser menor que 16 anos'
         end
       end
     end
