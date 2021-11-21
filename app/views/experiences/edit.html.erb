@@ -1,4 +1,4 @@
 <%= link_to "Voltar para #{t(:experience, scope: "activerecord.models")}", [@profile, @experience] %>
-<h1>📅 Editar <%= @experience.title %></h1>
+<h1>Editar <%= @experience.title %></h1>
 
-<%= render partial: "form" %>
+<%= render "form", object: [@profile, @experience] %>

@@ -14,29 +14,20 @@
     <div class="container">
       <header>
         <nav>
-          <%= link_to "Página Inicial", root_path %>
-          <% if user_signed_in?  %>
+          <%= link_to "Início", root_path %>
+          <% if user_signed_in? %>
             <%= "#{t(:user, scope: "activerecord.models")} #{current_user.email}" %>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-
-            <div>
-              <%= link_to "Meus Projetos", my_projects_projects_path %>
-              <%= link_to "Novo Projeto", new_project_path %>
-              <%= link_to "Propostas existentes", my_proposals_projects_path %>
-            </div>
-          <% elsif !freelancer_signed_in? %>
-            <p><%= link_to "Entrar como Usuário", new_user_session_path %></p>
-          <% end %>
-
-          <% if freelancer_signed_in? %>
-            <%= link_to "#{t(:freelancer, scope: "activerecord.models")} #{current_freelancer.email}", current_freelancer.profile || new_profile_path %>
-            <%= link_to "Logout", destroy_freelancer_session_path, method: :delete %>
-
-            <div>
-              <%= link_to "Meus Projetos", my_projects_projects_path %>
-            </div>
-          <% elsif !user_signed_in? %>
-            <p><%= link_to "Entrar como Freelancer", new_freelancer_session_path %></p>
+            <%= link_to "Meus Projetos", my_projects_projects_path %>
+            <%= link_to "Novo Projeto", new_project_path %>
+            <%= link_to "Propostas existentes", my_proposals_projects_path %>
+            <%= link_to "Sair", destroy_user_session_path, method: :delete %>
+          <% elsif freelancer_signed_in? %>
+            <%= link_to "Meu #{t(:profile, scope: 'activerecord.models')}", current_freelancer.profile || new_profile_path %>
+            <%= link_to "Meus Projetos", my_projects_projects_path %>
+            <%= link_to "Sair", destroy_freelancer_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "Entrar como Freelancer", new_freelancer_session_path %>
+            <%= link_to "Entrar como Usuário", new_user_session_path %>
           <% end %>
         </nav>
 

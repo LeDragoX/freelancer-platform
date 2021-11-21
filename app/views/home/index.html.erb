@@ -6,20 +6,20 @@
   <p>Primeiro, basta logar</p>
 
 <% elsif user_signed_in? %>
-  <h3>🎓 Profissionais disponíveis</h3>
+  <h3>Profissionais disponíveis</h3>
 
   <% if @freelancers.empty? %>
     <h3>Nenhum Profissional encontrado</h3>
   <% end %>
 
-  <%= render partial: "freelancers/freelancers" %>
+  <%= render "freelancers/freelancers" %>
 
 <% elsif freelancer_signed_in? %>
-  <h3>📋 Projetos disponíveis</h3>
+  <h3>Projetos disponíveis</h3>
 
   <% if @projects.empty? %>
     <h3>Nenhum Projeto encontrado</h3>
   <% end %>
 
-  <%= render partial: "projects/projects" %>
+  <%= render "projects/projects" %>
 <% end %>

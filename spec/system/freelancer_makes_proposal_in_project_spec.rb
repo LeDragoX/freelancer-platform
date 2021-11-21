@@ -34,7 +34,6 @@ describe "Freelancer makes proposal in project" do
 
       expect(current_path).to eq project_path(1)
       expect(page).to have_content "Proposta criada com sucesso!"
-      expect(page).to have_content "Voltar para Página Inicial"
       expect(page).to have_content "Sistema Web"
       expect(page).to have_content "Projeto de: #{project.user.email}"
       within "div", class: "proposal" do
@@ -83,7 +82,6 @@ describe "Freelancer makes proposal in project" do
 
       expect(current_path).to eq project_path(1)
       expect(page).to have_content "Proposta atualizada com sucesso!"
-      expect(page).to have_content "Voltar para Página Inicial"
       expect(page).to have_content "Sistema Web"
       expect(page).to have_content "Projeto de: #{project.user.email}"
       within "div", class: "proposal" do
@@ -124,7 +122,6 @@ describe "Freelancer makes proposal in project" do
       expect(current_path).to eq project_path(1)
       expect(page).to have_content "Proposta deletada com sucesso!"
       within "main" do
-        expect(page).to have_content "Voltar para Página Inicial"
         expect(page).to have_content "Sistema Web"
         expect(page).to have_content "Projeto de: #{project.user.email}"
         expect(page).to have_link "Fazer Proposta", href: "/projects/1/proposals/new"

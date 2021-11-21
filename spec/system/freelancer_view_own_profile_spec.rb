@@ -14,11 +14,10 @@ describe "Freelancer view own Profile" do
       login_as freelancer, scope: :freelancer
       visit root_path
       within "nav" do
-        click_on freelancer.email
+        click_on 'Meu Perfil'
       end
 
       expect(current_path).to eq profile_path(f_profile)
-      expect(page).to have_content "Voltar para Página Inicial"
       expect(page).to have_link "Editar Perfil", href: edit_profile_path(f_profile)
       expect(page).to have_content "Giovanni César Lima (Giovanni César)"
       expect(page).to have_content "Quality Assurance"

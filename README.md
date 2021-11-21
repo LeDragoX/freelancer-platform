@@ -14,7 +14,6 @@ Também tenho a versão do diagrama [com Roles de usuário](public/readme/class-
 ```sh
 # Don't run this command
 ╰─❯ rails new freelancer-platform --skip-action-mailbox --skip-active-storage --skip-action-cable
-# Disabled Gems: 'rack-mini-profiler' and 'web-console'
 ```
 
 ## Ruby version
@@ -23,17 +22,24 @@ Também tenho a versão do diagrama [com Roles de usuário](public/readme/class-
 
 ## System dependencies
 
-- Make sure [_NodeJS_](https://nodejs.org/en/) and [_Yarn_](https://classic.yarnpkg.com/lang/en/docs/install) is installed:
-- All Rails stuff;
-- Devise - Login & Auth manager;
-- Rspec-Rails - Unit & Web UI tests;
-- Capybara - Web UI tests;
-- SimpleCov - Cover better all validation tests
+- Make sure [_NodeJS_](https://nodejs.org/en/) and [_Yarn_](https://classic.yarnpkg.com/lang/en/docs/install) are installed.
+
+### Gems
+
+- rails - Web Application;
+- rspec-rails - Test suite for request, unit and system tests;
+- rubocop-rails - Ensures code adheres to Rails best practices and coding conventions;
+- factory_bot_rails - Automated Seed Generator;
+- devise - Login & Auth manager;
+- simpleCov - Test Coverage Report;
+- pry-byebug - Debugging step-by-step (when needed);
+- shoulda-matchers - Tests with `Mock`, `Stub`, `Dummy`, `Fake` and `Spy`;
+- webdrivers - Easy installation and use of web drivers to run system tests with browsers;
 
 ## Configuration
 
 ```sh
-bundle install
+bin/setup
 ```
 
 ## Database creation
@@ -52,6 +58,7 @@ rails db:seed
 
 ```sh
 rspec
+rubocop
 ```
 
 ## Services (job queues, cache servers, search engines, etc.)
@@ -64,9 +71,9 @@ rspec
 rails server
 ```
 
-Access the server via browser on: _localhost:3000_
+Access the web application via browser on: _localhost:3000_
 
-### Logins
+### Available Logins
 
 #### Login as User
 

@@ -51,7 +51,6 @@ describe "Freelancer view projects" do
       visit root_path
       click_on "Sistema Web"
 
-      expect(page).to have_content "Voltar para Página Inicial"
       expect(page).to have_content "Sistema Web"
       expect(page).to have_content "Site de Fast Food por encomenda"
       within "dl" do

@@ -21,7 +21,6 @@ describe "User register projects" do
       end
 
       expect(current_path).to_not eq new_project_path
-      expect(page).to have_content "Voltar para Página Inicial"
       expect(page).to have_content "Sistema Web"
       expect(page).to have_content "Site de Fast Food por encomenda"
       within "dl" do
@@ -61,7 +60,6 @@ describe "User register projects" do
       end
       
       expect(current_path).to eq project_path(project)
-      expect(page).to have_content "Voltar para Página Inicial"
       expect(page).to have_content "Sistema Web FUNCIONAL"
       expect(page).to have_content "Site de Fast Food por encomenda TOP"
       within "dl" do
@@ -91,7 +89,6 @@ describe "User register projects" do
       click_on "Deletar Projeto"
 
       expect(current_path).to eq my_projects_projects_path
-      expect(page).to have_content "Voltar para Página Inicial"
       expect(page).to_not have_link "Sistema Web"
       expect(page).to_not have_content "Site de Fast Food por encomenda"
       expect(page).to_not have_content "No Back: NodeJS, Prisma, PostgreSQL. No Front: VueJS, Sass, Tailwind CSS"

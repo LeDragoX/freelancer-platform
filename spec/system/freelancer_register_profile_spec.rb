@@ -23,7 +23,6 @@ describe "Freelancer register Profile" do
 
         expect(current_path).to eq "/profiles/1"
         within "main" do
-          expect(page).to have_content "Voltar para Página Inicial"
           expect(page).to have_content "Giovanni César Lima (Giovanni César)"
           expect(page).to have_content "Quality Assurance"
           expect(page).to have_css("img[alt=photo]")
@@ -50,7 +49,7 @@ describe "Freelancer register Profile" do
         login_as freelancer, scope: :freelancer
         visit root_path
         within "nav" do
-          click_on freelancer.email
+          click_on 'Meu Perfil'
         end
         click_on "Editar Perfil"
         within "form" do
@@ -66,7 +65,6 @@ describe "Freelancer register Profile" do
 
         expect(current_path).to eq "/profiles/1"
         within "main" do
-          expect(page).to have_content "Voltar para Página Inicial"
           expect(page).to have_content "Giovanni César Lima (Giovanni César)"
           expect(page).to have_content "Quality Assurance"
           expect(page).to have_css("img[alt=photo]")
@@ -123,7 +121,7 @@ describe "Freelancer register Profile" do
         login_as freelancer, scope: :freelancer
         visit root_path
         within "nav" do
-          click_on freelancer.email
+          click_on 'Meu Perfil'
         end
         click_on "Editar Perfil"
         within "form" do

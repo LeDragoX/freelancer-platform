@@ -1,6 +1,4 @@
 <div>
-  <%= link_to "Voltar para Página Inicial", root_path %>
-
   <% if @profile.freelancer == current_freelancer %>
       <ul>
         <li><%= link_to "Editar Perfil", edit_profile_path(@profile) %></li>

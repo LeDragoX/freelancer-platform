@@ -13,7 +13,7 @@ describe "Freelancer register experiences" do
 
       login_as freelancer, scope: :freelancer
       visit root_path
-      click_on "freelancer@test.com"
+      click_on "Meu Perfil"
       click_on "Nova Experiência"
       within "form" do
         fill_in "Título", with: "Valve"
@@ -46,7 +46,7 @@ describe "Freelancer register experiences" do
 
       login_as freelancer, scope: :freelancer
       visit root_path
-      click_on "freelancer@test.com"
+      click_on "Meu Perfil"
       click_on "Valve"
       click_on "Editar #{I18n.t(:experience, scope: "activerecord.models")}"
       within "form" do
@@ -80,13 +80,12 @@ describe "Freelancer register experiences" do
 
       login_as freelancer, scope: :freelancer
       visit root_path
-      click_on "freelancer@test.com"
+      click_on "Meu Perfil"
       click_on "Valve"
       click_on "Deletar #{I18n.t(:experience, scope: "activerecord.models")}"
 
       expect(current_path).to eq "/profiles/1"
       within "main" do
-        expect(page).to have_content "Voltar para Página Inicial"
         expect(page).to_not have_content "Valve STEAM"
         expect(page).to_not have_content "Período: #{I18n.l(15.years.ago.to_date)} - #{I18n.l(Time.now.to_date)}"
         expect(page).to_not have_content "Trabalho com APIs de e-commerces, para consumir dentro da Loja da Steam. Sempre há algum trabalho de re-design, refatoração, e limpeza de código para realizar."

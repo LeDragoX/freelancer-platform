@@ -16,11 +16,10 @@ describe "Freelancer view experiences" do
 
       login_as freelancer, scope: :freelancer
       visit root_path
-      click_on "freelancer@test.com"
+      click_on "Meu Perfil"
 
       expect(current_path).to eq "/profiles/1"
       within "main" do
-        expect(page).to have_content "Voltar para Página Inicial"
         expect(page).to have_link "Nova Experiência", href: new_profile_experience_path(f_profile)
         expect(page).to have_content I18n.t(:experiences, scope: "activerecord.models")
         expect(page).to have_link "Fast Entregas", href: profile_experience_path(f_profile, p_experience)
@@ -43,7 +42,7 @@ describe "Freelancer view experiences" do
 
       login_as freelancer, scope: :freelancer
       visit root_path
-      click_on "freelancer@test.com"
+      click_on "Meu Perfil"
       click_on "Fast Entregas"
 
       within "main" do
