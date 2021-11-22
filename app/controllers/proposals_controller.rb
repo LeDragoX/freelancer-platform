@@ -7,9 +7,7 @@ class ProposalsController < ApplicationController
     @project = Project.find(params[:project_id])
     @proposal = @project.proposals.find(params[:id])
 
-    if (user_signed_in? && @proposal.project.user == current_user) || (freelancer_signed_in? && owner?)
-      nil
-    else
+    unless (user_signed_in? && @proposal.project.user == current_user) || (freelancer_signed_in? && @proposal.owner?(current_freelancer))
       redirect_to root_path, alert: 'Você não pode vizualizar esta proposta.'
     end
   end

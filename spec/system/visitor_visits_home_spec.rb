@@ -14,4 +14,13 @@ describe 'Visitor ' do
       expect(page).to_not have_content 'Projetos disponíveis'
     end
   end
+
+  context "unsuccessfully" do
+    it 'enters unauthorized page' do
+      visit '/profiles/1'
+
+      expect(current_path).to eq '/'
+      expect(page).to have_content 'Você precisa estar logado para acessar esta seção.'
+    end
+  end
 end
