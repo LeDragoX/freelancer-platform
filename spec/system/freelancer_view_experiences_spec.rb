@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'Freelancer view experiences' do
-  context 'on its profile page' do
-    it 'and saw 1 experience' do
+  context 'successfully' do
+    it 'on its own profile page' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       f_profile = Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',
@@ -28,7 +28,7 @@ describe 'Freelancer view experiences' do
       end
     end
 
-    it 'and enters on the experience page' do
+    it 'enters on the experience page' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       f_profile = Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',

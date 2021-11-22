@@ -1,22 +1,8 @@
 require 'rails_helper'
 
-describe 'Visitor login on Home' do
-  context 'as a normal visitor (no auth)' do
-    it 'successfully' do
-      visit root_path
-
-      within 'nav' do
-        expect(page).to_not have_link 'Meus Projetos'
-        expect(page).to_not have_link 'Novo Projeto'
-        expect(page).to_not have_link 'Sair'
-      end
-      expect(page).to_not have_content 'Profissionais disponíveis'
-      expect(page).to_not have_content 'Projetos disponíveis'
-    end
-  end
-
-  context 'as an user' do
-    it 'successfully' do
+describe 'Visitor login' do
+  context 'successfully' do
+    it 'as an user' do
       user = User.create!({ email: 'user@test.com', password: '123456' })
 
       visit root_path
@@ -34,11 +20,9 @@ describe 'Visitor login on Home' do
       expect(page).to have_content 'Profissionais disponíveis'
       expect(page).to_not have_content 'Projetos disponíveis'
     end
-  end
 
-  context 'as a freelancer' do
-    context 'with a profile' do
-      it 'successfully' do
+    context 'as a freelancer' do
+      it 'with a profile' do
         freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
         qa = OccupationArea.create!({ name: 'Quality Assurance' })
         Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',
@@ -62,10 +46,8 @@ describe 'Visitor login on Home' do
         expect(page).to have_content 'Projetos disponíveis'
         expect(page).to_not have_content 'Profissionais disponíveis'
       end
-    end
 
-    context 'without a profile' do
-      it 'successfully' do
+      it 'without a profile' do
         freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
         OccupationArea.create!({ name: 'Quality Assurance' })
 

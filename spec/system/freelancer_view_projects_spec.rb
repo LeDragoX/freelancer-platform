@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'Freelancer view projects' do
-  context 'with profile on home page' do
-    it 'and saw 1 project' do
+  context 'successfully' do
+    it 'on home page' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',
@@ -28,7 +28,7 @@ describe 'Freelancer view projects' do
       end
       expect(page).to have_link 'Sistema Web', href: project_path(project)
       expect(page).to_not have_content 'R$ 600,00'
-      expect(page).to_not have_content I18n.l(project.deadline) # Foi o melhor jeito consegui de testar Data
+      expect(page).to_not have_content I18n.l(project.deadline)
     end
 
     it 'enters the project page' do

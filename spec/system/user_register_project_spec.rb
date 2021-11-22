@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'User register projects' do
-  context 'logged in' do
-    it 'successfully' do
+describe 'User register project' do
+  context 'successfully' do
+    it 'logged as user' do
       user = User.create!({ email: 'user@test.com', password: '123456' })
       JobType.create!({ name: 'Presencial' })
 
@@ -105,8 +105,8 @@ describe 'User register projects' do
     end
   end
 
-  context 'logged out' do
-    it 'see User login page' do
+  context 'unsuccessfully' do
+    it 'logged out' do
       visit new_project_path
 
       expect(current_path).to eq new_user_session_path

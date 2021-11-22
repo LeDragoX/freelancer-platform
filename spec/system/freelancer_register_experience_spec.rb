@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'Freelancer register experiences' do
-  context 'logged in' do
-    it 'successfully' do
+  context 'successfully' do
+    it 'logged as freelancer' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',
@@ -36,7 +36,7 @@ describe 'Freelancer register experiences' do
       end
     end
 
-    it 'and edit it' do
+    it 'edit it' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       f_profile = Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',
@@ -76,7 +76,7 @@ describe 'Freelancer register experiences' do
       end
     end
 
-    it 'and delete it' do
+    it 'delete it' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       f_profile = Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',
@@ -107,8 +107,8 @@ describe 'Freelancer register experiences' do
     end
   end
 
-  context 'logged out' do
-    it 'see Freelancer login page' do
+  context 'unsuccessfully' do
+    it 'logged out' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',

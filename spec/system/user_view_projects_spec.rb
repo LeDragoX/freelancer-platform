@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'User view projects' do
-  context 'on My Projects page' do
-    it 'and saw 1 project' do
+  context 'successfully' do
+    it 'on My Projects link' do
       user = User.create!({ email: 'user@test.com', password: '123456' })
       Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       job_remoto = JobType.create!({ name: 'Remoto' })

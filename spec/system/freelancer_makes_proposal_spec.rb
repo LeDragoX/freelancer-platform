@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Freelancer makes proposal in project' do
-  context 'viewing a project' do
-    it 'successfully' do
+describe 'Freelancer makes proposal' do
+  context 'successfully' do
+    it 'on a project page' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',
@@ -50,7 +50,7 @@ describe 'Freelancer makes proposal in project' do
       expect(page).to_not have_link 'Recusar Proposta'
     end
 
-    it 'edit it' do
+    it 'and edit it' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',
@@ -96,7 +96,7 @@ describe 'Freelancer makes proposal in project' do
       expect(page).to_not have_link 'Recusar Proposta'
     end
 
-    it 'delete it' do
+    it 'and delete it' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',

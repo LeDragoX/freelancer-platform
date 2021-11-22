@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'Freelancer view own Profile' do
-  context 'on home page' do
-    it 'successfully' do
+  context 'successfully' do
+    it 'on home page link' do
       freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
       qa = OccupationArea.create!({ name: 'Quality Assurance' })
       f_profile = Profile.create!({ full_name: 'Giovanni César Lima', social_name: 'Giovanni César',
