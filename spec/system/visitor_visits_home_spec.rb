@@ -15,7 +15,7 @@ describe 'Visitor ' do
     end
   end
 
-  context "unsuccessfully" do
+  context 'unsuccessfully' do
     it 'enters unauthorized page' do
       visit '/profiles/1'
 

@@ -6,11 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create!({ email: 'user@test.com', password: '123456' })
-user1 = User.create!({ email: 'test@test.com', password: '123456' })
+admin = Admin.create!({ email: 'admin@test.com', password: '123456' })
+
 freelancer = Freelancer.create!({ email: 'freelancer@test.com', password: '123456' })
 freelancer1 = Freelancer.create!({ email: 'test@test.com', password: '123456' })
 freelancer2 = Freelancer.create!({ email: 'test2@test.com', password: '123456' })
+
+user = User.create!({ email: 'user@test.com', password: '123456' })
+user1 = User.create!({ email: 'test@test.com', password: '123456' })
 
 job_presential = JobType.create!({ name: 'Presencial' })
 job_remote = JobType.create!({ name: 'Remoto' })

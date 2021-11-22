@@ -151,8 +151,8 @@ describe 'Freelancer register experiences' do
         expect(page).to have_link "Voltar para #{I18n.t(:profile, scope: 'activerecord.models')}"
         expect(page).to have_content 'Título não pode ficar em branco'
         expect(page).to have_content 'Título é muito curto (mínimo: 3 caracteres)'
-        expect(page).to have_content "Data de Início não pode ser maior do que Data de Término"
-        expect(page).to have_content "Data de Término não pode ser menor do que Data de Início"
+        expect(page).to have_content 'Data de Início não pode ser maior do que Data de Término'
+        expect(page).to have_content 'Data de Término não pode ser menor do que Data de Início'
         expect(page).to have_content 'Descrição não pode ficar em branco'
         expect(page).to have_content 'Descrição é muito curto (mínimo: 20 caracteres)'
       end

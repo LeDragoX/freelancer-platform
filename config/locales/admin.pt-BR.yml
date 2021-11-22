@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      admin: "Administrador"
+      admins: "Administrador"
+    attributes:
+      admin:
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirme a senha"
