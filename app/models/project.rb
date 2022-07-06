@@ -3,11 +3,11 @@ class Project < ApplicationRecord
   belongs_to :user
 
   has_many :freelancers, through: :proposals
-  has_many :proposals
+  has_many :proposals, dependent: :destroy
 
   validates :title, :description, :wanted_skills,
-  :max_hour_rate, :deadline,
-  :job_type_id, :user_id, presence: true
+            :max_hour_rate, :deadline,
+            :job_type_id, :user_id, presence: true
   validates :title, length: { minimum: 1, maximum: 100 }
   validates :description, length: { minimum: 20, maximum: 1000 }
   validates :wanted_skills, length: { minimum: 5, maximum: 1000 }
@@ -18,25 +18,25 @@ class Project < ApplicationRecord
 
   enum status: { receiving_proposals: 10, in_progress: 20, finished: 30 }
 
+  def owner?(current_user = nil)
+    user == current_user
+  end
+
   private
 
   def initialize_status
-    if status.nil?
-      self.status = 10
-    end
+    self.status = 10 if status.nil?
   end
 
   def deadline_must_be_in_future
-    if !deadline.nil? && deadline < Time.now.to_date
-      errors.add(:deadline, "não pode ser em datas passadas")
-    elsif !deadline.nil? && deadline == Time.now.to_date
-      errors.add(:deadline, "não pode ser hoje")
+    if deadline.present?
+      return errors.add(:deadline, 'não pode ser em datas passadas') if deadline < Time.zone.now.to_date
+
+      errors.add(:deadline, 'não pode ser hoje') if deadline == Time.zone.now.to_date
     end
   end
 
   def max_hour_rate_must_be_zero_or_more
-    if !max_hour_rate.nil? && max_hour_rate < 0
-      errors.add(:max_hour_rate, "deve ser maior que zero")
-    end
+    errors.add(:max_hour_rate, 'deve ser maior que zero') if max_hour_rate.present? && max_hour_rate.negative?
   end
 end

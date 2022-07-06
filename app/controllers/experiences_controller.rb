@@ -18,22 +18,19 @@ class ExperiencesController < ApplicationController
     @profile = Profile.find(params[:profile_id])
     @experience = @profile.experiences.new
 
-    if !(verified_profile?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
-    end
+    redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.' unless verified_profile?
   end
 
   def create
     @profile = Profile.find(params[:profile_id])
     @experience = @profile.experiences.new(experience_params)
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    if !@experience.owner?(current_freelancer)
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @experience.save
-      flash[:notice] = "Experiência criada com sucesso!"
-      redirect_to [@profile, @experience]
+      redirect_to [@profile, @experience], notice: 'Experiência criada com sucesso!'
     else
-      flash.now[:alert] = "Erro ao criar experiência..."
+      flash[:alert] = "Erro ao criar #{t(:experience, scope: 'activerecord.models')}!"
       render :new
     end
   end
@@ -42,8 +39,9 @@ class ExperiencesController < ApplicationController
     @profile = Profile.find(params[:profile_id])
     @experience = @profile.experiences.find(params[:id])
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    unless @experience.owner?(current_freelancer)
+      redirect_to root_path,
+                  alert: 'Você não possui permissão para executar esta ação.'
     end
   end
 
@@ -51,13 +49,12 @@ class ExperiencesController < ApplicationController
     @profile = Profile.find(params[:profile_id])
     @experience = @profile.experiences.find(params[:id])
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    if !@experience.owner?(current_freelancer)
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @experience.update(update_experience_params)
-      flash[:notice] = "Experiência atualizada com sucesso!"
-      redirect_to [@profile, @experience]
+      redirect_to [@profile, @experience], notice: 'Experiência atualizada com sucesso!'
     else
-      flash.now[:alert] = "Erro ao atualizar experiência..."
+      flash[:alert] = "Erro ao atualizar #{t(:experience, scope: 'activerecord.models')}!"
       render :edit
     end
   end
@@ -66,13 +63,12 @@ class ExperiencesController < ApplicationController
     @profile = Profile.find(params[:profile_id])
     @experience = @profile.experiences.find(params[:id])
 
-    if !(is_owner?)
-      redirect_to root_path, alert: "Você não possui permissão para executar esta ação."
+    if !@experience.owner?(current_freelancer)
+      redirect_to root_path, alert: 'Você não possui permissão para executar esta ação.'
     elsif @experience.destroy
-      flash[:notice] = "Experiência deletada com sucesso!"
-      redirect_to profile_path(@profile)
+      redirect_to @profile, notice: 'Experiência deletada com sucesso!'
     else
-      flash.now[:alert] = "Erro ao deletar experiência..."
+      flash[:alert] = "Erro ao deletar #{t(:experience, scope: 'activerecord.models')}!"
       render :show
     end
   end
@@ -80,19 +76,7 @@ class ExperiencesController < ApplicationController
   private
 
   def verified_profile?
-    if freelancer_signed_in? && @profile == current_freelancer.profile
-      return true
-    else
-      return false
-    end
-  end
-
-  def is_owner?
-    if @experience.profile.freelancer == current_freelancer
-      return true
-    else
-      return false
-    end
+    freelancer_signed_in? && @profile == current_freelancer.profile
   end
 
   def experience_params

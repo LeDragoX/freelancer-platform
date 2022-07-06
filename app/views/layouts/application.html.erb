@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>🧑🏻‍💼 Freelancer Platform</title>
+    <title>Freelancei!</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,17 +15,20 @@
       <header>
         <nav>
           <%= link_to "Início", root_path %>
-          <% if user_signed_in? %>
+          <% if admin_signed_in? %>
+            <%= link_to "Sair", destroy_freelancer_session_path, method: :delete %>
+          <% elsif freelancer_signed_in? %>
+            <%= link_to "Meu #{t(:profile, scope: 'activerecord.models')}", current_freelancer.profile || new_profile_path %>
+            <%= link_to "Meus Projetos", my_projects_projects_path %>
+            <%= link_to "Sair", destroy_freelancer_session_path, method: :delete %>
+          <% elsif user_signed_in? %>
             <%= "#{t(:user, scope: "activerecord.models")} #{current_user.email}" %>
             <%= link_to "Meus Projetos", my_projects_projects_path %>
             <%= link_to "Novo Projeto", new_project_path %>
             <%= link_to "Propostas existentes", my_proposals_projects_path %>
             <%= link_to "Sair", destroy_user_session_path, method: :delete %>
-          <% elsif freelancer_signed_in? %>
-            <%= link_to "Meu #{t(:profile, scope: 'activerecord.models')}", current_freelancer.profile || new_profile_path %>
-            <%= link_to "Meus Projetos", my_projects_projects_path %>
-            <%= link_to "Sair", destroy_freelancer_session_path, method: :delete %>
           <% else %>
+            <%= link_to "Entrar como Administrador", new_admin_session_path %>
             <%= link_to "Entrar como Freelancer", new_freelancer_session_path %>
             <%= link_to "Entrar como Usuário", new_user_session_path %>
           <% end %>

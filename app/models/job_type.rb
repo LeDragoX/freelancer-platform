@@ -1,8 +1,7 @@
 class JobType < ApplicationRecord
-  has_many :projects
+  has_many :projects, dependent: :nullify
 
   validates :name,
             presence: true,
-            uniqueness: { case_sensitive: false },
             length: { minimum: 3, maximum: 50 }
 end

@@ -6,7 +6,7 @@ pt-BR:
     attributes:
       experience:
         title: "Título"
-        started_at: "Começou em"
-        ended_at: "Terminou em"
+        started_at: "Data de Início"
+        ended_at: "Data de Término"
         description: "Descrição"
         profile_id: "Perfil"
